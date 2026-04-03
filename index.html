@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smartford — Science-Backed Learning</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --white:      #FFFFFF;
+      --bg-cream:   #FEFCF8;
+      --bg-light:   #F8FAFC;
+      --blue:       #3668C4;
+      --green:      #3AAA58;
+      --green-lt:   rgba(58,170,88,.12);
+      --navy:       #334155;
+      --slate:      #475569;
+      --soft-blue:  #E0E7FF;
+      --border:     #E2E8F0;
+      --shadow-lg:  0 20px 40px rgba(15,23,42,.08);
+      /* rainbow from the box */
+      --r-red:    #E83222;
+      --r-orange: #F5821E;
+      --r-yellow: #F9D422;
+      --r-green:  #3AAA58;
+      --r-teal:   #2ABAB4;
+      --r-blue:   #3668C4;
+      --r-purple: #7B52A8;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--bg-cream);
+      color: var(--navy);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    h1, h2, h3 { font-family: 'Playfair Display', serif; line-height: 1.2; }
+    .section-inner { max-width: 1160px; margin: 0 auto; padding: 0 6%; }
+
+    /* ── RAINBOW TOP BAR ── */
+    .rainbow-bar {
+      height: 5px;
+      background: linear-gradient(90deg,
+        var(--r-red), var(--r-orange), var(--r-yellow),
+        var(--r-green), var(--r-teal), var(--r-blue), var(--r-purple));
+    }
+
+    @keyframes pulse-scale {
+      0%, 100% { transform: scale(1); }
+      50%       { transform: scale(1.03); }
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 2.2rem;
+      border-radius: 50px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background: var(--r-teal);
+      color: var(--white);
+      box-shadow: 0 8px 24px rgba(42,186,180,.25);
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(42,186,180,.35);
+      filter: brightness(1.05);
+    }
+    .btn-outline {
+      border: 2.5px solid var(--blue);
+      color: var(--blue);
+      background: transparent;
+    }
+    .btn-outline:hover { background: var(--blue); color: var(--white); transform: translateY(-2px); }
+    .btn-sm { padding: 0.6rem 1.4rem; font-size: 0.88rem; }
+
+    /* ── NAV ── */
+    nav {
+      background-color: rgba(235,248,247,0.97);
+      background-image:
+        radial-gradient(circle, rgba(42,186,180,0.13) 1.5px, transparent 1.5px),
+        radial-gradient(circle, rgba(123,82,168,0.07) 1px, transparent 1px);
+      background-size: 28px 28px, 14px 14px;
+      background-position: 0 0, 7px 7px;
+      backdrop-filter: blur(10px);
+      height: 96px;
+      display: flex;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      width: 100%; max-width: 1160px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center; padding: 0 6%;
+    }
+    .nav-logo img { height: 44px; width: auto; display: block; }
+    .nav-links { display: flex; gap: 2.5rem; align-items: center; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--navy); font-weight: 700; font-size: 0.95rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--blue); }
+
+    /* ── HERO ── */
+    .hero { padding: 70px 0 90px; background: var(--bg-cream); }
+    .hero-flex { display: flex; align-items: center; gap: 4rem; }
+    .hero-text { flex: 1; }
+    .hero-eyebrow {
+      color: var(--green);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 1.2rem;
+      font-size: 0.85rem;
+    }
+    .hero h1 { font-size: clamp(2.4rem, 4.5vw, 3.6rem); font-weight: 900; margin-bottom: 1.5rem; }
+    .hero h1 span { color: var(--blue); }
+    .hero-sub { font-size: 1.2rem; color: var(--slate); margin-bottom: 2.5rem; max-width: 500px; line-height: 1.75; }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .hero-visual { flex: 1.2; position: relative; display: flex; justify-content: center; }
+    .hero-visual img {
+      width: 100%; max-width: 500px;
+      height: auto; object-fit: contain;
+      animation: pulse-scale 6s ease-in-out infinite;
+      filter: drop-shadow(0 20px 40px rgba(0,0,0,.08));
+    }
+
+    /* ── STATS BAR ── */
+    .stats-bar { padding: 56px 0; background: var(--bg-light); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; text-align: center; }
+    .stat-item { padding: 0 1rem; border-left: 1px solid var(--border); }
+    .stat-item:first-child { border-left: none; }
+    .stat-item h3 { font-size: 2.2rem; color: var(--navy); margin-bottom: 0.4rem; }
+    .stat-item p { color: var(--slate); font-weight: 600; font-size: 0.92rem; }
+
+    /* ── GAMES ── */
+    #games { padding: 90px 0; background: var(--bg-cream); }
+    .section-header { margin-bottom: 3.5rem; }
+    .section-header h2 { font-size: clamp(2rem, 3.5vw, 2.8rem); margin-bottom: 0.75rem; }
+    .section-header p { color: var(--slate); max-width: 540px; font-size: 1.05rem; }
+
+    .games-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; }
+
+    .game-card {
+      background: var(--white);
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      display: flex; flex-direction: column;
+      border: 1px solid var(--border);
+    }
+    .game-card:hover { transform: translateY(-10px); box-shadow: 0 28px 50px rgba(0,0,0,.1); }
+
+    .card-img {
+      height: 300px;
+      background: var(--bg-light);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; position: relative;
+    }
+    .card-img img { width: 80%; height: auto; object-fit: contain; transition: transform 0.5s ease; z-index: 1; position: relative; }
+    .game-card:hover .card-img img { transform: scale(1.05); }
+
+    .card-badge {
+      position: absolute; top: 1rem; right: 1rem;
+      padding: 0.3rem 0.9rem; border-radius: 50px;
+      font-size: 0.7rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 1px;
+      z-index: 2;
+    }
+    .badge-live { background: var(--r-green); color: var(--white); }
+    .badge-soon { background: var(--r-purple); color: var(--white); }
+
+    .card-body { padding: 2rem 2.2rem 2.4rem; flex-grow: 1; display: flex; flex-direction: column; }
+    .card-cat {
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.7rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 2px;
+      color: var(--green); margin-bottom: 0.4rem;
+    }
+    .card-body h3 { font-size: 1.7rem; margin-bottom: 0.3rem; }
+    .card-subtitle { font-style: italic; color: var(--slate); font-size: 0.9rem; margin-bottom: 0.85rem; }
+    .card-body p { color: var(--slate); margin-bottom: 0.85rem; flex-grow: 1; font-size: 0.95rem; line-height: 1.65; }
+    .card-meta { font-size: 0.78rem; font-weight: 700; color: var(--slate); margin-bottom: 1.4rem; opacity: 0.8; }
+
+    /* ── SCIENCE ── */
+    #science { padding: 90px 0; background: var(--bg-light); }
+
+    .sci-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .sci-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 2rem 2.2rem;
+      border: 1.5px solid var(--border);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .sci-card:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(0,0,0,.06); }
+
+    .sci-word {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.6rem; font-weight: 900;
+      line-height: 1; margin-bottom: 0.6rem;
+    }
+    .sci-card:nth-child(1) .sci-word { color: #6B7FD4; }
+    .sci-card:nth-child(2) .sci-word { color: #E07060; }
+    .sci-card:nth-child(3) .sci-word { color: #7CB87A; }
+    .sci-card:nth-child(4) .sci-word { color: #2ABAB4; }
+
+    .sci-card h3 { font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 800; margin-bottom: 0.6rem; color: var(--navy); }
+    .sci-card p { font-size: 0.9rem; color: var(--slate); line-height: 1.7; }
+
+    @media (max-width: 860px) {
+      .sci-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 560px) {
+      .sci-grid { grid-template-columns: 1fr; }
+    }
+
+
+    /* ── ABOUT ── */
+    #about { padding: 90px 0; background: var(--bg-cream); }
+    .about-flex { display: flex; align-items: center; gap: 5rem; }
+    .about-image-wrap { flex: 0 0 340px; }
+    .about-image-wrap img {
+      width: 100%; border-radius: 32px;
+      box-shadow: var(--shadow-lg);
+    }
+    .about-photo-placeholder {
+      height: 380px; background: var(--soft-blue);
+      border-radius: 32px; display: flex;
+      align-items: center; justify-content: center;
+      font-size: 8rem; box-shadow: var(--shadow-lg);
+    }
+    .about-content { flex: 1.2; }
+    .about-eyebrow {
+      font-size: 0.78rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 2px;
+      color: var(--green); margin-bottom: 0.85rem;
+      display: block;
+    }
+    .about-content h2 { font-size: clamp(1.9rem, 3vw, 2.5rem); margin-bottom: 1.5rem; }
+    .about-content p { color: var(--slate); margin-bottom: 1.2rem; font-size: 1.05rem; line-height: 1.8; }
+
+    .creds { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.75rem; margin-bottom: 2rem; }
+    .cred {
+      background: var(--white); border: 1.5px solid var(--border);
+      border-radius: 50px; padding: 0.45rem 1rem;
+      font-size: 0.82rem; font-weight: 700; color: var(--slate);
+    }
+
+    /* ── EMAIL SIGNUP ── */
+    .cta-section {
+      padding: 90px 0;
+      background: var(--bg-light);
+      text-align: center;
+    }
+    .cta-section h2 {
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      margin-bottom: 1rem;
+      color: var(--r-teal);
+    }
+    .cta-section p {
+      font-size: 1.1rem;
+      color: var(--slate);
+      max-width: 500px;
+      margin: 0 auto 2rem;
+      line-height: 1.7;
+    }
+    .cta-form {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .cta-input-wrap {
+      display: flex;
+      align-items: center;
+      background: var(--white);
+      border: 2px solid var(--border);
+      border-radius: 50px;
+      padding: 0.4rem 0.4rem 0.4rem 1.6rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .cta-input-wrap:focus-within {
+      border-color: var(--r-teal);
+      box-shadow: 0 0 0 3px rgba(42,186,180,0.15);
+    }
+    .cta-input-wrap input {
+      flex: 1; border: none; outline: none; background: transparent;
+      font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 600;
+      color: var(--navy);
+    }
+    .cta-input-wrap input::placeholder { color: #94A3B8; }
+    .cta-input-wrap button {
+      width: 48px; height: 48px; border-radius: 50%; border: none;
+      background: var(--r-teal); color: var(--white);
+      font-size: 1.2rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .2s; flex-shrink: 0;
+    }
+    .cta-input-wrap button:hover { background: #1FA09A; transform: scale(1.05); }
+    .cta-note {
+      margin-top: 1.2rem;
+      font-style: italic;
+      color: var(--slate);
+      font-size: 0.92rem;
+      opacity: 0.75;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 70px 0 36px;
+      background-color: rgba(235,248,247,0.97);
+      background-image:
+        radial-gradient(circle, rgba(42,186,180,0.13) 1.5px, transparent 1.5px),
+        radial-gradient(circle, rgba(123,82,168,0.07) 1px, transparent 1px);
+      background-size: 28px 28px, 14px 14px;
+      background-position: 0 0, 7px 7px;
+      color: var(--navy);
+      border-top: 1px solid var(--border);
+    }
+    .footer-flex { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 3rem; margin-bottom: 50px; }
+    .footer-brand { max-width: 300px; }
+    .footer-brand img { height: 38px; width: auto; margin-bottom: 1rem; display: block; }
+    .footer-brand p { color: var(--slate); font-size: 0.92rem; line-height: 1.65; }
+    .footer-col h4 {
+      margin-bottom: 1.2rem; color: var(--green);
+      text-transform: uppercase; letter-spacing: 1.5px; font-size: 0.8rem; font-weight: 800;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 0.7rem; }
+    .footer-col a {
+      color: var(--slate); text-decoration: none;
+      font-size: 0.92rem; font-weight: 600; transition: color .2s;
+    }
+    .footer-col a:hover { color: var(--navy); }
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 28px; font-size: 0.83rem;
+      color: var(--slate); opacity: 0.7; display: flex;
+      justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      .hero-flex, .about-flex { flex-direction: column; text-align: center; gap: 3rem; }
+      .hero-sub { margin: 0 auto 2.5rem; }
+      .hero-btns { justify-content: center; }
+      .about-image-wrap { flex: none; width: 100%; max-width: 280px; align-self: center; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat-item:nth-child(1) { border-left: none; }
+      .stat-item:nth-child(3) { border-left: none; }
+      .nav-links li:not(:last-child) { display: none; }
+    }
+    @media (max-width: 560px) {
+      .stats-grid { grid-template-columns: 1fr; }
+      .stat-item { border-left: none; border-top: 1px solid var(--border); padding-top: 1.5rem; }
+      .stat-item:first-child { border-top: none; padding-top: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="rainbow-bar"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <img src="smartford-logo.png" alt="Smartford"
+        onerror="this.outerHTML='<span style=\'font-family:Playfair Display,serif;font-weight:900;font-size:1.5rem;color:#0F172A\'>Smartford</span>';">
+    </div>
+    <ul class="nav-links">
+      <li><a href="#games">Games</a></li>
+      <li><a href="#science">The Science</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#games" class="btn btn-primary btn-sm">Shop Now</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="section-inner">
+    <div class="hero-flex">
+      <div class="hero-text">
+        <p class="hero-eyebrow">🔬 Scientist-designed · Parent-tested</p>
+        <h1>Science-backed play for<br>curious kids.</h1>
+        <p class="hero-sub">Research-backed, off-screen games designed to help children master emotional intelligence, reading, and math — through pure imagination.</p>
+        <div class="hero-btns">
+          <a href="#games" class="btn btn-primary">Explore Games</a>
+          <a href="#science" class="btn btn-outline">The Science</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img src="hero-illustration.png" alt="Smartford"
+          onerror="this.outerHTML='<div style=\'font-size:12rem;filter:drop-shadow(0 20px 30px rgba(0,0,0,0.1));animation:pulse-scale 6s ease-in-out infinite;\'>🌍</div>';">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="section-inner">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <h3>3x</h3>
+        <p>Faster concept retention through play</p>
+      </div>
+      <div class="stat-item">
+        <h3>40+</h3>
+        <p>Emotions explored in Emotionarium</p>
+      </div>
+      <div class="stat-item">
+        <h3>2x</h3>
+        <p>Social growth vs. solo screen time</p>
+      </div>
+      <div class="stat-item">
+        <h3>100%</h3>
+        <p>Screen-free by design</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GAMES -->
+<section id="games">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2>Play That Actually Teaches</h2>
+      <p>Every Smartford game is grounded in developmental science to ensure learning sticks.</p>
+    </div>
+    <div class="games-grid">
+
+      <div class="game-card">
+        <div class="card-img">
+          <span class="card-badge badge-live">Available Now</span>
+          <img src="emotionarium-box.jpg" alt="Emotionarium"
+            onerror="this.outerHTML='<span style=\'font-size:8rem;\'>🌈</span>';">
+        </div>
+        <div class="card-body">
+          <div class="card-cat">Emotional Intelligence</div>
+          <h3>Emotionarium</h3>
+          <p>A science-based card game that helps kids discover, name, and understand 40+ feelings through role-play and storytelling. Builds empathy, emotional vocabulary, and self-regulation.</p>
+          <div class="card-meta">Ages 3–10 &nbsp;·&nbsp; 2–6 Players &nbsp;·&nbsp; Card Game</div>
+          <a href="#" class="btn btn-primary" style="width:100%;">Shop Now</a>
+        </div>
+      </div>
+
+      <div class="game-card">
+        <div class="card-img">
+          <span class="card-badge badge-soon">Coming Soon</span>
+          <img src="mathreadium-box.png" alt="MathReadium"
+            onerror="this.outerHTML='<span style=\'font-size:8rem;\'>🧠</span>';">
+        </div>
+        <div class="card-body">
+          <div class="card-cat">Literacy &amp; Math</div>
+          <h3>MathReadium</h3>
+          <p class="card-subtitle">Read, Count &amp; Compare</p>
+          <p>An adventure board game where kids read, count, and compare through stories. Early literacy meets number sense with fun animal characters.</p>
+          <div class="card-meta">Ages 4–8 &nbsp;·&nbsp; 2–4 Players &nbsp;·&nbsp; Board Game</div>
+          <a href="#signup" class="btn btn-outline" style="width:100%;">Get Notified</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SCIENCE -->
+<section id="science">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2>Why Play-Based Learning Matters</h2>
+      <p>Smartford games are informed by child development research and designed to support real-life learning at home.</p>
+    </div>
+    <div class="sci-grid">
+      <div class="sci-card">
+        <div class="sci-word">Play</div>
+        <h3>Active Learning</h3>
+        <p>Hands-on play helps children stay engaged, practice ideas repeatedly, and learn in a way that feels natural.</p>
+      </div>
+      <div class="sci-card">
+        <div class="sci-word">Talk</div>
+        <h3>Language &amp; Connection</h3>
+        <p>Conversation-based games give kids more chances to name feelings, explain thinking, and connect with others.</p>
+      </div>
+      <div class="sci-card">
+        <div class="sci-word">Feel</div>
+        <h3>Emotional Practice</h3>
+        <p>Role-play and story prompts create a low-pressure way to practice empathy, self-expression, and problem-solving.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-flex">
+      <div class="about-image-wrap">
+        <img src="creator.png" alt="Smartford Creator" style="width: 100%; border-radius: 32px; box-shadow: var(--shadow-lg);">
+      </div>
+      <div class="about-content">
+        <span class="about-eyebrow">Meet the Creator</span>
+        <h2>Meet our Creator</h2>
+        <p>Hi! I'm a Stanford-trained PhD scientist and a mom of two living in Seattle. I created Smartford because I saw a gap between high-level research and the games actually available for kids.</p>
+        <p>Every game is designed to trigger "active discovery" — the kind of learning that happens when kids forget they're being taught. No screens. Just deep play that builds real skills.</p>
+        <div class="creds">
+          <span class="cred">🎓 Stanford PhD</span>
+          <span class="cred">👶 Mom of 2</span>
+          <span class="cred">🔬 Child Development</span>
+          <span class="cred">📍 Seattle, WA</span>
+        </div>
+        <a href="#science" class="btn btn-outline">Our Methodology</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EMAIL SIGNUP -->
+<div class="cta-section" id="signup">
+  <div class="section-inner">
+    <h2>Become a Smartford playtester!</h2>
+    <p>Enjoy early access to our upcoming games, and give us feedback so we can make them even better.</p>
+    <form class="cta-form" onsubmit="return false;">
+      <div class="cta-input-wrap">
+        <input type="email" placeholder="Your email address" />
+        <button type="submit">›</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="section-inner">
+    <div class="footer-flex">
+      <div class="footer-brand">
+        <img src="smartford-logo.png" alt="Smartford"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <h3 style="display:none; color:var(--navy); margin-bottom:1rem; font-size:1.6rem;">Smartford</h3>
+        <p>Bringing the laboratory to the living room. Science-backed educational games built in Seattle, WA.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#games">All Games</a></li>
+          <li><a href="#science">The Science</a></li>
+          <li><a href="#about">Our Story</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="mailto:smartford.kids@gmail.com">hello@smartford.org</a></li>
+          <li><a href="https://www.instagram.com/smartford.kids/" target="_blank">Instagram</a></li>
+          <li><a href="https://www.facebook.com/profile.php?id=61583978760645" target="_blank">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Smartford LLC. All rights reserved.</span>
+      <span>Designed for curious minds.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
