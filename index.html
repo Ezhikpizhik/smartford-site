@@ -12,8 +12,8 @@
       --bg-cream:   #FEFCF8;
       --bg-light:   #F8FAFC;
       --blue:       #3668C4;
-      --green:      #3AAA58;
-      --green-lt:   rgba(58,170,88,.12);
+      --green:      #3DAA6A;
+      --green-lt:   rgba(61,170,106,.12);
       --navy:       #334155;
       --slate:      #475569;
       --soft-blue:  #E0E7FF;
@@ -23,7 +23,7 @@
       --r-red:    #E83222;
       --r-orange: #F5821E;
       --r-yellow: #F9D422;
-      --r-green:  #3AAA58;
+      --r-green:  #3DAA6A;
       --r-teal:   #2ABAB4;
       --r-blue:   #3668C4;
       --r-purple: #7B52A8;
@@ -120,14 +120,14 @@
     .hero-flex { display: flex; align-items: center; gap: 4rem; }
     .hero-text { flex: 1; }
     .hero-eyebrow {
-      color: var(--green);
+      color: #7CB87A;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 2px;
       margin-bottom: 1.2rem;
       font-size: 0.85rem;
     }
-    .hero h1 { font-size: clamp(2.4rem, 4.5vw, 3.6rem); font-weight: 900; margin-bottom: 1.5rem; }
+    .hero h1 { font-size: clamp(2rem, 3.8vw, 3.2rem); font-weight: 900; margin-bottom: 1.5rem; color: #6B7FD4; }
     .hero h1 span { color: var(--blue); }
     .hero-sub { font-size: 1.2rem; color: var(--slate); margin-bottom: 2.5rem; max-width: 500px; line-height: 1.75; }
     .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
@@ -144,7 +144,7 @@
     .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; text-align: center; }
     .stat-item { padding: 0 1rem; border-left: 1px solid var(--border); }
     .stat-item:first-child { border-left: none; }
-    .stat-item h3 { font-size: 2.2rem; color: var(--navy); margin-bottom: 0.4rem; }
+    .stat-item h3 { font-size: 1.05rem; color: #7CB87A; margin-bottom: 0.4rem; font-family: 'Nunito', sans-serif; font-weight: 800; }
     .stat-item p { color: var(--slate); font-weight: 600; font-size: 0.92rem; }
 
     /* ── GAMES ── */
@@ -183,7 +183,7 @@
       z-index: 2;
     }
     .badge-live { background: var(--r-green); color: var(--white); }
-    .badge-soon { background: var(--r-purple); color: var(--white); }
+    .badge-soon { background: #6B7FD4; color: var(--white); }
 
     .card-body { padding: 2rem 2.2rem 2.4rem; flex-grow: 1; display: flex; flex-direction: column; }
     .card-cat {
@@ -379,6 +379,7 @@
 
 <div class="rainbow-bar"></div>
 
+<!-- NAV -->
 <nav>
   <div class="nav-inner">
     <div class="nav-logo">
@@ -389,18 +390,19 @@
       <li><a href="#games">Games</a></li>
       <li><a href="#science">The Science</a></li>
       <li><a href="#about">About</a></li>
-      <li><a href=#games class="btn btn-primary btn-sm">Shop Now</a></li>
+      <li><a href="#games" class="btn btn-primary btn-sm">Shop Now</a></li>
     </ul>
   </div>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
   <div class="section-inner">
     <div class="hero-flex">
       <div class="hero-text">
         <p class="hero-eyebrow">🔬 Scientist-designed · Parent-tested</p>
-        <h1>Science-backed play for<br>curious kids.</h1>
-        <p class="hero-sub">Educational science-based off-screen activities designed to help kids grow their skills through play, curiosity, and imagination.</p>
+        <h1>Science-backed<br>play for<br>curious kids.</h1>
+        <p class="hero-sub">Educational off-screen activities designed to help kids grow their skills through play, curiosity, and imagination.</p>
         <div class="hero-btns">
           <a href="#games" class="btn btn-primary">Explore Games</a>
           <a href="#science" class="btn btn-outline">The Science</a>
@@ -414,40 +416,42 @@
   </div>
 </section>
 
+<!-- STATS -->
 <div class="stats-bar">
   <div class="section-inner">
     <div class="stats-grid">
       <div class="stat-item">
-        <h3>3x</h3>
-        <p>Faster concept retention through play</p>
+        <h3>Research-informed design</h3>
+        <p>Built by a PhD scientist + mom</p>
       </div>
       <div class="stat-item">
-        <h3>40+</h3>
-        <p>Emotions explored in Emotionarium</p>
+        <h3>Active discovery</h3>
+        <p>Kids learn by doing, not memorizing</p>
       </div>
       <div class="stat-item">
-        <h3>2x</h3>
-        <p>Social growth vs. solo screen time</p>
+        <h3>Real-world skills</h3>
+        <p>Math, logic, language, and SEL</p>
       </div>
       <div class="stat-item">
-        <h3>100%</h3>
-        <p>Screen-free by design</p>
+        <h3>Screen-free by design</h3>
+        <p>Deep play without devices</p>
       </div>
     </div>
   </div>
 </div>
 
+<!-- GAMES -->
 <section id="games">
   <div class="section-inner">
     <div class="section-header">
       <h2>Play That Actually Teaches</h2>
-      <p>Every Smartford game is grounded in developmental science to ensure learning sticks.</p>
+      <p>Research-informed games built to grow real skills — from emotions to math and beyond.</p>
     </div>
     <div class="games-grid">
 
       <div class="game-card">
         <div class="card-img">
-          <span class="card-badge badge-soon">Pre-order</span>
+          <span class="card-badge badge-soon">Pre-Order</span>
           <img src="emotionarium-box.jpg" alt="Emotionarium"
             onerror="this.outerHTML='<span style=\'font-size:8rem;\'>🌈</span>';">
         </div>
@@ -456,7 +460,7 @@
           <h3>Emotionarium</h3>
           <p>A science-based card game that helps kids discover, name, and understand 40+ feelings through role-play and storytelling. Builds empathy, emotional vocabulary, and self-regulation.</p>
           <div class="card-meta">Ages 3–10 &nbsp;·&nbsp; 2–6 Players &nbsp;·&nbsp; Card Game</div>
-          <p style="color:var(--r-orange); font-weight:800; font-size:0.85rem; margin-bottom:1rem;">🚀 Shipping early May</p>
+          <p style="font-size:0.9rem; font-weight:700; color:#F5821E; margin-bottom:1rem;">🚀 Shipping early May</p>
           <a href="https://buy.stripe.com/00wfZgawPg3ReDB1k8cfK00" class="btn btn-primary" style="width:100%;">Pre-order Now</a>
         </div>
       </div>
@@ -471,7 +475,7 @@
           <div class="card-cat">Literacy &amp; Math</div>
           <h3>MathReadium</h3>
           <p class="card-subtitle">Read, Count &amp; Compare</p>
-          <p>Whether you are just learning your first letters, mastering multi-digit words, or becoming a mental math wizard, this gamescales to your skill level. The game is grounded in educational psychology and neuroplasticity to boost working memory and cognitive speed.</p>
+          <p>Whether you are just learning your first letters, mastering multi-digit words, or becoming a mental math wizard, this game scales to your skill level. The game is grounded in educational psychology and neuroplasticity to boost working memory and cognitive speed.</p>
           <div class="card-meta">Ages 4–8 &nbsp;·&nbsp; 2–4 Players &nbsp;·&nbsp; Board Game</div>
           <a href="#signup" class="btn btn-outline" style="width:100%;">Get Notified</a>
         </div>
@@ -481,10 +485,12 @@
   </div>
 </section>
 
+<!-- SCIENCE -->
 <section id="science">
   <div class="section-inner">
     <div class="section-header">
       <h2>Why Play-Based Learning Matters</h2>
+      <p>Smartford games are informed by child development research and designed to support real-life learning at home.</p>
     </div>
     <div class="sci-grid">
       <div class="sci-card">
@@ -507,21 +513,23 @@
 </section>
 
 
+<!-- ABOUT -->
 <section id="about">
   <div class="section-inner">
     <div class="about-flex">
       <div class="about-image-wrap">
-        <img src="creator.png" alt="Smartford Creator" style="width: 100%; border-radius: 32px; box-shadow: var(--shadow-lg);">
+        <img src="creator.png" alt="Smartford Creator" style="width: 100%; border-radius: 24px;">
       </div>
       <div class="about-content">
         <h2>Meet our Creator</h2>
-        <p>Hi! I’m a Stanford-trained PhD scientist and a mom of two in Seattle. I created Smartford to turn learning science into screen-free games that kids genuinely love—and that parents can feel good about.</p>
-        <p>Each Smartford game is designed around active discovery: the kind of learning that happens when kids are curious, experimenting, and so engaged they forget they’re “being taught.” I focus on making every activity hands-on and purposeful—building real skills like problem-solving, emotional awareness, communication, and flexible thinking through play.</p>
+        <p>Hi! I'm a Stanford-trained PhD scientist and a mom of two in Seattle. I created Smartford to turn learning science into screen-free games that kids genuinely love—and that parents can feel good about.</p>
+        <p>Each Smartford game is designed around active discovery: the kind of learning that happens when kids are curious, experimenting, and so engaged they forget they're "being taught." I focus on making every activity hands-on and purposeful—building real skills like problem-solving, emotional awareness, communication, and flexible thinking through play.</p>
       </div>
     </div>
   </div>
 </section>
 
+<!-- EMAIL SIGNUP -->
 <div class="cta-section" id="signup">
   <div class="section-inner">
     <h2>Join the Smartford family!</h2>
@@ -536,6 +544,7 @@
 </div>
 <div class="rainbow-bar"></div>
 
+<!-- FOOTER -->
 <footer>
   <div class="section-inner">
     <div class="footer-flex">
