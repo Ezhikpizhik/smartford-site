@@ -127,9 +127,19 @@
       margin-bottom: 1.2rem;
       font-size: 0.85rem;
     }
-    .hero h1 { font-size: clamp(2rem, 3.8vw, 3.2rem); font-weight: 900; margin-bottom: 1.5rem; color: #6B7FD4; }
+    .hero h1 { font-size: clamp(2rem, 3.8vw, 3.2rem); font-weight: 900; margin-bottom: 1.5rem; color: var(--blue); }
     .hero h1 span { color: var(--blue); }
-    .hero-sub { font-size: 1.2rem; color: var(--slate); margin-bottom: 2.5rem; max-width: 500px; line-height: 1.75; }
+    .hero-sub { font-size: 1.2rem; color: var(--slate); margin-bottom: 1.2rem; max-width: 500px; line-height: 1.75; }
+    .hero-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
+    .hero-pill {
+      font-size: 0.82rem; font-weight: 700;
+      color: var(--slate);
+      background: rgba(42,186,180,0.1);
+      border: 1.5px solid rgba(42,186,180,0.25);
+      border-radius: 50px;
+      padding: 0.3rem 0.85rem;
+      letter-spacing: 0.01em;
+    }
     .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
     .hero-visual { flex: 1.2; position: relative; display: flex; justify-content: center; }
     .hero-visual img {
@@ -184,6 +194,7 @@
     }
     .badge-live { background: var(--r-green); color: var(--white); }
     .badge-soon { background: #6B7FD4; color: var(--white); }
+    .badge-preorder { background: var(--r-teal); color: var(--white); }
 
     .card-body { padding: 2rem 2.2rem 2.4rem; flex-grow: 1; display: flex; flex-direction: column; }
     .card-cat {
@@ -390,7 +401,7 @@
       <li><a href="#games">Games</a></li>
       <li><a href="#science">The Science</a></li>
       <li><a href="#about">About</a></li>
-      <li><a href="#games" class="btn btn-primary btn-sm">Shop Now</a></li>
+      <li><a href="#emotionarium" class="btn btn-primary btn-sm">Shop Now</a></li>
     </ul>
   </div>
 </nav>
@@ -403,6 +414,11 @@
         <p class="hero-eyebrow">🔬 Scientist-designed · Parent-tested</p>
         <h1>Science-backed<br>play for<br>curious kids.</h1>
         <p class="hero-sub">Educational off-screen activities designed to help kids grow their skills through play, curiosity, and imagination.</p>
+        <div class="hero-pills">
+          <span class="hero-pill">Screen-free</span>
+          <span class="hero-pill">Research-informed</span>
+          <span class="hero-pill">Ages 3–10</span>
+        </div>
         <div class="hero-btns">
           <a href="#games" class="btn btn-primary">Explore Games</a>
           <a href="#science" class="btn btn-outline">The Science</a>
@@ -444,22 +460,22 @@
 <section id="games">
   <div class="section-inner">
     <div class="section-header">
-      <h2>Learn while having fun!</h2>
-      <p>Games built to grow real skills — from emotions to math and beyond.</p>
+      <h2>Play That Actually Teaches</h2>
+      <p>Research-informed games built to grow real skills — from emotions to math and beyond.</p>
     </div>
     <div class="games-grid">
 
-      <div class="game-card">
+      <div class="game-card" id="emotionarium">
         <div class="card-img">
-          <span class="card-badge badge-soon">Pre-Order</span>
+          <span class="card-badge badge-preorder">Pre-Order</span>
           <img src="emotionarium-box.jpg" alt="Emotionarium"
             onerror="this.outerHTML='<span style=\'font-size:8rem;\'>🌈</span>';">
         </div>
         <div class="card-body">
           <div class="card-cat">Emotional Intelligence</div>
           <h3>Emotionarium</h3>
-          <p>A science-based card game that helps kids discover, name, and understand 40+ feelings through role-play and storytelling. Builds empathy, emotional vocabulary, and self-regulation.</p>
-          <div class="card-meta">Ages 3–10 &nbsp;·&nbsp; 2–6 Players &nbsp;·&nbsp; Card Game</div>
+          <p>A science-informed card game that helps kids recognize, name, and talk about 40+ feelings through stories and role-play. Builds empathy, emotional vocabulary, and self-regulation.</p>
+          <div class="card-meta">Ages 3–10 &nbsp;·&nbsp; 1–6 Players &nbsp;·&nbsp; Card Game</div>
           <p style="font-size:0.9rem; font-weight:700; color:#F5821E; margin-bottom:1rem;">🚀 Shipping early May</p>
           <a href="https://buy.stripe.com/00wfZgawPg3ReDB1k8cfK00" class="btn btn-primary" style="width:100%;">Pre-order Now</a>
         </div>
@@ -475,7 +491,7 @@
           <div class="card-cat">Literacy &amp; Math</div>
           <h3>MathReadium</h3>
           <p class="card-subtitle">Read, Count &amp; Compare</p>
-          <p>Whether you are just learning your first letters, mastering multi-digit words, or becoming a mental math wizard, this game scales to your skill level. The game is grounded in educational psychology and neuroplasticity to boost working memory and cognitive speed.</p>
+          <p>Whether you are just learning your first letters, mastering multi-digit words, or becoming a mental math wizard, this game scales to your skill level. It adapts to your child's level — building reading fluency, number sense, and quick thinking through playful rounds.</p>
           <div class="card-meta">Ages 4–8 &nbsp;·&nbsp; 2–4 Players &nbsp;·&nbsp; Board Game</div>
           <a href="#signup" class="btn btn-outline" style="width:100%;">Get Notified</a>
         </div>
@@ -522,7 +538,7 @@
       </div>
       <div class="about-content">
         <h2>Meet our Creator</h2>
-        <p>Hi! I'm a Stanford-trained PhD scientist and a mom of two in Seattle. I created Smartford to turn learning science into screen-free games that kids genuinely love—and that parents can feel good about.</p>
+        <p>Hi, I'm Lara! I'm a Stanford-trained PhD scientist and a mom of two in Seattle. I created Smartford to turn learning science into screen-free games that kids genuinely love—and that parents can feel good about.</p>
         <p>Each Smartford game is designed around active discovery: the kind of learning that happens when kids are curious, experimenting, and so engaged they forget they're "being taught." I focus on making every activity hands-on and purposeful—building real skills like problem-solving, emotional awareness, communication, and flexible thinking through play.</p>
       </div>
     </div>
@@ -533,13 +549,14 @@
 <div class="cta-section" id="signup">
   <div class="section-inner">
     <h2>Join the Smartford family!</h2>
-    <p>Enjoy early access to our upcoming games and get 10% off.</p>
+    <p>Early access, launch updates, and a little thank-you discount.</p>
     <form class="cta-form" action="https://formspree.io/f/xwvwrrae" method="POST">
       <div class="cta-input-wrap">
         <input type="email" name="email" placeholder="Your email address" required />
-        <button type="submit">›</button>
+        <button type="submit">Join</button>
       </div>
     </form>
+    <p class="cta-note">No spam. Unsubscribe anytime.</p>
   </div>
 </div>
 <div class="rainbow-bar"></div>
