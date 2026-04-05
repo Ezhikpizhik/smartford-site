@@ -152,8 +152,9 @@
     /* ── STATS BAR ── */
     .stats-bar { padding: 56px 0; background: var(--bg-light); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
     .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; text-align: center; }
-    .stat-item { padding: 0 1rem; border-left: 1px solid var(--border); }
+    .stat-item { padding: 0 1rem; border-left: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; }
     .stat-item:first-child { border-left: none; }
+    .stat-item .stat-icon { color: var(--green); margin-bottom: 0.75rem; }
     .stat-item h3 { font-size: 1.05rem; color: #7CB87A; margin-bottom: 0.4rem; font-family: 'Nunito', sans-serif; font-weight: 800; }
     .stat-item p { color: var(--slate); font-weight: 600; font-size: 0.92rem; }
 
@@ -437,18 +438,38 @@
   <div class="section-inner">
     <div class="stats-grid">
       <div class="stat-item">
+        <div class="stat-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 18h8"/><path d="M3 22h18"/><path d="M14 22a7 7 0 1 0 0-14h-1"/><path d="M9 14h2"/><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"/><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"/>
+          </svg>
+        </div>
         <h3>Research-informed design</h3>
         <p>Built by a PhD scientist + mom</p>
       </div>
       <div class="stat-item">
+        <div class="stat-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/>
+          </svg>
+        </div>
         <h3>Active discovery</h3>
         <p>Kids learn by doing, not memorizing</p>
       </div>
       <div class="stat-item">
+        <div class="stat-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+        </div>
         <h3>Real-world skills</h3>
         <p>Math, logic, language, and SEL</p>
       </div>
       <div class="stat-item">
+        <div class="stat-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="14" rx="2"/><path d="m9 21 3-3 3 3"/><path d="M9 10l2 2 4-4"/>
+          </svg>
+        </div>
         <h3>Screen-free by design</h3>
         <p>Deep play without devices</p>
       </div>
@@ -538,7 +559,7 @@
       </div>
       <div class="about-content">
         <h2>Meet our Creator</h2>
-        <p>Hi, I'm Lara! I'm a Stanford-trained PhD scientist and a mom of two in Seattle. I created Smartford to turn learning science into screen-free games that kids genuinely love—and that parents can feel good about.</p>
+        <p>Hi, I'm Lara! As a <strong style="color: var(--blue); font-weight: 800;">Stanford-trained PhD scientist</strong> and a mom of two, I realized the biggest gap in the toy aisle wasn't fun—it was evidence. I created Smartford to turn learning science into screen-free games that kids genuinely love—and that parents can feel good about.</p>
         <p>Each Smartford game is designed around active discovery: the kind of learning that happens when kids are curious, experimenting, and so engaged they forget they're "being taught." I focus on making every activity hands-on and purposeful—building real skills like problem-solving, emotional awareness, communication, and flexible thinking through play.</p>
       </div>
     </div>
@@ -553,7 +574,7 @@
     <form class="cta-form" action="https://formspree.io/f/xwvwrrae" method="POST">
       <div class="cta-input-wrap">
         <input type="email" name="email" placeholder="Your email address" required />
-        <button type="submit">Join</button>
+        <button type="submit">&#10095;</button>
       </div>
     </form>
     <p class="cta-note">No spam. Unsubscribe anytime.</p>
