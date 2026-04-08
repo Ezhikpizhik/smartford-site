@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Emotionarium — Smartford</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --white:      #FFFFFF;
+      --bg-cream:   #FEFCF8;
+      --bg-light:   #F8FAFC;
+      --blue:       #3668C4;
+      --green:      #3DAA6A;
+      --navy:       #334155;
+      --slate:      #475569;
+      --border:     #E2E8F0;
+      --shadow-lg:  0 20px 40px rgba(15,23,42,.08);
+      --r-red:    #E83222;
+      --r-orange: #F5821E;
+      --r-yellow: #F9D422;
+      --r-green:  #3DAA6A;
+      --r-teal:   #2ABAB4;
+      --r-blue:   #3668C4;
+      --r-purple: #7B52A8;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--bg-cream);
+      color: var(--navy);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+    h1, h2, h3 { font-family: 'Playfair Display', serif; line-height: 1.2; }
+    .section-inner { max-width: 1160px; margin: 0 auto; padding: 0 6%; }
+
+    @keyframes pulse-scale {
+      0%, 100% { transform: scale(1); }
+      50%       { transform: scale(1.03); }
+    }
+
+    /* ── RAINBOW BAR ── */
+    .rainbow-bar {
+      height: 5px;
+      background: linear-gradient(90deg,
+        var(--r-red), var(--r-orange), var(--r-yellow),
+        var(--r-green), var(--r-teal), var(--r-blue), var(--r-purple));
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 1rem 2.2rem; border-radius: 50px;
+      font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.95rem;
+      text-decoration: none; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: none; cursor: pointer; white-space: nowrap;
+    }
+    .btn-primary { background: var(--r-teal); color: var(--white); box-shadow: 0 8px 24px rgba(42,186,180,.25); }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(42,186,180,.35); filter: brightness(1.05); }
+    .btn-outline { border: 2.5px solid var(--blue); color: var(--blue); background: transparent; }
+    .btn-outline:hover { background: var(--blue); color: var(--white); transform: translateY(-2px); }
+    .btn-sm { padding: 0.6rem 1.4rem; font-size: 0.88rem; }
+    .btn-lg { padding: 1.2rem 3rem; font-size: 1.05rem; }
+
+    /* ── NAV ── */
+    nav {
+      background-color: rgba(235,248,247,0.97);
+      background-image:
+        radial-gradient(circle, rgba(42,186,180,0.13) 1.5px, transparent 1.5px),
+        radial-gradient(circle, rgba(123,82,168,0.07) 1px, transparent 1px);
+      background-size: 28px 28px, 14px 14px;
+      background-position: 0 0, 7px 7px;
+      backdrop-filter: blur(10px);
+      height: 96px; display: flex; align-items: center;
+      position: sticky; top: 0; z-index: 1000;
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      width: 100%; max-width: 1160px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center; padding: 0 6%;
+    }
+    .nav-logo img { height: 44px; width: auto; display: block; }
+    .nav-links { display: flex; gap: 2.5rem; align-items: center; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--navy); font-weight: 700; font-size: 0.95rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--blue); }
+
+    /* ── HERO ── */
+    .product-hero {
+      padding: 80px 0 90px;
+      background: var(--bg-cream);
+    }
+    .hero-flex {
+      display: flex; align-items: center; gap: 5rem;
+    }
+    .hero-visual { flex: 1.1; display: flex; justify-content: center; }
+    .hero-visual img {
+      width: 100%; max-width: 460px; height: auto;
+      object-fit: contain;
+      animation: pulse-scale 6s ease-in-out infinite;
+      filter: drop-shadow(0 24px 48px rgba(0,0,0,.12));
+    }
+    .hero-visual .box-placeholder {
+      width: 100%; max-width: 460px; height: 460px;
+      background: linear-gradient(135deg, #E0F9F8, #C7F0ED);
+      border-radius: 32px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10rem;
+      box-shadow: var(--shadow-lg);
+      animation: pulse-scale 6s ease-in-out infinite;
+    }
+    .hero-text { flex: 1; }
+    .hero-eyebrow {
+      font-size: 0.78rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 2px;
+      color: var(--r-teal); margin-bottom: 0.75rem; display: block;
+    }
+    .hero-text h1 {
+      font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+      font-weight: 900; color: var(--navy);
+      margin-bottom: 1rem;
+    }
+    .hero-text h1 span { color: var(--r-teal); }
+    .hero-tagline {
+      font-size: 1.15rem; color: var(--slate);
+      line-height: 1.75; margin-bottom: 1.5rem; max-width: 480px;
+    }
+    .hero-pills {
+      display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem;
+    }
+    .hero-pill {
+      font-size: 0.82rem; font-weight: 700; color: var(--slate);
+      background: rgba(42,186,180,0.1);
+      border: 1.5px solid rgba(42,186,180,0.25);
+      border-radius: 50px; padding: 0.3rem 0.85rem;
+    }
+    .shipping-note {
+      font-size: 0.92rem; font-weight: 700;
+      color: var(--r-orange); margin-bottom: 1.5rem;
+    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+
+    /* ── EMOTIONS STRIP ── */
+    .emotions-strip {
+      background: var(--bg-light);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 36px 0;
+      overflow: hidden;
+    }
+    .emotions-inner {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      justify-content: center;
+    }
+    .emotion-chip {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 50px;
+      padding: 0.4rem 1.1rem;
+      font-size: 0.88rem; font-weight: 700;
+      color: var(--slate);
+      white-space: nowrap;
+    }
+    .emotion-chip span { margin-right: 0.3rem; }
+
+    /* ── PHOTO GALLERY ── */
+    .gallery-section {
+      padding: 90px 0;
+      background: var(--bg-cream);
+    }
+    .section-header { margin-bottom: 3rem; }
+    .section-header h2 { font-size: clamp(1.9rem, 3vw, 2.6rem); margin-bottom: 0.6rem; }
+    .section-header p { color: var(--slate); font-size: 1.05rem; max-width: 500px; }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto auto;
+      gap: 1.2rem;
+    }
+    .gallery-item {
+      border-radius: 20px;
+      overflow: hidden;
+      background: var(--bg-light);
+      border: 2px dashed var(--border);
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .gallery-item:hover { transform: translateY(-4px); box-shadow: 0 16px 36px rgba(0,0,0,.09); }
+    .gallery-item.featured {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+    .gallery-item img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+    }
+    .gallery-placeholder {
+      width: 100%; height: 260px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 0.5rem; color: #94A3B8;
+    }
+    .gallery-item.featured .gallery-placeholder { height: 540px; }
+    .gallery-placeholder svg { opacity: 0.4; }
+    .gallery-placeholder span {
+      font-size: 0.82rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1px;
+    }
+
+    /* ── VIDEO SECTION ── */
+    .video-section {
+      padding: 90px 0;
+      background: var(--bg-light);
+      border-top: 1px solid var(--border);
+    }
+    .video-wrap {
+      position: relative;
+      width: 100%;
+      max-width: 860px;
+      margin: 0 auto;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      background: var(--navy);
+    }
+    /* For a real YouTube/Vimeo embed, replace the placeholder div below with an <iframe> */
+    .video-placeholder {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: linear-gradient(135deg, #1E293B, #334155);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 1.2rem; color: #94A3B8;
+    }
+    .play-btn {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: rgba(42,186,180,0.2);
+      border: 3px solid var(--r-teal);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: all 0.25s;
+    }
+    .play-btn:hover { background: rgba(42,186,180,0.4); transform: scale(1.08); }
+    .play-btn svg { margin-left: 6px; }
+    .video-placeholder p {
+      font-size: 0.95rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1px;
+    }
+    /* ↓ Uncomment this and remove .video-placeholder when you're ready to embed */
+    /*
+    .video-wrap iframe {
+      width: 100%; aspect-ratio: 16 / 9;
+      border: none; display: block;
+    }
+    */
+
+    /* ── HOW IT WORKS ── */
+    .how-section {
+      padding: 90px 0;
+      background: var(--bg-cream);
+    }
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3.5rem;
+    }
+    .step-card {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 2.2rem;
+      border: 1.5px solid var(--border);
+      position: relative;
+    }
+    .step-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem; font-weight: 900;
+      color: rgba(42,186,180,0.15);
+      line-height: 1;
+      margin-bottom: 0.75rem;
+    }
+    .step-card h3 {
+      font-family: 'Nunito', sans-serif;
+      font-size: 1.1rem; font-weight: 800;
+      color: var(--navy); margin-bottom: 0.6rem;
+    }
+    .step-card p { font-size: 0.95rem; color: var(--slate); line-height: 1.7; }
+
+    /* ── SCIENCE ── */
+    .science-section {
+      padding: 90px 0;
+      background: var(--bg-light);
+      border-top: 1px solid var(--border);
+    }
+    .sci-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .sci-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 2rem 2.2rem;
+      border: 1.5px solid var(--border);
+    }
+    .sci-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+    .sci-card h3 {
+      font-family: 'Nunito', sans-serif;
+      font-size: 1rem; font-weight: 800;
+      color: var(--navy); margin-bottom: 0.5rem;
+    }
+    .sci-card p { font-size: 0.92rem; color: var(--slate); line-height: 1.7; }
+
+    /* ── SPECS ── */
+    .specs-section {
+      padding: 80px 0;
+      background: var(--bg-cream);
+    }
+    .specs-flex { display: flex; gap: 4rem; align-items: flex-start; }
+    .specs-image { flex: 1; }
+    .specs-image img {
+      width: 100%; border-radius: 24px;
+      box-shadow: var(--shadow-lg); display: block;
+    }
+    .specs-image .img-placeholder {
+      width: 100%; height: 380px;
+      background: linear-gradient(135deg, #EDE9FE, #D8B4FE);
+      border-radius: 24px; display: flex;
+      align-items: center; justify-content: center;
+      font-size: 7rem; box-shadow: var(--shadow-lg);
+      border: 2px dashed #D8B4FE;
+    }
+    .specs-content { flex: 1; }
+    .specs-content h2 { font-size: clamp(1.8rem, 3vw, 2.4rem); margin-bottom: 2rem; }
+    .spec-row {
+      display: flex; justify-content: space-between;
+      padding: 1rem 0; border-bottom: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+    .spec-row:last-child { border-bottom: none; }
+    .spec-label { font-weight: 800; color: var(--navy); }
+    .spec-value { color: var(--slate); font-weight: 600; text-align: right; }
+
+    /* ── FINAL CTA ── */
+    .final-cta {
+      padding: 100px 0;
+      background: linear-gradient(135deg, #E0F9F8 0%, #EDE9FE 100%);
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    .final-cta h2 {
+      font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem;
+      color: var(--navy);
+    }
+    .final-cta p {
+      font-size: 1.1rem; color: var(--slate);
+      max-width: 500px; margin: 0 auto 2.5rem;
+      line-height: 1.75;
+    }
+    .final-cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 70px 0 36px;
+      background-color: rgba(235,248,247,0.97);
+      background-image:
+        radial-gradient(circle, rgba(42,186,180,0.13) 1.5px, transparent 1.5px),
+        radial-gradient(circle, rgba(123,82,168,0.07) 1px, transparent 1px);
+      background-size: 28px 28px, 14px 14px;
+      background-position: 0 0, 7px 7px;
+      color: var(--navy); border-top: 1px solid var(--border);
+    }
+    .footer-flex { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 3rem; margin-bottom: 50px; }
+    .footer-brand { max-width: 300px; }
+    .footer-brand img { height: 38px; width: auto; margin-bottom: 1rem; display: block; }
+    .footer-brand p { color: var(--slate); font-size: 0.92rem; line-height: 1.65; }
+    .footer-col h4 { margin-bottom: 1.2rem; color: var(--green); text-transform: uppercase; letter-spacing: 1.5px; font-size: 0.8rem; font-weight: 800; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 0.7rem; }
+    .footer-col a { color: var(--slate); text-decoration: none; font-size: 0.92rem; font-weight: 600; transition: color .2s; }
+    .footer-col a:hover { color: var(--navy); }
+    .footer-bottom { border-top: 1px solid var(--border); padding-top: 28px; font-size: 0.83rem; color: var(--slate); opacity: 0.7; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      .hero-flex { flex-direction: column; text-align: center; gap: 3rem; }
+      .hero-tagline { margin: 0 auto 1.5rem; }
+      .hero-pills { justify-content: center; }
+      .hero-btns { justify-content: center; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-item.featured { grid-column: span 2; }
+      .steps-grid { grid-template-columns: 1fr; }
+      .sci-cards { grid-template-columns: 1fr; }
+      .specs-flex { flex-direction: column; }
+      .nav-links li:not(:last-child) { display: none; }
+    }
+    @media (max-width: 560px) {
+      .gallery-grid { grid-template-columns: 1fr; }
+      .gallery-item.featured { grid-column: span 1; grid-row: span 1; }
+      .gallery-item.featured .gallery-placeholder { height: 260px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="rainbow-bar"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <a href="index.html">
+        <img src="smartford-logo.png" alt="Smartford"
+          onerror="this.outerHTML='<span style=\'font-family:Playfair Display,serif;font-weight:900;font-size:1.5rem;color:#0F172A\'>Smartford</span>';">
+      </a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html#games">Games</a></li>
+      <li><a href="index.html#science">The Science</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="https://buy.stripe.com/00wfZgawPg3ReDB1k8cfK00" class="btn btn-primary btn-sm">Pre-order Now</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="product-hero">
+  <div class="section-inner">
+    <div class="hero-flex">
+
+      <div class="hero-visual">
+        <!-- Replace src with your box photo -->
+        <img src="emotionarium-box.jpg" alt="Emotionarium box"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="box-placeholder" style="display:none;">🌈</div>
+      </div>
+
+      <div class="hero-text">
+        <span class="hero-eyebrow">Emotional Intelligence · Card Game</span>
+        <h1>Emotion<span>arium</span></h1>
+        <p class="hero-tagline">Discover, name, and understand feelings — through play! A science-based card game that helps kids explore 40 everyday emotions and 40 social scenes through fun activities, role-play, and storytelling.</p>
+        <div class="hero-pills">
+          <span class="hero-pill">Ages 3–10+</span>
+          <span class="hero-pill">2+ Players</span>
+          <span class="hero-pill">80 Cards</span>
+          <span class="hero-pill">15–60 min</span>
+          <span class="hero-pill">Research-backed</span>
+          <span class="hero-pill">Classrooms &amp; Therapy</span>
+          <span class="hero-pill" style="border-color: rgba(61,170,106,0.4); color: #3DAA6A;">🛡️ ASTM Certified</span>
+          <span class="hero-pill" style="border-color: rgba(61,170,106,0.4); color: #3DAA6A;">✅ Lead &amp; Phthalates-Free</span>
+        </div>
+        <p class="shipping-note">🚀 Shipping early May 2026</p>
+        <div class="hero-btns">
+          <a href="https://buy.stripe.com/00wfZgawPg3ReDB1k8cfK00" class="btn btn-primary btn-lg">Pre-order Now</a>
+          <a href="#how-it-works" class="btn btn-outline">How It Works</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO GALLERY -->
+<section class="gallery-section">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2>See It in Action</h2>
+      <p>Real families, real feelings, real conversations.</p>
+    </div>
+    <div class="gallery-grid">
+
+      <!-- Featured large photo -->
+      <div class="gallery-item featured">
+        <!-- Replace src below with your photo -->
+        <img src="emotionarium-photo-1.jpg" alt="Family playing Emotionarium"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="gallery-placeholder" style="display:none;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <span>Add your main photo here<br><small style="text-transform:none;letter-spacing:0;font-size:0.8rem;">emotionarium-photo-1.jpg</small></span>
+        </div>
+      </div>
+
+      <!-- Small photo 2 -->
+      <div class="gallery-item">
+        <img src="emotionarium-photo-2.jpg" alt="Emotionarium cards"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="gallery-placeholder" style="display:none;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <span>emotionarium-photo-2.jpg</span>
+        </div>
+      </div>
+
+      <!-- Small photo 3 -->
+      <div class="gallery-item">
+        <img src="emotionarium-photo-3.jpg" alt="Kids playing Emotionarium"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="gallery-placeholder" style="display:none;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <span>emotionarium-photo-3.jpg</span>
+        </div>
+      </div>
+
+      <!-- Small photo 4 -->
+      <div class="gallery-item">
+        <img src="emotionarium-photo-4.jpg" alt="Emotionarium emotion cards"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="gallery-placeholder" style="display:none;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <span>emotionarium-photo-4.jpg</span>
+        </div>
+      </div>
+
+      <!-- Small photo 5 -->
+      <div class="gallery-item">
+        <img src="emotionarium-photo-5.jpg" alt="Child holding an Emotionarium card"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="gallery-placeholder" style="display:none;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <span>emotionarium-photo-5.jpg</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO SECTION -->
+<section class="video-section">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2>Watch It Come to Life</h2>
+      <p>See how families play and the conversations that come out of a single round.</p>
+    </div>
+
+    <div class="video-wrap">
+      <!--
+        TO ADD YOUR VIDEO:
+        Option A — YouTube embed:
+          Remove the .video-placeholder div below and uncomment this:
+          <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe>
+
+        Option B — Vimeo embed:
+          <iframe src="https://player.vimeo.com/video/YOUR_VIDEO_ID" allowfullscreen></iframe>
+
+        Option C — self-hosted mp4:
+          <video controls poster="emotionarium-video-thumb.jpg" style="width:100%;display:block;">
+            <source src="emotionarium-video.mp4" type="video/mp4">
+          </video>
+      -->
+      <div class="video-placeholder">
+        <div class="play-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="#2ABAB4"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        </div>
+        <p>Your video goes here</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section" id="how-it-works">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2>How It Works</h2>
+      <p>Simple enough for a 3-year-old. Rich enough to keep a 10-year-old engaged.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-number">01</div>
+        <h3>Notice</h3>
+        <p>Draw an Emotion Card or Social Scene Card. Look at the illustration together and describe what you see — the face, the body, the situation. Each card is designed to spark immediate recognition.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">02</div>
+        <h3>Name</h3>
+        <p>Give the feeling a word. Emotion cards include a child-friendly definition and an "emotion family" (e.g., annoyed → irritated → angry), helping kids build a precise emotional vocabulary.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">03</div>
+        <h3>Respond</h3>
+        <p>Talk about healthy ways to handle the feeling — coping strategies are printed right on the card. Repeated practice of this loop wires the brain to use these skills automatically in real life.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCIENCE BEHIND IT -->
+<section class="science-section">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2>The Science Behind It</h2>
+      <p>Every design decision in Emotionarium is grounded in child development research.</p>
+    </div>
+    <div class="sci-cards">
+      <div class="sci-card">
+        <div class="sci-icon">🧘</div>
+        <h3>Feelings Don't Have to Feel Overwhelming</h3>
+        <p>When children can name what they feel — "I'm frustrated" instead of "I'm bad" — it's easier for them to calm down and handle tough moments. Naming a feeling reduces its intensity in the brain.</p>
+      </div>
+      <div class="sci-card">
+        <div class="sci-icon">🤝</div>
+        <h3>Better Friendships and Teamwork</h3>
+        <p>Understanding other people's feelings builds empathy — the ability to see the world from someone else's point of view. This leads to kinder play, stronger friendships, and fewer arguments.</p>
+      </div>
+      <div class="sci-card">
+        <div class="sci-icon">🧩</div>
+        <h3>Problem-Solving Skills</h3>
+        <p>Kids who can read emotions solve social problems better — they know when to ask for help, how to take turns, and how to make things right. Early emotional training builds resilience.</p>
+      </div>
+      <div class="sci-card">
+        <div class="sci-icon">📚</div>
+        <h3>Academic Benefits</h3>
+        <p>Schools that teach emotions and social skills see better focus and even higher test scores. When kids feel understood and can regulate themselves, they're truly ready to learn.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPECS -->
+<section class="specs-section">
+  <div class="section-inner">
+    <div class="specs-flex">
+
+      <div class="specs-image">
+        <!-- Replace with a flat-lay or detail photo -->
+        <img src="emotionarium-detail.jpg" alt="Emotionarium cards spread out"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="img-placeholder" style="display:none;">
+          🃏<br>
+          <small style="font-family:'Nunito',sans-serif; font-size:0.78rem; color:#94A3B8; margin-top:0.5rem; display:block;">emotionarium-detail.jpg</small>
+        </div>
+      </div>
+
+      <div class="specs-content">
+        <h2>What's in the Box</h2>
+        <div class="spec-row">
+          <span class="spec-label">Contents</span>
+          <span class="spec-value">80 cards + rule book</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Emotion Cards</span>
+          <span class="spec-value">40 — with definition, coping tips &amp; emotion family</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Social Scene Cards</span>
+          <span class="spec-value">40 — with scenario, feelings list &amp; 3 bonus scenes</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Ages</span>
+          <span class="spec-value">3–10+</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Players</span>
+          <span class="spec-value">2+ players</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Play Time</span>
+          <span class="spec-value">15–60 minutes</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Best for</span>
+          <span class="spec-value">Families, classrooms, therapy</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Screen-free</span>
+          <span class="spec-value">100% offline</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Designed by</span>
+          <span class="spec-value">Stanford PhD scientist + mom</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Ships</span>
+          <span class="spec-value">Early May 2026 · USA</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Safety Testing</span>
+          <span class="spec-value">ASTM F963 certified</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Lead-free</span>
+          <span class="spec-value">✔ Tested &amp; confirmed</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Phthalates-free</span>
+          <span class="spec-value">✔ Tested &amp; confirmed</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SAFETY BADGES -->
+    <div style="display:flex; flex-wrap:wrap; gap:1rem; margin-top:2.5rem; justify-content:center;">
+      <div style="display:flex; align-items:center; gap:0.6rem; background:var(--white); border:1.5px solid #C8E6C9; border-radius:50px; padding:0.6rem 1.4rem;">
+        <span style="font-size:1.2rem;">🛡️</span>
+        <span style="font-family:'Nunito',sans-serif; font-size:0.85rem; font-weight:800; color:#3DAA6A;">ASTM F963 Safety Certified</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:0.6rem; background:var(--white); border:1.5px solid #C8E6C9; border-radius:50px; padding:0.6rem 1.4rem;">
+        <span style="font-size:1.2rem;">✅</span>
+        <span style="font-family:'Nunito',sans-serif; font-size:0.85rem; font-weight:800; color:#3DAA6A;">Lead-Free</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:0.6rem; background:var(--white); border:1.5px solid #C8E6C9; border-radius:50px; padding:0.6rem 1.4rem;">
+        <span style="font-size:1.2rem;">✅</span>
+        <span style="font-family:'Nunito',sans-serif; font-size:0.85rem; font-weight:800; color:#3DAA6A;">Phthalates-Free</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:0.6rem; background:var(--white); border:1.5px solid #C8E6C9; border-radius:50px; padding:0.6rem 1.4rem;">
+        <span style="font-size:1.2rem;">👶</span>
+        <span style="font-family:'Nunito',sans-serif; font-size:0.85rem; font-weight:800; color:#3DAA6A;">Safe for Kids Ages 3+</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- AGE GUIDE -->
+<section style="padding: 90px 0; background: var(--bg-cream);">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2>Play at Every Age</h2>
+      <p>Three levels of difficulty — always start at Level 1 and move up as your child gets comfortable.</p>
+    </div>
+    <div class="steps-grid" style="margin-top: 3rem;">
+
+      <div class="step-card">
+        <div style="display:inline-block; background: rgba(42,186,180,0.12); color: var(--r-teal); font-size:0.72rem; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; padding:0.3rem 0.9rem; border-radius:50px; margin-bottom:1rem;">Ages 3–5</div>
+        <h3>"First Feelings"</h3>
+        <p>Simple recognition and description. Young children learn to see, describe, and name feelings through gentle one-on-one play. Variations include matching scenes to emotions, picking a card that shows how they felt today, and connecting feelings to real-life moments — even before they can read.</p>
+      </div>
+
+      <div class="step-card">
+        <div style="display:inline-block; background: rgba(245,130,30,0.12); color: var(--r-orange); font-size:0.72rem; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; padding:0.3rem 0.9rem; border-radius:50px; margin-bottom:1rem;">Ages 6–8</div>
+        <h3>"Feelings &amp; Fix-Its"</h3>
+        <p>Matching emotions with actions, building empathy. Children connect feelings to their causes and explore coping strategies. Play includes acting out social scenes, Dixit-style storytelling, and discussing why people interpret situations differently — in small groups or with the family.</p>
+      </div>
+
+      <div class="step-card">
+        <div style="display:inline-block; background: rgba(123,82,168,0.12); color: var(--r-purple); font-size:0.72rem; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; padding:0.3rem 0.9rem; border-radius:50px; margin-bottom:1rem;">Ages 9+</div>
+        <h3>"Feelings Challenge"</h3>
+        <p>Nuanced emotions, debate, and storytelling. Older players explore subtle differences between feelings, how emotions can change over time, and why the same scene might feel different to different people. One scene can trigger many emotions — and that's the whole point.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ZONES OF REGULATION -->
+<section style="padding: 90px 0; background: var(--bg-light); border-top: 1px solid var(--border);">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2>Zones of Regulation</h2>
+      <p>Every emotion in the game is color-coded using the Zones of Regulation framework — helping children quickly recognize and talk about how they feel.</p>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.2rem; margin-top: 3rem;">
+
+      <div style="background: var(--white); border-radius: 20px; padding: 1.6rem; border: 2px solid #C8E6C9; text-align:center;">
+        <div style="width:48px; height:48px; border-radius:50%; background:#C8E6C9; margin:0 auto 1rem; display:flex; align-items:center; justify-content:center; font-size:1.4rem;">😌</div>
+        <div style="font-size:0.7rem; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:#3DAA6A; margin-bottom:0.4rem;">Green</div>
+        <h3 style="font-family:'Nunito',sans-serif; font-size:0.95rem; font-weight:800; color:var(--navy); margin-bottom:0.4rem;">Calm &amp; Ready to Learn</h3>
+        <p style="font-size:0.85rem; color:var(--slate);">Happy, focused, content, proud</p>
+      </div>
+
+      <div style="background: var(--white); border-radius: 20px; padding: 1.6rem; border: 2px solid #FFF9C4; text-align:center;">
+        <div style="width:48px; height:48px; border-radius:50%; background:#FFF9C4; margin:0 auto 1rem; display:flex; align-items:center; justify-content:center; font-size:1.4rem;">🤩</div>
+        <div style="font-size:0.7rem; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:#F9A825; margin-bottom:0.4rem;">Yellow</div>
+        <h3 style="font-family:'Nunito',sans-serif; font-size:0.95rem; font-weight:800; color:var(--navy); margin-bottom:0.4rem;">Playful or Heightened</h3>
+        <p style="font-size:0.85rem; color:var(--slate);">Excited, silly, nervous, frustrated</p>
+      </div>
+
+      <div style="background: var(--white); border-radius: 20px; padding: 1.6rem; border: 2px solid #BBDEFB; text-align:center;">
+        <div style="width:48px; height:48px; border-radius:50%; background:#BBDEFB; margin:0 auto 1rem; display:flex; align-items:center; justify-content:center; font-size:1.4rem;">😔</div>
+        <div style="font-size:0.7rem; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:#1976D2; margin-bottom:0.4rem;">Blue</div>
+        <h3 style="font-family:'Nunito',sans-serif; font-size:0.95rem; font-weight:800; color:var(--navy); margin-bottom:0.4rem;">Sad / Low Energy</h3>
+        <p style="font-size:0.85rem; color:var(--slate);">Sad, tired, bored, lonely</p>
+      </div>
+
+      <div style="background: var(--white); border-radius: 20px; padding: 1.6rem; border: 2px solid #FFCDD2; text-align:center;">
+        <div style="width:48px; height:48px; border-radius:50%; background:#FFCDD2; margin:0 auto 1rem; display:flex; align-items:center; justify-content:center; font-size:1.4rem;">😤</div>
+        <div style="font-size:0.7rem; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:#C62828; margin-bottom:0.4rem;">Red</div>
+        <h3 style="font-family:'Nunito',sans-serif; font-size:0.95rem; font-weight:800; color:var(--navy); margin-bottom:0.4rem;">Big Feelings / Out of Control</h3>
+        <p style="font-size:0.85rem; color:var(--slate);">Angry, terrified, out of control</p>
+      </div>
+
+      <div style="background: var(--white); border-radius: 20px; padding: 1.6rem; border: 2px solid #E1BEE7; text-align:center;">
+        <div style="width:48px; height:48px; border-radius:50%; background:#E1BEE7; margin:0 auto 1rem; display:flex; align-items:center; justify-content:center; font-size:1.4rem;">🤔</div>
+        <div style="font-size:0.7rem; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:#7B52A8; margin-bottom:0.4rem;">Purple</div>
+        <h3 style="font-family:'Nunito',sans-serif; font-size:0.95rem; font-weight:800; color:var(--navy); margin-bottom:0.4rem;">Social / Moral Tensions</h3>
+        <p style="font-size:0.85rem; color:var(--slate);">Jealous, guilty, embarrassed, greedy</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="section-inner">
+    <h2>Ready to give your child the gift of emotional words?</h2>
+    <p>Pre-order Emotionarium today and be among the first families to play when we ship in May.</p>
+    <p style="font-size:1rem; font-style:italic; color:var(--slate); margin-top:-1rem; margin-bottom:2rem; opacity:0.8;">⚠️ Warning: Kids might get too good at telling you how they feel!</p>
+    <div class="final-cta-btns">
+      <a href="https://buy.stripe.com/00wfZgawPg3ReDB1k8cfK00" class="btn btn-primary btn-lg">Pre-order Now</a>
+      <a href="index.html#signup" class="btn btn-outline">Join the Waitlist</a>
+    </div>
+  </div>
+</section>
+
+<div class="rainbow-bar"></div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="section-inner">
+    <div class="footer-flex">
+      <div class="footer-brand">
+        <img src="smartford-logo.png" alt="Smartford"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <h3 style="display:none; color:var(--navy); margin-bottom:1rem; font-size:1.6rem;">Smartford</h3>
+        <p>Science-backed educational games built in Seattle, WA.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="index.html#games">All Games</a></li>
+          <li><a href="emotionarium.html">Emotionarium</a></li>
+          <li><a href="index.html#science">The Science</a></li>
+          <li><a href="index.html#about">Our Story</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="mailto:smartford.kids@gmail.com">hello@smartford.org</a></li>
+          <li><a href="https://www.instagram.com/smartford.kids/" target="_blank">Instagram</a></li>
+          <li><a href="https://www.facebook.com/profile.php?id=61583978760645" target="_blank">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Smartford LLC. All rights reserved.</span>
+      <span>Designed for curious minds.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

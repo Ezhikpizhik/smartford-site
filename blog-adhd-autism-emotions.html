@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Kid Knows All the Rules of Minecraft — But Can't Tell Me When He's Sad — Smartford</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --white:      #FFFFFF;
+      --bg-cream:   #FEFCF8;
+      --bg-light:   #F8FAFC;
+      --blue:       #3668C4;
+      --green:      #3DAA6A;
+      --navy:       #334155;
+      --slate:      #475569;
+      --soft-blue:  #E0E7FF;
+      --border:     #E2E8F0;
+      --shadow-lg:  0 20px 40px rgba(15,23,42,.08);
+      --r-red:    #E83222;
+      --r-orange: #F5821E;
+      --r-yellow: #F9D422;
+      --r-green:  #3DAA6A;
+      --r-teal:   #2ABAB4;
+      --r-blue:   #3668C4;
+      --r-purple: #7B52A8;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--bg-cream);
+      color: var(--navy);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+    h1, h2, h3 { font-family: 'Playfair Display', serif; line-height: 1.2; }
+    .section-inner { max-width: 1160px; margin: 0 auto; padding: 0 6%; }
+
+    /* ── RAINBOW BAR ── */
+    .rainbow-bar {
+      height: 5px;
+      background: linear-gradient(90deg,
+        var(--r-red), var(--r-orange), var(--r-yellow),
+        var(--r-green), var(--r-teal), var(--r-blue), var(--r-purple));
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 1rem 2.2rem; border-radius: 50px;
+      font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.95rem;
+      text-decoration: none; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: none; cursor: pointer; white-space: nowrap;
+    }
+    .btn-primary { background: var(--r-teal); color: var(--white); box-shadow: 0 8px 24px rgba(42,186,180,.25); }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(42,186,180,.35); filter: brightness(1.05); }
+    .btn-sm { padding: 0.6rem 1.4rem; font-size: 0.88rem; }
+
+    /* ── NAV ── */
+    nav {
+      background-color: rgba(235,248,247,0.97);
+      background-image:
+        radial-gradient(circle, rgba(42,186,180,0.13) 1.5px, transparent 1.5px),
+        radial-gradient(circle, rgba(123,82,168,0.07) 1px, transparent 1px);
+      background-size: 28px 28px, 14px 14px;
+      background-position: 0 0, 7px 7px;
+      backdrop-filter: blur(10px);
+      height: 96px; display: flex; align-items: center;
+      position: sticky; top: 0; z-index: 1000;
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      width: 100%; max-width: 1160px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center; padding: 0 6%;
+    }
+    .nav-logo img { height: 44px; width: auto; display: block; }
+    .nav-links { display: flex; gap: 2.5rem; align-items: center; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--navy); font-weight: 700; font-size: 0.95rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--blue); }
+    .nav-links a.active { color: var(--r-teal); }
+
+    /* ── ARTICLE HERO ── */
+    .article-hero { padding: 60px 0 0; background: var(--bg-cream); }
+    .article-hero-inner { max-width: 780px; margin: 0 auto; padding: 0 6%; }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.88rem; font-weight: 700; color: var(--slate);
+      text-decoration: none; margin-bottom: 2rem; transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--r-teal); }
+    .back-link::before { content: '←'; }
+    .article-tag {
+      display: inline-block;
+      background: var(--r-orange);
+      color: var(--white);
+      font-size: 0.7rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 1px;
+      padding: 0.3rem 0.9rem; border-radius: 50px; margin-bottom: 1.2rem;
+    }
+    .article-hero h1 {
+      font-size: clamp(2rem, 4vw, 3rem); font-weight: 900;
+      color: var(--navy); margin-bottom: 1rem; line-height: 1.15;
+    }
+    .article-subtitle {
+      font-size: 1.2rem; color: var(--slate); font-style: italic;
+      margin-bottom: 1.5rem; line-height: 1.6;
+    }
+    .article-meta {
+      font-size: 0.85rem; font-weight: 700; color: var(--slate); opacity: 0.7;
+      display: flex; align-items: center; gap: 0.7rem; margin-bottom: 2.5rem;
+    }
+
+    /* ── COVER IMAGE ── */
+    .article-cover { width: 100%; max-width: 780px; margin: 0 auto; padding: 0 6%; }
+    .article-cover-img {
+      width: 100%; height: 420px; border-radius: 24px;
+      object-fit: cover; display: block; box-shadow: var(--shadow-lg);
+    }
+    .article-cover-placeholder {
+      width: 100%; height: 420px; border-radius: 24px;
+      background: linear-gradient(135deg, #FFF0E0, #FFE0C7);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 8rem; box-shadow: var(--shadow-lg);
+    }
+
+    /* ── ARTICLE BODY ── */
+    .article-body { padding: 60px 0 80px; }
+    .article-content { max-width: 780px; margin: 0 auto; padding: 0 6%; }
+    .article-content p {
+      font-size: 1.08rem; color: var(--slate); line-height: 1.85; margin-bottom: 1.6rem;
+    }
+    .article-content h2 {
+      font-size: clamp(1.5rem, 2.5vw, 1.9rem); color: var(--navy); margin: 2.8rem 0 1rem;
+    }
+    .article-content hr { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+    .article-content strong { color: var(--navy); font-weight: 800; }
+    .article-content a { color: var(--r-teal); font-weight: 700; text-decoration: none; }
+    .article-content a:hover { text-decoration: underline; }
+
+    .pull-quote {
+      border-left: 4px solid var(--r-orange);
+      padding: 1.2rem 1.8rem; margin: 2rem 0;
+      background: rgba(245,130,30,0.07);
+      border-radius: 0 16px 16px 0;
+      font-size: 1.15rem; color: var(--navy);
+      font-weight: 700; line-height: 1.6;
+    }
+
+    .references { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+    .references h2 { font-size: 1.3rem; margin-bottom: 1rem; }
+    .references ol { padding-left: 1.4rem; }
+    .references li { font-size: 0.85rem; color: var(--slate); line-height: 1.6; margin-bottom: 0.6rem; }
+    .references li a { color: var(--r-teal); word-break: break-all; }
+
+    /* ── CTA ── */
+    .blog-cta {
+      background: var(--bg-light); border-top: 1px solid var(--border);
+      padding: 80px 0; text-align: center;
+    }
+    .blog-cta h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); margin-bottom: 0.75rem; color: var(--r-teal); }
+    .blog-cta p { color: var(--slate); font-size: 1.05rem; max-width: 480px; margin: 0 auto 2rem; line-height: 1.7; }
+    .cta-input-wrap {
+      max-width: 480px; margin: 0 auto;
+      display: flex; align-items: center;
+      background: var(--white); border: 2px solid var(--border);
+      border-radius: 50px; padding: 0.4rem 0.4rem 0.4rem 1.6rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .cta-input-wrap:focus-within { border-color: var(--r-teal); box-shadow: 0 0 0 3px rgba(42,186,180,0.15); }
+    .cta-input-wrap input {
+      flex: 1; border: none; outline: none; background: transparent;
+      font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 600; color: var(--navy);
+    }
+    .cta-input-wrap input::placeholder { color: #94A3B8; }
+    .cta-input-wrap button {
+      width: 48px; height: 48px; border-radius: 50%; border: none;
+      background: var(--r-teal); color: var(--white); font-size: 1.2rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .2s; flex-shrink: 0;
+    }
+    .cta-input-wrap button:hover { background: #1FA09A; transform: scale(1.05); }
+    .cta-note { margin-top: 1.2rem; font-style: italic; color: var(--slate); font-size: 0.92rem; opacity: 0.75; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 70px 0 36px;
+      background-color: rgba(235,248,247,0.97);
+      background-image:
+        radial-gradient(circle, rgba(42,186,180,0.13) 1.5px, transparent 1.5px),
+        radial-gradient(circle, rgba(123,82,168,0.07) 1px, transparent 1px);
+      background-size: 28px 28px, 14px 14px;
+      background-position: 0 0, 7px 7px;
+      color: var(--navy); border-top: 1px solid var(--border);
+    }
+    .footer-flex { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 3rem; margin-bottom: 50px; }
+    .footer-brand { max-width: 300px; }
+    .footer-brand img { height: 38px; width: auto; margin-bottom: 1rem; display: block; }
+    .footer-brand p { color: var(--slate); font-size: 0.92rem; line-height: 1.65; }
+    .footer-col h4 { margin-bottom: 1.2rem; color: var(--green); text-transform: uppercase; letter-spacing: 1.5px; font-size: 0.8rem; font-weight: 800; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 0.7rem; }
+    .footer-col a { color: var(--slate); text-decoration: none; font-size: 0.92rem; font-weight: 600; transition: color .2s; }
+    .footer-col a:hover { color: var(--navy); }
+    .footer-bottom { border-top: 1px solid var(--border); padding-top: 28px; font-size: 0.83rem; color: var(--slate); opacity: 0.7; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
+
+    @media (max-width: 960px) {
+      .nav-links li:not(:last-child) { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="rainbow-bar"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <a href="index.html">
+        <img src="smartford-logo.png" alt="Smartford"
+          onerror="this.outerHTML='<span style=\'font-family:Playfair Display,serif;font-weight:900;font-size:1.5rem;color:#0F172A\'>Smartford</span>';">
+      </a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html#games">Games</a></li>
+      <li><a href="index.html#science">The Science</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="blog.html" class="active">Blog</a></li>
+      <li><a href="index.html#emotionarium" class="btn btn-primary btn-sm">Shop Now</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ARTICLE HERO -->
+<section class="article-hero">
+  <div class="article-hero-inner">
+    <a href="blog.html" class="back-link">Back to Blog</a>
+    <div class="article-tag">ADHD &amp; Autism</div>
+    <h1>My Kid Knows All the Rules of Minecraft — But Can't Tell Me When He's Sad</h1>
+    <p class="article-subtitle">What I learned about ADHD, autism, and why emotions need to be taught, not just felt.</p>
+    <div class="article-meta">
+      <span>📅 April 8, 2026</span>
+      <span>·</span>
+      <span>6 min read</span>
+    </div>
+  </div>
+</section>
+
+<!-- COVER IMAGE -->
+<div class="article-cover">
+  <img class="article-cover-img" src="blog-adhd-emotions.jpg" alt="Child playing a card game with parent"
+    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+  <div class="article-cover-placeholder" style="display:none;">💛</div>
+</div>
+
+<!-- ARTICLE CONTENT -->
+<article class="article-body">
+  <div class="article-content">
+
+    <p>Here's something nobody told me when we started this journey: knowing your child has ADHD or is on the autism spectrum doesn't automatically tell you what to <em>do</em> about the part where they completely fall apart over losing a card game, or go totally blank when you ask "how are you feeling right now?"</p>
+
+    <p>Emotions, it turns out, don't just happen for these kids the way they happen for others. And once I understood that — really understood it — everything changed about how I approached it.</p>
+
+    <hr>
+
+    <h2>It's not a behavior problem. It's a processing one.</h2>
+
+    <p>For a long time I thought my son was being dramatic. Or stubborn. Or just not trying hard enough to "use his words." It felt personal when he'd melt down over something small, or stare at me blankly when another kid at the playground was clearly upset and he had no idea.</p>
+
+    <p>But the research tells a very different story.</p>
+
+    <p>A 2024 meta-analysis in <em>Frontiers in Child and Adolescent Psychiatry</em> looked at decades of studies on how kids with autism recognize emotions — and found that it's genuinely harder for their brains to do it. Not slower. Not lazy. Actually different in how it processes social information, including facial expressions and emotional cues. When your child looks at someone who's crying and doesn't quite understand why, it's not indifference. The signal just isn't coming through clearly.</p>
+
+    <div class="pull-quote">ADHD adds its own layer. Most people think of it as a focus problem. What gets talked about way less is the emotional side — kids with ADHD often can't regulate the <em>intensity</em> of their emotions. Everything feels bigger, faster, harder to stop.</div>
+
+    <p>Research comparing kids with ADHD, autism, and both found that kids with ADHD struggle with emotional empathy and social processing significantly more than their neurotypical peers — just through a different mechanism than autism. The explosion you see when they lose a game? That's not manipulation. That's a nervous system that doesn't have the brakes most of us have.</p>
+
+    <p>Both groups — ADHD and autism, and especially kids with both — share one thing: they need emotions to be taught explicitly. Not absorbed. Taught.</p>
+
+    <hr>
+
+    <h2>Worksheets weren't working. Therapy was helping, but slowly.</h2>
+
+    <p>We tried the feelings charts. The emotion wheels. The social stories. The check-in cards on the fridge. And they helped, sort of. But there was always this gap between knowing what "frustrated" looked like on a poster and actually being able to notice it inside themselves in the moment.</p>
+
+    <p>The problem is that emotional learning in a calm, low-stakes setting doesn't always transfer to real life. And for kids with ADHD, "calm and low-stakes" also means "boring" — which means the brain is somewhere else entirely.</p>
+
+    <p>This is actually backed by research. A 2023 PMC study on play therapy for children with ADHD found that play-based approaches work better for these kids because they match how the brain actually gets engaged — through stimulation, novelty, and fun rather than rote repetition. A 2025 review in <em>ScienceDirect</em> went further, looking at games specifically designed to build emotional regulation, and concluded they're a more effective <em>and</em> more appealing alternative to conventional therapy for kids and teens.</p>
+
+    <p>More appealing matters. A child who doesn't want to be there isn't learning anything.</p>
+
+    <hr>
+
+    <h2>Then we tried games. Real ones, with cards and people.</h2>
+
+    <p>Not apps. Not screen time dressed up as education. Actual, sit-around-the-table, look-at-each-other card games.</p>
+
+    <p>And something shifted.</p>
+
+    <p>The research on this is pretty remarkable. An 8-week study on kids with ADHD using board games found significant improvements in verbal communication, turn-taking, and impulse control — the exact things we were struggling with at home. Just eight weeks.</p>
+
+    <p>For kids on the spectrum, <em>Frontiers in Psychology</em> published a review finding that games give autistic children something rare: structured social practice in a low-pressure environment. There are rules. There are turns. There's a script of sorts. And within that predictable structure, kids who usually find unstructured social situations overwhelming can actually practice eye contact, reading other players, waiting — all the stuff that's genuinely hard for them — without it feeling like a test.</p>
+
+    <div class="pull-quote">A 2024 study asked autistic people directly about how board games fit into their lives. The answer was consistent: games help them build real relationships and real skills that carry over into the world outside the game.</div>
+
+    <p>The Autism Research Institute puts it simply — games teach social skills like turn-taking and reading cues in a context where the child actually <em>wants</em> to be there. That last part is everything.</p>
+
+    <hr>
+
+    <h2>Not all games are equal though</h2>
+
+    <p>A game about numbers helps with math. A strategy game helps with planning. But if the goal is emotional learning — building the vocabulary, the recognition, the ability to name and navigate feelings — you need a game that's actually built for that.</p>
+
+    <p>That's why we created <a href="https://www.smartford.org/"><strong>Emotionarium</strong></a>. It's a card game for ages 3–10 that works through 40+ emotions using illustrated stories and role-play. Not flashcards. Not a quiz. Real situations that kids recognize — a character feeling greedy, or caring, or embarrassed — and conversations that come out of them naturally.</p>
+
+    <p>For a kid with autism who struggles to decode expressions in real life, having an emotion clearly illustrated in a story — with a parent sitting right there to talk through it — gives the brain the explicit input it doesn't get from casual social interaction. Research on emotion recognition interventions for ASD consistently shows that visual context plus active participation is what moves the needle.</p>
+
+    <p>For a kid with ADHD who can't sit through a therapy worksheet, a game that takes 15 minutes and involves other people and feels like <em>winning</em> something? That's the thing that actually holds their attention long enough for the learning to land.</p>
+
+    <hr>
+
+    <h2>A few things that made a real difference for us</h2>
+
+    <p><strong>Talk about what you see, not what you expect them to feel.</strong> Instead of "how do you feel?" (which often gets a shrug), try "you look like you might be frustrated right now — is that right?" Give them the word first. Let them confirm or correct it.</p>
+
+    <p><strong>Keep it short.</strong> 15–20 minutes is plenty, especially with ADHD. A short, finished game beats a long game that falls apart halfway through because someone lost patience.</p>
+
+    <p><strong>Play every week, not just when things are hard.</strong> Emotional learning compounds. The research on board game interventions shows that consistent, repeated play is what creates lasting change — not one-off sessions. The same game played ten times isn't repetitive. It's practice.</p>
+
+    <p><strong>Stay in the game even when it gets hard.</strong> When your child gets upset mid-game, that's not a failure — that's the actual lesson happening in real time. Stay calm, name what you see, and ride it out together. That moment is worth more than ten worksheets.</p>
+
+    <hr>
+
+    <h2>The thing nobody tells you</h2>
+
+    <p>Kids with ADHD and autism aren't bad at emotions. They're not broken or uncaring. They're working with different wiring, and they need more explicit help building the map most kids get automatically.</p>
+
+    <p>Games give them that map — in a format that actually works for how their brains are built. Low pressure. High engagement. Real emotion. Real people. Real practice.</p>
+
+    <p>We made Emotionarium because we believe every kid can learn this stuff. It just sometimes takes a different door in. If you want to try it, you can find it at <a href="https://www.smartford.org/">smartford.org</a> — we're shipping early May.</p>
+
+    <div class="references">
+      <h2>References</h2>
+      <ol>
+        <li>Frontiers in Child and Adolescent Psychiatry (2024). <em>Emotion recognition deficits in children and adolescents with autism spectrum disorder: a comprehensive meta-analysis.</em> <a href="https://www.frontiersin.org/journals/child-and-adolescent-psychiatry/articles/10.3389/frcha.2024.1520854/full" target="_blank">frontiersin.org</a></li>
+        <li>PMC / NIH (2021). <em>Autistic Traits and Empathy in Children With ADHD, ASD and Co-occurring ADHD/ASD.</em> <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8649805/" target="_blank">pmc.ncbi.nlm.nih.gov</a></li>
+        <li>PMC / NIH (2023). <em>Play therapy and storytelling intervention on children's social skills with ADHD.</em> <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10670883/" target="_blank">pmc.ncbi.nlm.nih.gov</a></li>
+        <li>ScienceDirect (2025). <em>Serious games to support emotional regulation strategies in educational intervention programs with children and adolescents.</em> <a href="https://www.sciencedirect.com/science/article/pii/S240584402501093X" target="_blank">sciencedirect.com</a></li>
+        <li>Journal of Health Science and Medical Research. <em>Effect of Board Games on the Social Skills Development of At-Risk Children with ADHD.</em> <a href="https://www.jhsmr.org/index.php/jhsmr/article/view/1206" target="_blank">jhsmr.org</a></li>
+        <li>Frontiers in Psychology (2021). <em>The Use of Analog and Digital Games for Autism Interventions.</em> <a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2021.669734/full" target="_blank">frontiersin.org</a></li>
+        <li>Journal of Autism and Developmental Disorders / Springer (2024). <em>Game Changer: Exploring the Role of Board Games in the Lives of Autistic People.</em> <a href="https://link.springer.com/article/10.1007/s10803-024-06408-0" target="_blank">springer.com</a></li>
+        <li>Autism Research Institute. <em>How Games Foster Social Connection.</em> <a href="https://autism.org/how-games-can-help-teach-social-skills/" target="_blank">autism.org</a></li>
+        <li>Springer / Universal Access in the Information Society (2021). <em>Using emotion recognition technologies to teach children with ASD how to identify and express emotions.</em> <a href="https://link.springer.com/article/10.1007/s10209-021-00818-y" target="_blank">springer.com</a></li>
+        <li>PMC / NIH (2019). <em>The effectiveness of intervention with board games: a systematic review.</em> <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6802304/" target="_blank">pmc.ncbi.nlm.nih.gov</a></li>
+      </ol>
+    </div>
+
+  </div>
+</article>
+
+<!-- NEWSLETTER CTA -->
+<div class="blog-cta">
+  <div class="section-inner">
+    <h2>Never miss a post</h2>
+    <p>Get new articles on play, learning, and child development delivered straight to your inbox.</p>
+    <form action="https://formspree.io/f/xwvwrrae" method="POST">
+      <div class="cta-input-wrap">
+        <input type="email" name="email" placeholder="Your email address" required />
+        <button type="submit">&#10095;</button>
+      </div>
+    </form>
+    <p class="cta-note">No spam. Unsubscribe anytime.</p>
+  </div>
+</div>
+<div class="rainbow-bar"></div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="section-inner">
+    <div class="footer-flex">
+      <div class="footer-brand">
+        <img src="smartford-logo.png" alt="Smartford"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <h3 style="display:none; color:var(--navy); margin-bottom:1rem; font-size:1.6rem;">Smartford</h3>
+        <p>Science-backed educational games built in Seattle, WA.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="index.html#games">All Games</a></li>
+          <li><a href="index.html#science">The Science</a></li>
+          <li><a href="index.html#about">Our Story</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="mailto:smartford.kids@gmail.com">hello@smartford.org</a></li>
+          <li><a href="https://www.instagram.com/smartford.kids/" target="_blank">Instagram</a></li>
+          <li><a href="https://www.facebook.com/profile.php?id=61583978760645" target="_blank">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Smartford LLC. All rights reserved.</span>
+      <span>Designed for curious minds.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
