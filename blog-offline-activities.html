@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Put Down the iPad: What Science Says About Board Games — Smartford</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --white:      #FFFFFF;
+      --bg-cream:   #FEFCF8;
+      --bg-light:   #F8FAFC;
+      --blue:       #3668C4;
+      --green:      #3DAA6A;
+      --navy:       #334155;
+      --slate:      #475569;
+      --soft-blue:  #E0E7FF;
+      --border:     #E2E8F0;
+      --shadow-lg:  0 20px 40px rgba(15,23,42,.08);
+      --r-red:    #E83222;
+      --r-orange: #F5821E;
+      --r-yellow: #F9D422;
+      --r-green:  #3DAA6A;
+      --r-teal:   #2ABAB4;
+      --r-blue:   #3668C4;
+      --r-purple: #7B52A8;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--bg-cream);
+      color: var(--navy);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+    h1, h2, h3 { font-family: 'Playfair Display', serif; line-height: 1.2; }
+    .section-inner { max-width: 1160px; margin: 0 auto; padding: 0 6%; }
+
+    /* ── RAINBOW BAR ── */
+    .rainbow-bar {
+      height: 5px;
+      background: linear-gradient(90deg,
+        var(--r-red), var(--r-orange), var(--r-yellow),
+        var(--r-green), var(--r-teal), var(--r-blue), var(--r-purple));
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 1rem 2.2rem; border-radius: 50px;
+      font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.95rem;
+      text-decoration: none; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: none; cursor: pointer; white-space: nowrap;
+    }
+    .btn-primary { background: var(--r-teal); color: var(--white); box-shadow: 0 8px 24px rgba(42,186,180,.25); }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(42,186,180,.35); filter: brightness(1.05); }
+    .btn-sm { padding: 0.6rem 1.4rem; font-size: 0.88rem; }
+
+    /* ── NAV ── */
+    nav {
+      background-color: rgba(235,248,247,0.97);
+      background-image:
+        radial-gradient(circle, rgba(42,186,180,0.13) 1.5px, transparent 1.5px),
+        radial-gradient(circle, rgba(123,82,168,0.07) 1px, transparent 1px);
+      background-size: 28px 28px, 14px 14px;
+      background-position: 0 0, 7px 7px;
+      backdrop-filter: blur(10px);
+      height: 96px; display: flex; align-items: center;
+      position: sticky; top: 0; z-index: 1000;
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      width: 100%; max-width: 1160px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center; padding: 0 6%;
+    }
+    .nav-logo img { height: 44px; width: auto; display: block; }
+    .nav-links { display: flex; gap: 2.5rem; align-items: center; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--navy); font-weight: 700; font-size: 0.95rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--blue); }
+    .nav-links a.active { color: var(--r-teal); }
+
+    /* ── ARTICLE HERO ── */
+    .article-hero {
+      padding: 60px 0 0;
+      background: var(--bg-cream);
+    }
+    .article-hero-inner {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 6%;
+    }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.88rem; font-weight: 700; color: var(--slate);
+      text-decoration: none; margin-bottom: 2rem;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--r-teal); }
+    .back-link::before { content: '←'; }
+
+    .article-tag {
+      display: inline-block;
+      background: var(--r-teal);
+      color: var(--white);
+      font-size: 0.7rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 1px;
+      padding: 0.3rem 0.9rem; border-radius: 50px;
+      margin-bottom: 1.2rem;
+    }
+    .article-hero h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900;
+      color: var(--navy);
+      margin-bottom: 1rem;
+      line-height: 1.15;
+    }
+    .article-subtitle {
+      font-size: 1.2rem;
+      color: var(--slate);
+      font-style: italic;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+    .article-meta {
+      font-size: 0.85rem; font-weight: 700;
+      color: var(--slate); opacity: 0.7;
+      display: flex; align-items: center; gap: 0.7rem;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ── HERO IMAGE ── */
+    .article-cover {
+      width: 100%;
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 6%;
+    }
+    .article-cover-img {
+      width: 100%;
+      height: 420px;
+      border-radius: 24px;
+      object-fit: cover;
+      display: block;
+      box-shadow: var(--shadow-lg);
+    }
+    .article-cover-placeholder {
+      width: 100%;
+      height: 420px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, #EDE9FE, #D8B4FE);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 8rem;
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* ── ARTICLE BODY ── */
+    .article-body {
+      padding: 60px 0 80px;
+    }
+    .article-content {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 6%;
+    }
+    .article-content p {
+      font-size: 1.08rem;
+      color: var(--slate);
+      line-height: 1.85;
+      margin-bottom: 1.6rem;
+    }
+    .article-content h2 {
+      font-size: clamp(1.5rem, 2.5vw, 1.9rem);
+      color: var(--navy);
+      margin: 2.8rem 0 1rem;
+    }
+    .article-content hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2.5rem 0;
+    }
+    .article-content strong {
+      color: var(--navy);
+      font-weight: 800;
+    }
+    .article-content a {
+      color: var(--r-teal);
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .article-content a:hover { text-decoration: underline; }
+
+    /* Pull quote */
+    .pull-quote {
+      border-left: 4px solid var(--r-teal);
+      padding: 1.2rem 1.8rem;
+      margin: 2rem 0;
+      background: rgba(42,186,180,0.07);
+      border-radius: 0 16px 16px 0;
+      font-size: 1.15rem;
+      color: var(--navy);
+      font-weight: 700;
+      line-height: 1.6;
+    }
+
+    /* References */
+    .references {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .references h2 { font-size: 1.3rem; margin-bottom: 1rem; }
+    .references ol {
+      padding-left: 1.4rem;
+    }
+    .references li {
+      font-size: 0.85rem;
+      color: var(--slate);
+      line-height: 1.6;
+      margin-bottom: 0.6rem;
+    }
+    .references li a { color: var(--r-teal); word-break: break-all; }
+
+    /* ── NEWSLETTER CTA ── */
+    .blog-cta {
+      background: var(--bg-light);
+      border-top: 1px solid var(--border);
+      padding: 80px 0;
+      text-align: center;
+    }
+    .blog-cta h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); margin-bottom: 0.75rem; color: var(--r-teal); }
+    .blog-cta p { color: var(--slate); font-size: 1.05rem; max-width: 480px; margin: 0 auto 2rem; line-height: 1.7; }
+    .cta-input-wrap {
+      max-width: 480px; margin: 0 auto;
+      display: flex; align-items: center;
+      background: var(--white); border: 2px solid var(--border);
+      border-radius: 50px; padding: 0.4rem 0.4rem 0.4rem 1.6rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .cta-input-wrap:focus-within { border-color: var(--r-teal); box-shadow: 0 0 0 3px rgba(42,186,180,0.15); }
+    .cta-input-wrap input {
+      flex: 1; border: none; outline: none; background: transparent;
+      font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 600; color: var(--navy);
+    }
+    .cta-input-wrap input::placeholder { color: #94A3B8; }
+    .cta-input-wrap button {
+      width: 48px; height: 48px; border-radius: 50%; border: none;
+      background: var(--r-teal); color: var(--white); font-size: 1.2rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .2s; flex-shrink: 0;
+    }
+    .cta-input-wrap button:hover { background: #1FA09A; transform: scale(1.05); }
+    .cta-note { margin-top: 1.2rem; font-style: italic; color: var(--slate); font-size: 0.92rem; opacity: 0.75; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 70px 0 36px;
+      background-color: rgba(235,248,247,0.97);
+      background-image:
+        radial-gradient(circle, rgba(42,186,180,0.13) 1.5px, transparent 1.5px),
+        radial-gradient(circle, rgba(123,82,168,0.07) 1px, transparent 1px);
+      background-size: 28px 28px, 14px 14px;
+      background-position: 0 0, 7px 7px;
+      color: var(--navy); border-top: 1px solid var(--border);
+    }
+    .footer-flex { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 3rem; margin-bottom: 50px; }
+    .footer-brand { max-width: 300px; }
+    .footer-brand img { height: 38px; width: auto; margin-bottom: 1rem; display: block; }
+    .footer-brand p { color: var(--slate); font-size: 0.92rem; line-height: 1.65; }
+    .footer-col h4 { margin-bottom: 1.2rem; color: var(--green); text-transform: uppercase; letter-spacing: 1.5px; font-size: 0.8rem; font-weight: 800; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 0.7rem; }
+    .footer-col a { color: var(--slate); text-decoration: none; font-size: 0.92rem; font-weight: 600; transition: color .2s; }
+    .footer-col a:hover { color: var(--navy); }
+    .footer-bottom { border-top: 1px solid var(--border); padding-top: 28px; font-size: 0.83rem; color: var(--slate); opacity: 0.7; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
+
+    @media (max-width: 960px) {
+      .nav-links li:not(:last-child) { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="rainbow-bar"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <a href="index.html">
+        <img src="smartford-logo.png" alt="Smartford"
+          onerror="this.outerHTML='<span style=\'font-family:Playfair Display,serif;font-weight:900;font-size:1.5rem;color:#0F172A\'>Smartford</span>';">
+      </a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html#games">Games</a></li>
+      <li><a href="index.html#science">The Science</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="blog.html" class="active">Blog</a></li>
+      <li><a href="index.html#emotionarium" class="btn btn-primary btn-sm">Shop Now</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ARTICLE HERO -->
+<section class="article-hero">
+  <div class="article-hero-inner">
+    <a href="blog.html" class="back-link">Back to Blog</a>
+    <div class="article-tag">Screen-Free Play</div>
+    <h1>Put Down the iPad: What Science Says About Board Games and Offline Play for Kids</h1>
+    <p class="article-subtitle">Screen time is everywhere. But the research on what kids actually need might surprise you.</p>
+    <div class="article-meta">
+      <span>📅 April 8, 2026</span>
+      <span>·</span>
+      <span>6 min read</span>
+    </div>
+  </div>
+</section>
+
+<!-- COVER IMAGE -->
+<div class="article-cover">
+  <img class="article-cover-img" src="blog-board-games.jpg" alt="Family playing board games together"
+    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+  <div class="article-cover-placeholder" style="display:none;">🎲</div>
+</div>
+
+<!-- ARTICLE CONTENT -->
+<article class="article-body">
+  <div class="article-content">
+
+    <p>There's a scene that plays out in millions of homes every evening. A child sits bathed in the glow of a tablet, quiet, still, occupied. To an exhausted parent, it can look like a gift. And sometimes, it genuinely is — a moment of calm in a chaotic day. But a growing body of research is asking us to look more carefully at what that glow is costing our kids, and what happens when we replace it with something older, slower, and far more human: a board game.</p>
+
+    <p>This isn't a moral panic piece. This is an invitation to look at what the science actually says — about screens, about play, and about why a cardboard box with plastic pieces might be one of the best investments you make for your child's brain.</p>
+
+    <hr>
+
+    <h2>The Screen Time Problem Is Bigger Than You Think</h2>
+
+    <p>The American Academy of Pediatrics (AAP) recommends no screen time at all for children under 18 months (outside of video calls), a maximum of one hour per day of high-quality content for ages 2–5, and "consistent limits" for older children — with a clear warning that screens should never displace sleep, physical activity, or family interaction. The World Health Organization echoes this, recommending no screens for children under two, and less than one hour per day for ages two through five.</p>
+
+    <p>In reality, most children far exceed these limits. And the consequences, according to a wave of recent research, are measurable and serious.</p>
+
+    <p>A 2024 longitudinal study published in <em>Frontiers in Developmental Psychology</em> found that children who had greater exposure to digital devices at age four showed significantly higher levels of emotional dysregulation and lower academic achievement by age eight. That's not a temporary lag — it's a four-year downstream effect that touches both emotional life and foundational school skills like literacy and math.</p>
+
+    <div class="pull-quote">The mechanism matters here. It isn't simply that screens are inherently bad. It's that every hour in front of a screen is an hour <em>not</em> spent doing something else — talking, moving, playing, negotiating, losing, winning, and learning from all of it.</div>
+
+    <p>A comprehensive review published in <em>JAMA Pediatrics</em> found that early childhood screen use is consistently associated with worse executive functioning, poorer sensorimotor development, and diminished academic performance — particularly when that screen time displaces other activities that are critical for development.</p>
+
+    <hr>
+
+    <h2>The Surprising Cognitive Power of Board Games</h2>
+
+    <p>Here's something that doesn't get nearly enough attention: board games are, in many ways, a workout for the developing brain.</p>
+
+    <p>A landmark meta-analysis from the University of Oregon reviewed 18 studies on number-based board games and early math skills in children from preschool through second grade. The conclusion was striking: there is a <strong>76% chance that playing number board games will improve a child's numeracy</strong> — their ability to understand and work with numbers. Even brief sessions make a difference. Just ten minutes of play with a linear number board game can produce measurable improvements in counting, number recognition, and understanding of quantity.</p>
+
+    <p>Vanderbilt University researchers went further, examining how a game's physical layout influences math learning, finding that the design of the board itself teaches children to internalize the number line — a foundational concept that underlies everything from addition to algebra.</p>
+
+    <p>Beyond math, a randomized controlled trial published in <em>PMC</em> examined whether playing modern board and card games could strengthen executive functions in children at risk of social exclusion. It found significant improvements in cognitive flexibility and inhibition — the mental brakes that help children pause before acting — along with gains in working memory. These are not trivial skills. Executive function in childhood is one of the strongest predictors of academic success, mental health, and even long-term economic outcomes.</p>
+
+    <hr>
+
+    <h2>The Social and Emotional Education Happening Around the Table</h2>
+
+    <p>There's a reason family game night has endured as a cultural institution across generations. Board games are, at their core, social rituals. And the skills practiced at the table — taking turns, managing frustration, reading other players, celebrating wins graciously, surviving losses — are precisely the skills that childhood is supposed to be building.</p>
+
+    <p>A systematic review examining board games and emotional competencies in school-age children found that they are effective tools for developing emotional regulation, communication, and the ability to build and maintain social relationships. These aren't just "soft skills." Emotional regulation — the ability to manage one's feelings rather than be controlled by them — is a core predictor of mental health and social success throughout life.</p>
+
+    <p>Research on cooperative and competitive board games in preschoolers found that both types of games increased prosocial behaviors including sharing, complimenting others, and offering help — even among children who started out as reluctant players. Cooperative games in particular showed a measurable reduction in negative behaviors.</p>
+
+    <p>Games designed explicitly around emotional literacy take this even further. <a href="https://www.smartford.org/">Emotionarium</a> by Smartford is a science-informed card game for ages 3–10 that guides kids through 40+ feelings using stories and role-play, building the emotional vocabulary and empathy that research consistently links to better self-regulation and social outcomes.</p>
+
+    <div class="pull-quote">The board game table teaches something screens cannot: that you <em>have</em> to stay, manage yourself, and work through it.</div>
+
+    <p>A 2025 study in the <em>Scandinavian Journal of Psychology</em> found that intergenerational board game play — grandparents and children playing together — produced measurable increases in prosocial behavior and positive affect for <em>both</em> generations, suggesting that the benefits ripple outward well beyond any single child.</p>
+
+    <hr>
+
+    <h2>What This Means for Parents (Practically)</h2>
+
+    <p>None of this requires banning screens. The AAP's updated guidance acknowledges that context and quality matter — that a child watching an educational program with an engaged parent is having a very different experience than one scrolling passively through videos alone. The goal isn't purity; it's balance.</p>
+
+    <p><strong>Start with short sessions.</strong> Research shows that even ten minutes of board game play can produce cognitive benefits. You don't need a three-hour Monopoly marathon. A quick game before bed counts.</p>
+
+    <p><strong>Let your child lose sometimes.</strong> The instinct to let children win is understandable, but learning to handle disappointment in a safe, low-stakes environment — where a parent is right there — is itself a developmental gift.</p>
+
+    <p><strong>Choose games that match the skill you want to build.</strong> Linear number games for math. Cooperative games like <em>Pandemic</em> or <em>Forbidden Island</em> for teamwork. Strategy games for planning and executive function. For emotional intelligence specifically, look for games built around feelings and empathy — <a href="https://www.smartford.org/">Emotionarium</a> (ages 3–10) is a science-informed option designed precisely for this.</p>
+
+    <p><strong>Play with them.</strong> The most consistent finding across the board game literature is that adult involvement amplifies the benefits. Your presence, your conversation, your modeling of how to win and lose — these are irreplaceable.</p>
+
+    <hr>
+
+    <h2>The Bigger Picture</h2>
+
+    <p>We live in an age that has made it very easy to give children entertainment and very hard to give them childhood. Screens offer novelty, stimulation, and the path of least resistance. Board games offer something humbler and more valuable: a reason to sit down together, a problem to solve, a story that unfolds differently every time, and the whole rich, awkward, human experience of playing with other people.</p>
+
+    <p>The science is clear that offline, hands-on play — particularly structured play like board games — develops the cognitive, emotional, and social architecture that children need to thrive. Not as a replacement for everything digital, but as an essential counterweight.</p>
+
+    <p>So the next time you're about to hand over the tablet, consider reaching for a box instead. The research suggests your child's brain will thank you. And if the game ends in an argument over the rules, that's not a failure — that's the learning.</p>
+
+    <div class="references">
+      <h2>References</h2>
+      <ol>
+        <li>American Academy of Pediatrics. <em>Screen Time Guidelines.</em> <a href="https://www.aap.org/en/patient-care/media-and-children/center-of-excellence-on-social-media-and-youth-mental-health/qa-portal/qa-portal-library/qa-portal-library-questions/screen-time-guidelines/" target="_blank">aap.org</a></li>
+        <li>Frontiers in Developmental Psychology (2024). <em>Screen on = development off? A systematic scoping review.</em> <a href="https://www.frontiersin.org/journals/developmental-psychology/articles/10.3389/fdpys.2024.1439040/full" target="_blank">frontiersin.org</a></li>
+        <li>JAMA Pediatrics (2024). <em>Early Childhood Screen Use Contexts and Cognitive and Psychosocial Outcomes.</em> <a href="https://jamanetwork.com/journals/jamapediatrics/fullarticle/2821940" target="_blank">jamanetwork.com</a></li>
+        <li>MDPI — Multimodal Technologies and Interaction (2023). <em>Impact of Screen Time on Children's Development.</em> <a href="https://www.mdpi.com/2414-4088/7/5/52" target="_blank">mdpi.com</a></li>
+        <li>EurekAlert / University of Oregon (2026). <em>Board games boost young kids' math skills.</em> <a href="https://www.eurekalert.org/news-releases/1112192" target="_blank">eurekalert.org</a></li>
+        <li>Vanderbilt University (2025). <em>Can a board game's layout teach children essential math skills?</em> <a href="https://news.vanderbilt.edu/2025/02/17/can-a-board-games-layout-teach-children-essential-math-skills/" target="_blank">vanderbilt.edu</a></li>
+        <li>PMC / NIH (2023). <em>Just Play Cognitive Modern Board and Card Games — A Randomized Controlled Trial.</em> <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10527566/" target="_blank">pmc.ncbi.nlm.nih.gov</a></li>
+        <li>ERIC / Early Childhood Education Journal (2022). <em>The Power of Board Games for Multidomain Learning in Young Children.</em> <a href="https://files.eric.ed.gov/fulltext/EJ1357958.pdf" target="_blank">eric.ed.gov</a></li>
+        <li>ResearchGate (2024). <em>Playing Board Games to Increase Emotional Competencies in School-Age Children and Older People.</em> <a href="https://www.researchgate.net/publication/382084695" target="_blank">researchgate.net</a></li>
+        <li>PMC / NIH (2021). <em>The behavioral effects of cooperative and competitive board games in preschoolers.</em> <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8248432/" target="_blank">pmc.ncbi.nlm.nih.gov</a></li>
+        <li>Scandinavian Journal of Psychology / Wiley (2025). <em>Intergenerational Board Games Among Older Adults and School-Aged Children.</em> <a href="https://onlinelibrary.wiley.com/doi/10.1111/sjop.13108" target="_blank">wiley.com</a></li>
+      </ol>
+    </div>
+
+  </div>
+</article>
+
+<!-- NEWSLETTER CTA -->
+<div class="blog-cta">
+  <div class="section-inner">
+    <h2>Never miss a post</h2>
+    <p>Get new articles on play, learning, and child development delivered straight to your inbox.</p>
+    <form action="https://formspree.io/f/xwvwrrae" method="POST">
+      <div class="cta-input-wrap">
+        <input type="email" name="email" placeholder="Your email address" required />
+        <button type="submit">&#10095;</button>
+      </div>
+    </form>
+    <p class="cta-note">No spam. Unsubscribe anytime.</p>
+  </div>
+</div>
+<div class="rainbow-bar"></div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="section-inner">
+    <div class="footer-flex">
+      <div class="footer-brand">
+        <img src="smartford-logo.png" alt="Smartford"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <h3 style="display:none; color:var(--navy); margin-bottom:1rem; font-size:1.6rem;">Smartford</h3>
+        <p>Science-backed educational games built in Seattle, WA.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="index.html#games">All Games</a></li>
+          <li><a href="index.html#science">The Science</a></li>
+          <li><a href="index.html#about">Our Story</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="mailto:smartford.kids@gmail.com">hello@smartford.org</a></li>
+          <li><a href="https://www.instagram.com/smartford.kids/" target="_blank">Instagram</a></li>
+          <li><a href="https://www.facebook.com/profile.php?id=61583978760645" target="_blank">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Smartford LLC. All rights reserved.</span>
+      <span>Designed for curious minds.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

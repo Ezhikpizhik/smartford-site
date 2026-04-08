@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — Smartford</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --white:      #FFFFFF;
+      --bg-cream:   #FEFCF8;
+      --bg-light:   #F8FAFC;
+      --blue:       #3668C4;
+      --green:      #3DAA6A;
+      --green-lt:   rgba(61,170,106,.12);
+      --navy:       #334155;
+      --slate:      #475569;
+      --soft-blue:  #E0E7FF;
+      --border:     #E2E8F0;
+      --shadow-lg:  0 20px 40px rgba(15,23,42,.08);
+      --r-red:    #E83222;
+      --r-orange: #F5821E;
+      --r-yellow: #F9D422;
+      --r-green:  #3DAA6A;
+      --r-teal:   #2ABAB4;
+      --r-blue:   #3668C4;
+      --r-purple: #7B52A8;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--bg-cream);
+      color: var(--navy);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    h1, h2, h3 { font-family: 'Playfair Display', serif; line-height: 1.2; }
+    .section-inner { max-width: 1160px; margin: 0 auto; padding: 0 6%; }
+
+    /* ── RAINBOW TOP BAR ── */
+    .rainbow-bar {
+      height: 5px;
+      background: linear-gradient(90deg,
+        var(--r-red), var(--r-orange), var(--r-yellow),
+        var(--r-green), var(--r-teal), var(--r-blue), var(--r-purple));
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 2.2rem;
+      border-radius: 50px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background: var(--r-teal);
+      color: var(--white);
+      box-shadow: 0 8px 24px rgba(42,186,180,.25);
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(42,186,180,.35);
+      filter: brightness(1.05);
+    }
+    .btn-outline {
+      border: 2.5px solid var(--blue);
+      color: var(--blue);
+      background: transparent;
+    }
+    .btn-outline:hover { background: var(--blue); color: var(--white); transform: translateY(-2px); }
+    .btn-sm { padding: 0.6rem 1.4rem; font-size: 0.88rem; }
+
+    /* ── NAV ── */
+    nav {
+      background-color: rgba(235,248,247,0.97);
+      background-image:
+        radial-gradient(circle, rgba(42,186,180,0.13) 1.5px, transparent 1.5px),
+        radial-gradient(circle, rgba(123,82,168,0.07) 1px, transparent 1px);
+      background-size: 28px 28px, 14px 14px;
+      background-position: 0 0, 7px 7px;
+      backdrop-filter: blur(10px);
+      height: 96px;
+      display: flex;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      width: 100%; max-width: 1160px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center; padding: 0 6%;
+    }
+    .nav-logo img { height: 44px; width: auto; display: block; }
+    .nav-links { display: flex; gap: 2.5rem; align-items: center; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--navy); font-weight: 700; font-size: 0.95rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--blue); }
+    .nav-links a.active { color: var(--r-teal); }
+
+    /* ── BLOG HERO ── */
+    .blog-hero {
+      padding: 70px 0 60px;
+      background: var(--bg-cream);
+      text-align: center;
+    }
+    .blog-hero .eyebrow {
+      color: var(--r-teal);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .blog-hero h1 {
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      font-weight: 900;
+      color: var(--navy);
+      margin-bottom: 1rem;
+    }
+    .blog-hero p {
+      font-size: 1.15rem;
+      color: var(--slate);
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.75;
+    }
+
+    /* ── BLOG GRID ── */
+    .blog-section {
+      padding: 60px 0 100px;
+      background: var(--bg-cream);
+    }
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
+    }
+
+    /* ── POST CARD ── */
+    .post-card {
+      background: var(--white);
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .post-card:hover { transform: translateY(-8px); box-shadow: 0 28px 50px rgba(0,0,0,.1); }
+
+    .post-thumb {
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      position: relative;
+    }
+    .post-thumb-1 { background: linear-gradient(135deg, #E0F4FF, #C7E9F5); }
+    .post-thumb-2 { background: linear-gradient(135deg, #FFF0E0, #FFE0C7); }
+    .post-thumb-3 { background: linear-gradient(135deg, #E8F5E9, #C8E6C9); }
+    .post-thumb-4 { background: linear-gradient(135deg, #EDE9FE, #D8B4FE); }
+    .post-thumb img.thumb-photo {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+
+    .post-tag {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: var(--r-teal);
+      color: var(--white);
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 0.3rem 0.9rem;
+      border-radius: 50px;
+    }
+
+    .post-body {
+      padding: 1.8rem 2rem 2.2rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .post-meta {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--slate);
+      opacity: 0.7;
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .post-meta span { display: flex; align-items: center; gap: 0.3rem; }
+    .post-body h2 {
+      font-size: 1.45rem;
+      margin-bottom: 0.75rem;
+      color: var(--navy);
+      line-height: 1.3;
+    }
+    .post-body p {
+      color: var(--slate);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      flex-grow: 1;
+      margin-bottom: 1.5rem;
+    }
+    .post-read-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-weight: 800;
+      font-size: 0.9rem;
+      color: var(--r-teal);
+      text-decoration: none;
+      transition: gap 0.2s;
+    }
+    .post-read-more:hover { gap: 0.7rem; }
+    .post-read-more::after { content: '→'; }
+
+    /* ── NEWSLETTER CTA ── */
+    .blog-cta {
+      background: var(--bg-light);
+      border-top: 1px solid var(--border);
+      padding: 80px 0;
+      text-align: center;
+    }
+    .blog-cta h2 {
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      margin-bottom: 0.75rem;
+      color: var(--r-teal);
+    }
+    .blog-cta p {
+      color: var(--slate);
+      font-size: 1.05rem;
+      max-width: 480px;
+      margin: 0 auto 2rem;
+      line-height: 1.7;
+    }
+    .cta-input-wrap {
+      max-width: 480px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      background: var(--white);
+      border: 2px solid var(--border);
+      border-radius: 50px;
+      padding: 0.4rem 0.4rem 0.4rem 1.6rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .cta-input-wrap:focus-within {
+      border-color: var(--r-teal);
+      box-shadow: 0 0 0 3px rgba(42,186,180,0.15);
+    }
+    .cta-input-wrap input {
+      flex: 1; border: none; outline: none; background: transparent;
+      font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 600;
+      color: var(--navy);
+    }
+    .cta-input-wrap input::placeholder { color: #94A3B8; }
+    .cta-input-wrap button {
+      width: 48px; height: 48px; border-radius: 50%; border: none;
+      background: var(--r-teal); color: var(--white);
+      font-size: 1.2rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .2s; flex-shrink: 0;
+    }
+    .cta-input-wrap button:hover { background: #1FA09A; transform: scale(1.05); }
+    .cta-note {
+      margin-top: 1.2rem;
+      font-style: italic;
+      color: var(--slate);
+      font-size: 0.92rem;
+      opacity: 0.75;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 70px 0 36px;
+      background-color: rgba(235,248,247,0.97);
+      background-image:
+        radial-gradient(circle, rgba(42,186,180,0.13) 1.5px, transparent 1.5px),
+        radial-gradient(circle, rgba(123,82,168,0.07) 1px, transparent 1px);
+      background-size: 28px 28px, 14px 14px;
+      background-position: 0 0, 7px 7px;
+      color: var(--navy);
+      border-top: 1px solid var(--border);
+    }
+    .footer-flex { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 3rem; margin-bottom: 50px; }
+    .footer-brand { max-width: 300px; }
+    .footer-brand img { height: 38px; width: auto; margin-bottom: 1rem; display: block; }
+    .footer-brand p { color: var(--slate); font-size: 0.92rem; line-height: 1.65; }
+    .footer-col h4 {
+      margin-bottom: 1.2rem; color: var(--green);
+      text-transform: uppercase; letter-spacing: 1.5px; font-size: 0.8rem; font-weight: 800;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 0.7rem; }
+    .footer-col a {
+      color: var(--slate); text-decoration: none;
+      font-size: 0.92rem; font-weight: 600; transition: color .2s;
+    }
+    .footer-col a:hover { color: var(--navy); }
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 28px; font-size: 0.83rem;
+      color: var(--slate); opacity: 0.7; display: flex;
+      justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      .nav-links li:not(:last-child) { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="rainbow-bar"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <a href="index.html">
+        <img src="smartford-logo.png" alt="Smartford"
+          onerror="this.outerHTML='<span style=\'font-family:Playfair Display,serif;font-weight:900;font-size:1.5rem;color:#0F172A\'>Smartford</span>';">
+      </a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html#games">Games</a></li>
+      <li><a href="index.html#science">The Science</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="blog.html" class="active">Blog</a></li>
+      <li><a href="index.html#emotionarium" class="btn btn-primary btn-sm">Shop Now</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- BLOG HERO -->
+<section class="blog-hero">
+  <div class="section-inner">
+    <span class="eyebrow">From the Smartford Team</span>
+    <h1>Learning Through Play</h1>
+    <p>Ideas, science, and stories to help your family grow — one playful moment at a time.</p>
+  </div>
+</section>
+
+<!-- BLOG POSTS -->
+<section class="blog-section">
+  <div class="section-inner">
+    <div class="blog-grid">
+
+      <!-- Post 4 — Real Article -->
+      <article class="post-card">
+        <div class="post-thumb post-thumb-4">
+          <img class="thumb-photo" src="blog-board-games.jpg" alt="Board games and offline play"
+            onerror="this.style.display='none';">
+          <span style="font-size:5rem;">🎲</span>
+          <span class="post-tag">Screen-Free Play</span>
+        </div>
+        <div class="post-body">
+          <div class="post-meta">
+            <span>📅 April 8, 2026</span>
+            <span>·</span>
+            <span>6 min read</span>
+          </div>
+          <h2>Put Down the iPad: What Science Says About Board Games and Offline Play</h2>
+          <p>Screen time is everywhere. But the research on what kids actually need might surprise you — and a cardboard box with plastic pieces might be one of the best investments you make for your child's brain.</p>
+          <a href="blog-offline-activities.html" class="post-read-more">Read more</a>
+        </div>
+      </article>
+
+      <!-- Post 1 -->
+      <article class="post-card">
+        <div class="post-thumb post-thumb-1">
+          🧠
+          <span class="post-tag">Child Development</span>
+        </div>
+        <div class="post-body">
+          <div class="post-meta">
+            <span>📅 March 28, 2026</span>
+            <span>·</span>
+            <span>5 min read</span>
+          </div>
+          <h2>Why "I'm Bored" Is Actually Good for Your Child</h2>
+          <p>It feels uncomfortable to hear, but unstructured time is one of the most powerful gifts you can give a curious kid. Research on executive function shows that children who navigate boredom develop stronger self-regulation, creativity, and intrinsic motivation. Here's what the science says — and what to do instead of handing over a screen.</p>
+          <a href="#" class="post-read-more">Read more</a>
+        </div>
+      </article>
+
+      <!-- Post 2 -->
+      <article class="post-card">
+        <div class="post-thumb post-thumb-2">
+          🌈
+          <span class="post-tag">Emotional Intelligence</span>
+        </div>
+        <div class="post-body">
+          <div class="post-meta">
+            <span>📅 March 14, 2026</span>
+            <span>·</span>
+            <span>4 min read</span>
+          </div>
+          <h2>Teaching Kids to Name Their Feelings (And Why It Works)</h2>
+          <p>Emotion labeling — putting words to feelings — is one of the most researched tools in child psychology. Studies from UCLA show that simply naming an emotion reduces its intensity in the brain. In Emotionarium, every card is designed around this principle. We explain the science and share three simple ways to practice it at home today.</p>
+          <a href="#" class="post-read-more">Read more</a>
+        </div>
+      </article>
+
+      <!-- Post 3 -->
+      <article class="post-card">
+        <div class="post-thumb post-thumb-3">
+          🎲
+          <span class="post-tag">Family Play</span>
+        </div>
+        <div class="post-body">
+          <div class="post-meta">
+            <span>📅 February 27, 2026</span>
+            <span>·</span>
+            <span>6 min read</span>
+          </div>
+          <h2>5 Screen-Free Game Nights Your Kids Will Actually Ask For</h2>
+          <p>Game night doesn't have to mean arguments over the rules or someone storming off. With the right activities — ones that are genuinely fun, not just "educational" — kids beg to play again. We share five family-tested formats, including some that work with mixed ages and one that's perfect for just two players.</p>
+          <a href="#" class="post-read-more">Read more</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER CTA -->
+<div class="blog-cta">
+  <div class="section-inner">
+    <h2>Never miss a post</h2>
+    <p>Get new articles on play, learning, and child development delivered straight to your inbox.</p>
+    <form class="cta-form" action="https://formspree.io/f/xwvwrrae" method="POST">
+      <div class="cta-input-wrap">
+        <input type="email" name="email" placeholder="Your email address" required />
+        <button type="submit">&#10095;</button>
+      </div>
+    </form>
+    <p class="cta-note">No spam. Unsubscribe anytime.</p>
+  </div>
+</div>
+<div class="rainbow-bar"></div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="section-inner">
+    <div class="footer-flex">
+      <div class="footer-brand">
+        <img src="smartford-logo.png" alt="Smartford"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <h3 style="display:none; color:var(--navy); margin-bottom:1rem; font-size:1.6rem;">Smartford</h3>
+        <p>Science-backed educational games built in Seattle, WA.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="index.html#games">All Games</a></li>
+          <li><a href="index.html#science">The Science</a></li>
+          <li><a href="index.html#about">Our Story</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="mailto:smartford.kids@gmail.com">hello@smartford.org</a></li>
+          <li><a href="https://www.instagram.com/smartford.kids/" target="_blank">Instagram</a></li>
+          <li><a href="https://www.facebook.com/profile.php?id=61583978760645" target="_blank">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Smartford LLC. All rights reserved.</span>
+      <span>Designed for curious minds.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
