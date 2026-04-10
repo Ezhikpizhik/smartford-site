@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Kid Knows All the Rules of Minecraft — But Can't Tell Me When He's Sad — Smartford</title>
+  <meta name="description" content="Why kids with ADHD and autism often struggle to name emotions, and how card games and structured play can help build emotional vocabulary and self-regulation." />
   <link rel="icon" type="image/png" href="favicon.png" />
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
   <style>
@@ -116,8 +117,8 @@
     /* ── COVER IMAGE ── */
     .article-cover { width: 100%; max-width: 780px; margin: 0 auto; padding: 0 6%; }
     .article-cover-img {
-      width: 100%; height: 420px; border-radius: 24px;
-      object-fit: cover; display: block; box-shadow: var(--shadow-lg);
+      width: 100%; height: auto; border-radius: 24px;
+      display: block; box-shadow: var(--shadow-lg);
     }
     .article-cover-placeholder {
       width: 100%; height: 420px; border-radius: 24px;
@@ -207,7 +208,10 @@
     .footer-bottom { border-top: 1px solid var(--border); padding-top: 28px; font-size: 0.83rem; color: var(--slate); opacity: 0.7; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
 
     @media (max-width: 960px) {
-      .nav-links li:not(:last-child) { display: none; }
+      nav { height: auto; padding: 0.75rem 0; }
+      .nav-inner { flex-direction: column; gap: 0.75rem; }
+      .nav-links { flex-wrap: wrap; gap: 0.5rem 1.25rem; justify-content: center; }
+      .nav-links a { font-size: 0.9rem; }
     }
   </style>
 </head>

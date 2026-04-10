@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Smartford — Science-Backed Learning</title>
+  <meta name="description" content="Smartford creates science-backed educational games for kids. Explore Emotionarium, a card game that helps children ages 3–10+ understand emotions and build social-emotional skills." />
   <link rel="icon" type="image/png" href="favicon.png" />
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
   <style>
@@ -378,7 +379,10 @@
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
       .stat-item:nth-child(1) { border-left: none; }
       .stat-item:nth-child(3) { border-left: none; }
-      .nav-links li:not(:last-child) { display: none; }
+      nav { height: auto; padding: 0.75rem 0; }
+      .nav-inner { flex-direction: column; gap: 0.75rem; }
+      .nav-links { flex-wrap: wrap; gap: 0.5rem 1.25rem; justify-content: center; }
+      .nav-links a { font-size: 0.9rem; }
     }
     @media (max-width: 560px) {
       .stats-grid { grid-template-columns: 1fr; }
