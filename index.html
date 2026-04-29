@@ -111,6 +111,8 @@
       width: 100%; max-width: 1160px; margin: 0 auto;
       display: flex; justify-content: space-between; align-items: center; padding: 0 6%;
     }
+    html { scroll-behavior: smooth; }
+    .nav-logo a { text-decoration: none; display: block; }
     .nav-logo img { height: 44px; width: auto; display: block; }
     .nav-links { display: flex; gap: 2.5rem; align-items: center; list-style: none; }
     .nav-links a { text-decoration: none; color: var(--navy); font-weight: 700; font-size: 0.95rem; transition: color 0.2s; }
@@ -399,8 +401,8 @@
 <nav>
   <div class="nav-inner">
     <div class="nav-logo">
-      <img src="smartford-logo.png" alt="Smartford"
-        onerror="this.outerHTML='<span style=\'font-family:Playfair Display,serif;font-weight:900;font-size:1.5rem;color:#0F172A\'>Smartford</span>';">
+      <a href="#"><img src="smartford-logo.png" alt="Smartford"
+        onerror="this.outerHTML='<span style=\'font-family:Playfair Display,serif;font-weight:900;font-size:1.5rem;color:#0F172A\'>Smartford</span>';"></a>
     </div>
     <ul class="nav-links">
       <li><a href="#games">Games</a></li>
@@ -510,12 +512,12 @@
       <div class="game-card">
         <div class="card-img">
           <span class="card-badge badge-soon">Coming Soon</span>
-          <img src="mathreadium-box.png" alt="MathReadium"
+          <img src="readmathia-box.png" alt="ReadMathia"
             onerror="this.outerHTML='<span style=\'font-size:8rem;\'>🧠</span>';">
         </div>
         <div class="card-body">
           <div class="card-cat">Literacy &amp; Math</div>
-          <h3>MathReadium</h3>
+          <h3>ReadMathia</h3>
           <p class="card-subtitle">Read, Count &amp; Compare</p>
           <p>Whether you are just learning your first letters, mastering multi-digit words, or becoming a mental math wizard, this game scales to your skill level. It adapts to your child's level — building reading fluency, number sense, and quick thinking through playful rounds.</p>
           <div class="card-meta">Ages 4–8 &nbsp;·&nbsp; 2–4 Players &nbsp;·&nbsp; Board Game</div>
