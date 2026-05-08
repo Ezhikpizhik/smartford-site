@@ -430,7 +430,7 @@
       <li><a href="index.html#science">The Science</a></li>
       <li><a href="index.html#about">About</a></li>
       <li><a href="blog.html">Blog</a></li>
-      <li><a href="https://buy.stripe.com/00wfZgawPg3ReDB1k8cfK00" class="btn btn-primary btn-sm">Order Now</a></li>
+      <li><a href="https://buy.stripe.com/00wfZgawPg3ReDB1k8cfK00" class="btn btn-primary btn-sm">Shop</a></li>
     </ul>
   </div>
 </nav>
@@ -575,37 +575,74 @@
   </div>
 </section>
 
-<!-- VIDEO SECTION -->
-<section class="video-section">
+
+<!-- WHAT'S IN THE BOX -->
+<section style="padding: 90px 0; background: var(--bg-light); border-top: 1px solid var(--border);">
   <div class="section-inner">
     <div class="section-header">
-      <h2>Watch It Come to Life</h2>
-      <p>See how families play and the conversations that come out of a single round.</p>
+      <h2>What's in the Box</h2>
+      <p>Everything you need to start building emotional intelligence through play.</p>
     </div>
 
-    <div class="video-wrap">
-      <!--
-        TO ADD YOUR VIDEO:
-        Option A, YouTube embed:
-          Remove the .video-placeholder div below and uncomment this:
-          <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 860px;">
 
-        Option B, Vimeo embed:
-          <iframe src="https://player.vimeo.com/video/YOUR_VIDEO_ID" allowfullscreen></iframe>
-
-        Option C, self-hosted mp4:
-          <video controls poster="emotionarium-video-thumb.jpg" style="width:100%;display:block;">
-            <source src="emotionarium-video.mp4" type="video/mp4">
-          </video>
-      -->
-      <div class="video-placeholder">
-        <div class="play-btn">
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="#2ABAB4"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      <!-- Box image / photo -->
+      <div style="border-radius: 24px; overflow: hidden; background: var(--bg-cream); border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; min-height: 320px;">
+        <img src="emotionarium-photo-10.jpg" alt="What's in the Emotionarium box"
+          style="width: 100%; height: 100%; object-fit: contain; display: block;"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div style="display: none; flex-direction: column; align-items: center; justify-content: center; gap: 0.75rem; padding: 2rem; color: #94A3B8; text-align: center;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12"/></svg>
+          <span style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--navy); opacity: 0.5;">emotionarium-photo-10.jpg</span>
         </div>
-        <p>Your video goes here</p>
+      </div>
+
+      <!-- Contents list -->
+      <div style="display: flex; flex-direction: column; justify-content: center; gap: 0;">
+
+        <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 1.1rem 0; border-bottom: 1px solid var(--border);">
+          <span style="font-weight: 800; color: var(--navy); font-size: 1rem;">Contents</span>
+          <span style="color: var(--slate); font-size: 0.95rem;">80 cards + rule book</span>
+        </div>
+
+        <div style="padding: 1.1rem 0; border-bottom: 1px solid var(--border);">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.3rem;">
+            <span style="font-weight: 800; color: var(--navy); font-size: 1rem;">Emotion Cards</span>
+            <span style="color: var(--slate); font-size: 0.95rem;">40 cards</span>
+          </div>
+          <p style="font-size: 0.88rem; color: var(--slate); margin: 0; line-height: 1.5;">With definition, coping tips &amp; emotion family</p>
+        </div>
+
+        <div style="padding: 1.1rem 0; border-bottom: 1px solid var(--border);">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.3rem;">
+            <span style="font-weight: 800; color: var(--navy); font-size: 1rem;">Social Scene Cards</span>
+            <span style="color: var(--slate); font-size: 0.95rem;">40 cards</span>
+          </div>
+          <p style="font-size: 0.88rem; color: var(--slate); margin: 0; line-height: 1.5;">With scenario, feelings list &amp; 3 bonus scenes</p>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 1.1rem 0; border-bottom: 1px solid var(--border);">
+          <span style="font-weight: 800; color: var(--navy); font-size: 1rem;">Rule Book</span>
+          <span style="color: var(--slate); font-size: 0.95rem;">Included</span>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 1.1rem 0; border-bottom: 1px solid var(--border);">
+          <span style="font-weight: 800; color: var(--navy); font-size: 1rem;">Box</span>
+          <span style="color: var(--slate); font-size: 0.95rem;">Magnetic flap box</span>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 1.1rem 0; border-bottom: 1px solid var(--border);">
+          <span style="font-weight: 800; color: var(--navy); font-size: 1rem;">Ages</span>
+          <span style="color: var(--slate); font-size: 0.95rem;">3–10+</span>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 1.1rem 0;">
+          <span style="font-weight: 800; color: var(--navy); font-size: 1rem;">Players</span>
+          <span style="color: var(--slate); font-size: 0.95rem;">2+ players</span>
+        </div>
+
       </div>
     </div>
-
   </div>
 </section>
 
