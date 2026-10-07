@@ -156,32 +156,52 @@
     .section-header h2 { font-size: clamp(1.9rem, 3vw, 2.6rem); margin-bottom: 0.6rem; }
     .section-header p { color: var(--slate); font-size: 1.05rem; max-width: 500px; }
 
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: auto auto;
-      gap: 1.2rem;
+    /* ── PHOTO CAROUSEL ── */
+    .photo-carousel { max-width: 760px; margin: 0 auto; }
+    .carousel-main {
+      position: relative; border-radius: 20px; overflow: hidden;
+      background: var(--bg-light); border: 2px solid var(--border);
+      aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center;
     }
-    .gallery-item {
-      border-radius: 20px; overflow: hidden;
-      background: var(--bg-light); border: 2px dashed var(--border);
-      position: relative; cursor: pointer;
-      transition: transform 0.25s, box-shadow 0.25s;
-    }
-    .gallery-item:hover { transform: translateY(-4px); box-shadow: 0 16px 36px rgba(0,0,0,.09); }
-    .gallery-item.featured { grid-column: span 2; grid-row: span 2; }
-    .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .gallery-placeholder {
-      width: 100%; height: 260px;
+    .car-main-img { width: 100%; height: 100%; object-fit: cover; display: block; cursor: zoom-in; }
+    .car-placeholder-main {
+      width: 100%; height: 100%;
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
-      gap: 0.5rem; color: #94A3B8;
+      gap: 0.6rem; color: #94A3B8;
     }
-    .gallery-item.featured .gallery-placeholder { height: 540px; }
-    .gallery-placeholder span {
-      font-size: 0.82rem; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 1px;
+    .car-placeholder-main svg { opacity: 0.35; }
+    .car-placeholder-main span { font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; text-align: center; }
+    .car-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(255,255,255,0.85); border: none; cursor: pointer;
+      border-radius: 50%; width: 44px; height: 44px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; color: var(--navy); line-height: 1;
+      box-shadow: 0 2px 12px rgba(0,0,0,.12);
+      transition: background 0.2s, transform 0.2s; z-index: 2;
     }
+    .car-btn:hover { background: #fff; transform: translateY(-50%) scale(1.08); }
+    .car-prev { left: 12px; }
+    .car-next { right: 12px; }
+    .car-counter {
+      position: absolute; bottom: 12px; right: 16px;
+      background: rgba(0,0,0,0.45); color: #fff;
+      font-size: 0.78rem; font-family: 'Nunito', sans-serif; font-weight: 700;
+      padding: 3px 10px; border-radius: 20px; pointer-events: none;
+    }
+    .car-thumbs { display: flex; gap: 8px; margin-top: 12px; justify-content: center; flex-wrap: wrap; }
+    .car-thumb {
+      width: 72px; height: 56px; border-radius: 10px; overflow: hidden;
+      cursor: pointer; border: 2.5px solid transparent;
+      transition: border-color 0.2s, transform 0.2s;
+      background: var(--bg-light); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .car-thumb:hover { transform: translateY(-2px); }
+    .car-thumb.active { border-color: #7CB87A; transform: translateY(-2px); }
+    .car-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .car-thumb-ph { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #94A3B8; font-size: 0.55rem; font-weight: 700; text-align: center; padding: 4px; }
 
     /* ── LEVELS ── */
     .levels-section { padding: 90px 0; background: var(--bg-light); border-top: 1px solid var(--border); }
@@ -296,17 +316,13 @@
       .steps-grid { grid-template-columns: 1fr; }
       .sci-cards { grid-template-columns: 1fr; }
       .specs-flex { flex-direction: column; }
-      .gallery-grid { grid-template-columns: 1fr 1fr; }
-      .gallery-item.featured { grid-column: span 2; }
       nav { height: auto; padding: 0.75rem 0; }
       .nav-inner { flex-direction: column; gap: 0.75rem; }
       .nav-links { flex-wrap: wrap; gap: 0.5rem 1.25rem; justify-content: center; }
       .nav-links a { font-size: 0.9rem; }
     }
     @media (max-width: 560px) {
-      .gallery-grid { grid-template-columns: 1fr; }
-      .gallery-item.featured { grid-column: span 1; grid-row: span 1; }
-      .gallery-item.featured .gallery-placeholder { height: 260px; }
+      .car-thumb { width: 56px; height: 44px; }
     }
   </style>
 </head>
@@ -374,53 +390,19 @@
       <h2>See It in Action</h2>
       <p>Cards that make kids want to read, count, and play again.</p>
     </div>
-    <div class="gallery-grid">
-
-      <div class="gallery-item featured">
-        <img src="readmathia-photo-1.jpg" alt="Kids playing ReadMathia"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="gallery-placeholder" style="display:none;">
-          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-          <span>Add main photo<br><small style="text-transform:none;letter-spacing:0;font-size:0.8rem;">readmathia-photo-1.jpg</small></span>
+    <!-- PHOTO CAROUSEL -->
+    <div class="photo-carousel">
+      <div class="carousel-main">
+        <button class="car-btn car-prev" onclick="carMove(-1)" aria-label="Previous photo">‹</button>
+        <img id="car-img" class="car-main-img" src="" alt="" onclick="openLightbox(_carIdx)" style="display:none;">
+        <div class="car-placeholder-main" id="car-ph">
+          <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <span id="car-ph-label">Add photos here</span>
         </div>
+        <button class="car-btn car-next" onclick="carMove(1)" aria-label="Next photo">›</button>
+        <div class="car-counter" id="car-counter"></div>
       </div>
-
-      <div class="gallery-item">
-        <img src="readmathia-photo-2.jpg" alt="ReadMathia cards close-up"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="gallery-placeholder" style="display:none;">
-          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-          <span>readmathia-photo-2.jpg</span>
-        </div>
-      </div>
-
-      <div class="gallery-item">
-        <img src="readmathia-photo-3.jpg" alt="ReadMathia in classroom"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="gallery-placeholder" style="display:none;">
-          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-          <span>readmathia-photo-3.jpg</span>
-        </div>
-      </div>
-
-      <div class="gallery-item">
-        <img src="readmathia-photo-4.jpg" alt="ReadMathia word cards"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="gallery-placeholder" style="display:none;">
-          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-          <span>readmathia-photo-4.jpg</span>
-        </div>
-      </div>
-
-      <div class="gallery-item">
-        <img src="readmathia-photo-5.jpg" alt="ReadMathia number cards"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="gallery-placeholder" style="display:none;">
-          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-          <span>readmathia-photo-5.jpg</span>
-        </div>
-      </div>
-
+      <div class="car-thumbs" id="car-thumbs"></div>
     </div>
   </div>
 </section>
@@ -677,55 +659,103 @@
 <!-- LIGHTBOX -->
 <div id="lightbox" style="display:none; position:fixed; inset:0; background:rgba(80,90,110,0.88); z-index:9999; align-items:center; justify-content:center; flex-direction:column;">
   <button onclick="closeLightbox()" style="position:absolute; top:1.2rem; right:1.5rem; background:none; border:none; color:#fff; font-size:2.2rem; cursor:pointer; line-height:1;">✕</button>
-  <button onclick="prevPhoto()" style="position:absolute; left:1.2rem; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0.15); border:none; color:#fff; font-size:2rem; cursor:pointer; border-radius:50%; width:52px; height:52px; display:flex; align-items:center; justify-content:center;">‹</button>
+  <button onclick="lbPrev()" style="position:absolute; left:1.2rem; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0.15); border:none; color:#fff; font-size:2rem; cursor:pointer; border-radius:50%; width:52px; height:52px; display:flex; align-items:center; justify-content:center;">‹</button>
   <img id="lightbox-img" src="" alt="" style="max-width:92vw; max-height:88vh; border-radius:12px; object-fit:contain; box-shadow:0 24px 64px rgba(0,0,0,.5);">
-  <button onclick="nextPhoto()" style="position:absolute; right:1.2rem; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0.15); border:none; color:#fff; font-size:2rem; cursor:pointer; border-radius:50%; width:52px; height:52px; display:flex; align-items:center; justify-content:center;">›</button>
+  <button onclick="lbNext()" style="position:absolute; right:1.2rem; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0.15); border:none; color:#fff; font-size:2rem; cursor:pointer; border-radius:50%; width:52px; height:52px; display:flex; align-items:center; justify-content:center;">›</button>
   <div id="lightbox-counter" style="color:rgba(255,255,255,0.5); font-size:0.85rem; margin-top:1rem; font-family:'Nunito',sans-serif; font-weight:700;"></div>
 </div>
 
 <script>
-  var _photos = [];
-  var _idx = 0;
+  /* ── CAROUSEL DATA ── */
+  var _carPhotos = [
+    {src:'readmathia-photo-1.jpg', alt:'Kids playing ReadMathia'},
+    {src:'readmathia-photo-2.jpg', alt:'ReadMathia cards close-up'},
+    {src:'readmathia-photo-3.jpg', alt:'ReadMathia in classroom'},
+    {src:'readmathia-photo-4.jpg', alt:'ReadMathia word cards'},
+    {src:'readmathia-photo-5.jpg', alt:'ReadMathia number cards'}
+  ];
+  var _carIdx = 0;
 
-  document.addEventListener('DOMContentLoaded', function() {
-    var imgs = document.querySelectorAll('.gallery-item img');
-    imgs.forEach(function(img, i) {
-      _photos.push(img.src);
-      img.parentElement.addEventListener('click', function() {
-        if (!img.complete || img.naturalWidth === 0) return;
-        openLightbox(i);
-      });
-      img.parentElement.style.cursor = 'zoom-in';
+  function carInit() {
+    var thumbsEl = document.getElementById('car-thumbs');
+    _carPhotos.forEach(function(p, i) {
+      var btn = document.createElement('button');
+      btn.className = 'car-thumb' + (i === 0 ? ' active' : '');
+      btn.setAttribute('aria-label', 'Photo ' + (i+1));
+      btn.onclick = function() { carGo(i); };
+      var img = document.createElement('img');
+      img.src = p.src;
+      img.alt = p.alt;
+      img.onerror = function() {
+        this.style.display = 'none';
+        var ph = document.createElement('div');
+        ph.className = 'car-thumb-ph';
+        ph.textContent = (i+1);
+        btn.appendChild(ph);
+      };
+      btn.appendChild(img);
+      thumbsEl.appendChild(btn);
     });
-  });
+    carShow();
+  }
 
+  function carShow() {
+    var p = _carPhotos[_carIdx];
+    var imgEl = document.getElementById('car-img');
+    var phEl = document.getElementById('car-ph');
+    imgEl.alt = p.alt;
+    imgEl.src = p.src;
+    imgEl.style.display = 'block';
+    phEl.style.display = 'none';
+    imgEl.onerror = function() {
+      imgEl.style.display = 'none';
+      document.getElementById('car-ph-label').textContent = p.src;
+      phEl.style.display = 'flex';
+    };
+    document.getElementById('car-counter').textContent = (_carIdx + 1) + ' / ' + _carPhotos.length;
+    var thumbs = document.querySelectorAll('.car-thumb');
+    thumbs.forEach(function(t, i) { t.classList.toggle('active', i === _carIdx); });
+    var activeThumb = thumbs[_carIdx];
+    if (activeThumb) activeThumb.scrollIntoView({block:'nearest', inline:'center', behavior:'smooth'});
+  }
+
+  function carGo(i) { _carIdx = i; carShow(); }
+  function carMove(d) { _carIdx = (_carIdx + d + _carPhotos.length) % _carPhotos.length; carShow(); }
+
+  /* ── LIGHTBOX ── */
   function openLightbox(i) {
-    _idx = i;
+    _carIdx = i;
     document.getElementById('lightbox').style.display = 'flex';
     document.body.style.overflow = 'hidden';
-    showPhoto();
+    lbShow();
   }
   function closeLightbox() {
     document.getElementById('lightbox').style.display = 'none';
     document.body.style.overflow = '';
   }
-  function showPhoto() {
-    document.getElementById('lightbox-img').src = _photos[_idx];
-    document.getElementById('lightbox-counter').textContent = (_idx + 1) + ' / ' + _photos.length;
+  function lbShow() {
+    document.getElementById('lightbox-img').src = _carPhotos[_carIdx].src;
+    document.getElementById('lightbox-counter').textContent = (_carIdx + 1) + ' / ' + _carPhotos.length;
   }
-  function prevPhoto() { _idx = (_idx - 1 + _photos.length) % _photos.length; showPhoto(); }
-  function nextPhoto() { _idx = (_idx + 1) % _photos.length; showPhoto(); }
+  function lbPrev() { _carIdx = (_carIdx - 1 + _carPhotos.length) % _carPhotos.length; lbShow(); carShow(); }
+  function lbNext() { _carIdx = (_carIdx + 1) % _carPhotos.length; lbShow(); carShow(); }
 
   document.getElementById('lightbox').addEventListener('click', function(e) {
     if (e.target === this) closeLightbox();
   });
   document.addEventListener('keydown', function(e) {
-    if (document.getElementById('lightbox').style.display === 'flex') {
+    var lb = document.getElementById('lightbox');
+    if (lb.style.display === 'flex') {
       if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowLeft') prevPhoto();
-      if (e.key === 'ArrowRight') nextPhoto();
+      if (e.key === 'ArrowLeft') lbPrev();
+      if (e.key === 'ArrowRight') lbNext();
+    } else {
+      if (e.key === 'ArrowLeft') carMove(-1);
+      if (e.key === 'ArrowRight') carMove(1);
     }
   });
+
+  document.addEventListener('DOMContentLoaded', carInit);
 </script>
 
 </body>

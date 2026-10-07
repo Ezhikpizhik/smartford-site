@@ -180,12 +180,12 @@
     .game-card:hover { transform: translateY(-10px); box-shadow: 0 28px 50px rgba(0,0,0,.1); }
 
     .card-img {
-      height: 200px;
       background: var(--white);
       display: flex; align-items: center; justify-content: center;
+      padding: 1.5rem 1rem;
       overflow: hidden; position: relative;
     }
-    .card-img img { width: 80%; height: auto; object-fit: contain; transition: transform 0.5s ease; z-index: 1; position: relative; }
+    .card-img img { width: 85%; height: auto; max-height: 280px; object-fit: contain; transition: transform 0.5s ease; z-index: 1; position: relative; display: block; }
     .game-card:hover .card-img img { transform: scale(1.05); }
 
     .card-badge {
