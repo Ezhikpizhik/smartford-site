@@ -187,7 +187,7 @@
       aspect-ratio: 4/3;
       display: flex; align-items: center; justify-content: center;
     }
-    .car-main-img { width: 100%; height: 100%; object-fit: cover; display: block; cursor: zoom-in; }
+    .car-main-img { width: 100%; height: 100%; object-fit: contain; display: block; cursor: zoom-in; background: var(--bg-light); }
     .car-placeholder-main {
       width: 100%; height: 100%;
       display: flex; flex-direction: column;
@@ -220,7 +220,7 @@
       justify-content: center; flex-wrap: wrap;
     }
     .car-thumb {
-      width: 72px; height: 56px; border-radius: 10px; overflow: hidden;
+      width: 96px; height: 76px; border-radius: 10px; overflow: hidden;
       cursor: pointer; border: 2.5px solid transparent;
       transition: border-color 0.2s, transform 0.2s;
       background: var(--bg-light); flex-shrink: 0;
@@ -228,7 +228,7 @@
     }
     .car-thumb:hover { transform: translateY(-2px); }
     .car-thumb.active { border-color: var(--r-teal); transform: translateY(-2px); }
-    .car-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .car-thumb img { width: 100%; height: 100%; object-fit: contain; display: block; }
     .car-thumb-ph {
       width: 100%; height: 100%;
       display: flex; align-items: center; justify-content: center;
@@ -423,7 +423,7 @@
       .nav-links a { font-size: 0.9rem; }
     }
     @media (max-width: 560px) {
-      .car-thumb { width: 56px; height: 44px; }
+      .car-thumb { width: 72px; height: 56px; }
     }
   </style>
 </head>
