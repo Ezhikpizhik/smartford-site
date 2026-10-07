@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ReadMathia — Smartford</title>
+  <meta name="description" content="ReadMathia is a science-backed card game that helps kids ages 3–7+ build reading and math skills through play. Race to read, count, and compare!" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="canonical" href="https://www.smartford.org/readmathia.html" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --white:      #FFFFFF;
+      --bg-cream:   #FEFCF8;
+      --bg-light:   #F8FAFC;
+      --blue:       #3668C4;
+      --green:      #3DAA6A;
+      --navy:       #334155;
+      --slate:      #475569;
+      --border:     #E2E8F0;
+      --shadow-lg:  0 20px 40px rgba(15,23,42,.08);
+      --r-red:    #E83222;
+      --r-orange: #F5821E;
+      --r-yellow: #F9D422;
+      --r-green:  #3DAA6A;
+      --r-teal:   #2ABAB4;
+      --r-blue:   #3668C4;
+      --r-purple: #7B52A8;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 108px; }
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--bg-cream);
+      color: var(--navy);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+    h1, h2, h3 { font-family: 'Playfair Display', serif; line-height: 1.2; }
+    .section-inner { max-width: 1160px; margin: 0 auto; padding: 0 6%; }
+
+    @keyframes pulse-scale {
+      0%, 100% { transform: scale(1); }
+      50%       { transform: scale(1.03); }
+    }
+
+    /* ── RAINBOW BAR ── */
+    .rainbow-bar {
+      height: 5px;
+      background: linear-gradient(90deg,
+        var(--r-red), var(--r-orange), var(--r-yellow),
+        var(--r-green), var(--r-teal), var(--r-blue), var(--r-purple));
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 1rem 2.2rem; border-radius: 50px;
+      font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.95rem;
+      text-decoration: none; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: none; cursor: pointer; white-space: nowrap;
+    }
+    .btn-primary { background: var(--r-blue); color: var(--white); box-shadow: 0 8px 24px rgba(54,104,196,.25); }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(54,104,196,.35); filter: brightness(1.08); }
+    .btn-outline { border: 2.5px solid var(--r-blue); color: var(--r-blue); background: transparent; }
+    .btn-outline:hover { background: var(--r-blue); color: var(--white); transform: translateY(-2px); }
+    .btn-sm { padding: 0.6rem 1.4rem; font-size: 0.88rem; }
+    .btn-lg { padding: 1.2rem 3rem; font-size: 1.05rem; }
+
+    /* ── NAV ── */
+    nav {
+      background-color: rgba(235,248,247,0.97);
+      background-image:
+        radial-gradient(circle, rgba(42,186,180,0.13) 1.5px, transparent 1.5px),
+        radial-gradient(circle, rgba(123,82,168,0.07) 1px, transparent 1px);
+      background-size: 28px 28px, 14px 14px;
+      background-position: 0 0, 7px 7px;
+      backdrop-filter: blur(10px);
+      height: 96px; display: flex; align-items: center;
+      position: sticky; top: 0; z-index: 1000;
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      width: 100%; max-width: 1160px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center; padding: 0 6%;
+    }
+    .nav-logo a { text-decoration: none; display: block; }
+    .nav-logo img { height: 44px; width: auto; display: block; }
+    .nav-links { display: flex; gap: 2.5rem; align-items: center; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--navy); font-weight: 700; font-size: 0.95rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--blue); }
+
+    /* ── HERO ── */
+    .product-hero { padding: 80px 0 90px; background: var(--bg-cream); }
+    .hero-flex { display: flex; align-items: center; gap: 5rem; }
+    .hero-visual { flex: 1.1; display: flex; justify-content: center; }
+    .hero-visual img {
+      width: 100%; max-width: 480px; height: auto;
+      object-fit: contain;
+      animation: pulse-scale 6s ease-in-out infinite;
+      filter: drop-shadow(0 24px 48px rgba(0,0,0,.12));
+    }
+    .hero-text { flex: 1; }
+    .hero-eyebrow {
+      font-size: 0.78rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 2px;
+      color: var(--r-blue); margin-bottom: 0.75rem; display: block;
+    }
+    .hero-text h1 {
+      font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+      font-weight: 900; color: var(--r-blue);
+      margin-bottom: 0.5rem;
+    }
+    .hero-text h1 span { color: var(--r-orange); }
+    .hero-tagline {
+      font-size: 1.15rem; color: var(--slate);
+      line-height: 1.75; margin-bottom: 1.5rem; max-width: 480px;
+    }
+    .hero-pills {
+      display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem;
+    }
+    .hero-pill {
+      font-size: 0.82rem; font-weight: 700; color: var(--slate);
+      background: rgba(54,104,196,0.08);
+      border: 1.5px solid rgba(54,104,196,0.2);
+      border-radius: 50px; padding: 0.3rem 0.85rem;
+    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+
+    /* ── SKILLS STRIP ── */
+    .skills-strip {
+      background: var(--bg-light);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 36px 0;
+    }
+    .skills-inner {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      justify-content: center;
+    }
+    .skill-chip {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 50px;
+      padding: 0.4rem 1.1rem;
+      font-size: 0.88rem; font-weight: 700;
+      color: var(--slate);
+      white-space: nowrap;
+    }
+    .skill-chip span { margin-right: 0.3rem; }
+
+    /* ── GALLERY ── */
+    .gallery-section { padding: 90px 0; background: var(--bg-cream); }
+    .section-header { margin-bottom: 3rem; }
+    .section-header h2 { font-size: clamp(1.9rem, 3vw, 2.6rem); margin-bottom: 0.6rem; }
+    .section-header p { color: var(--slate); font-size: 1.05rem; max-width: 500px; }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto auto;
+      gap: 1.2rem;
+    }
+    .gallery-item {
+      border-radius: 20px; overflow: hidden;
+      background: var(--bg-light); border: 2px dashed var(--border);
+      position: relative; cursor: pointer;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .gallery-item:hover { transform: translateY(-4px); box-shadow: 0 16px 36px rgba(0,0,0,.09); }
+    .gallery-item.featured { grid-column: span 2; grid-row: span 2; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .gallery-placeholder {
+      width: 100%; height: 260px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 0.5rem; color: #94A3B8;
+    }
+    .gallery-item.featured .gallery-placeholder { height: 540px; }
+    .gallery-placeholder span {
+      font-size: 0.82rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1px;
+    }
+
+    /* ── LEVELS ── */
+    .levels-section { padding: 90px 0; background: var(--bg-light); border-top: 1px solid var(--border); }
+    .levels-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3.5rem; }
+    .level-card {
+      background: var(--white); border-radius: 24px;
+      padding: 2.4rem; border: 2px solid var(--border);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .level-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(0,0,0,.07); }
+    .level-badge {
+      display: inline-block; border-radius: 50px;
+      font-size: 0.72rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 1.5px;
+      padding: 0.35rem 1rem; margin-bottom: 1.2rem;
+    }
+    .level-badge.l1 { background: rgba(42,186,180,0.12); color: var(--r-teal); }
+    .level-badge.l2 { background: rgba(54,104,196,0.12); color: var(--r-blue); }
+    .level-card h3 {
+      font-family: 'Nunito', sans-serif;
+      font-size: 1.2rem; font-weight: 800; color: var(--navy); margin-bottom: 0.6rem;
+    }
+    .level-card p { font-size: 0.95rem; color: var(--slate); line-height: 1.7; }
+    .level-skills { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.2rem; }
+    .level-skill {
+      font-size: 0.78rem; font-weight: 700; color: var(--slate);
+      background: var(--bg-light); border: 1px solid var(--border);
+      border-radius: 50px; padding: 0.25rem 0.75rem;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .how-section { padding: 90px 0; background: var(--bg-cream); }
+    .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3.5rem; }
+    .step-card {
+      background: var(--white); border-radius: 24px;
+      padding: 2.2rem; border: 1.5px solid var(--border);
+    }
+    .step-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem; font-weight: 900;
+      color: rgba(54,104,196,0.15); line-height: 1; margin-bottom: 0.75rem;
+    }
+    .step-card h3 {
+      font-family: 'Nunito', sans-serif;
+      font-size: 1.1rem; font-weight: 800; color: var(--navy); margin-bottom: 0.6rem;
+    }
+    .step-card p { font-size: 0.95rem; color: var(--slate); line-height: 1.7; }
+
+    /* ── SCIENCE ── */
+    .science-section { padding: 90px 0; background: var(--bg-light); border-top: 1px solid var(--border); }
+    .sci-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 3rem; }
+    .sci-card { background: var(--white); border-radius: 20px; padding: 2rem 2.2rem; border: 1.5px solid var(--border); }
+    .sci-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+    .sci-card h3 { font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 800; color: var(--navy); margin-bottom: 0.5rem; }
+    .sci-card p { font-size: 0.92rem; color: var(--slate); line-height: 1.7; }
+
+    /* ── SPECS ── */
+    .specs-section { padding: 80px 0; background: var(--bg-cream); }
+    .specs-flex { display: flex; gap: 4rem; align-items: flex-start; }
+    .specs-image { flex: 1; }
+    .specs-image img { width: 100%; border-radius: 24px; box-shadow: var(--shadow-lg); display: block; }
+    .specs-content { flex: 1; }
+    .specs-content h2 { font-size: clamp(1.8rem, 3vw, 2.4rem); margin-bottom: 2rem; }
+    .spec-row {
+      display: flex; justify-content: space-between;
+      padding: 1rem 0; border-bottom: 1px solid var(--border); font-size: 0.95rem;
+    }
+    .spec-row:last-child { border-bottom: none; }
+    .spec-label { font-weight: 800; color: var(--navy); }
+    .spec-value { color: var(--slate); font-weight: 600; text-align: right; }
+
+    /* ── FINAL CTA ── */
+    .final-cta {
+      padding: 100px 0;
+      background: linear-gradient(135deg, #E8EEFF 0%, #EDE9FE 100%);
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    .final-cta h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem; color: var(--navy); }
+    .final-cta p { font-size: 1.1rem; color: var(--slate); max-width: 500px; margin: 0 auto 2.5rem; line-height: 1.75; }
+    .final-cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 70px 0 36px;
+      background-color: rgba(235,248,247,0.97);
+      background-image:
+        radial-gradient(circle, rgba(42,186,180,0.13) 1.5px, transparent 1.5px),
+        radial-gradient(circle, rgba(123,82,168,0.07) 1px, transparent 1px);
+      background-size: 28px 28px, 14px 14px;
+      background-position: 0 0, 7px 7px;
+      color: var(--navy); border-top: 1px solid var(--border);
+    }
+    .footer-flex { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 3rem; margin-bottom: 50px; }
+    .footer-brand { max-width: 300px; }
+    .footer-brand img { height: 38px; width: auto; margin-bottom: 1rem; display: block; }
+    .footer-brand p { color: var(--slate); font-size: 0.92rem; line-height: 1.65; }
+    .footer-col h4 { margin-bottom: 1.2rem; color: var(--green); text-transform: uppercase; letter-spacing: 1.5px; font-size: 0.8rem; font-weight: 800; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 0.7rem; }
+    .footer-col a { color: var(--slate); text-decoration: none; font-size: 0.92rem; font-weight: 600; transition: color .2s; }
+    .footer-col a:hover { color: var(--navy); }
+    .footer-bottom { border-top: 1px solid var(--border); padding-top: 28px; font-size: 0.83rem; color: var(--slate); opacity: 0.7; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      .hero-flex { flex-direction: column; text-align: center; gap: 3rem; }
+      .hero-tagline { margin: 0 auto 1.5rem; }
+      .hero-pills { justify-content: center; }
+      .hero-btns { justify-content: center; }
+      .levels-grid { grid-template-columns: 1fr; }
+      .steps-grid { grid-template-columns: 1fr; }
+      .sci-cards { grid-template-columns: 1fr; }
+      .specs-flex { flex-direction: column; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-item.featured { grid-column: span 2; }
+      nav { height: auto; padding: 0.75rem 0; }
+      .nav-inner { flex-direction: column; gap: 0.75rem; }
+      .nav-links { flex-wrap: wrap; gap: 0.5rem 1.25rem; justify-content: center; }
+      .nav-links a { font-size: 0.9rem; }
+    }
+    @media (max-width: 560px) {
+      .gallery-grid { grid-template-columns: 1fr; }
+      .gallery-item.featured { grid-column: span 1; grid-row: span 1; }
+      .gallery-item.featured .gallery-placeholder { height: 260px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="rainbow-bar"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <a href="index.html">
+        <img src="smartford-logo.png" alt="Smartford"
+          onerror="this.outerHTML='<span style=\'font-family:Playfair Display,serif;font-weight:900;font-size:1.5rem;color:#0F172A\'>Smartford</span>';">
+      </a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html#games">Games</a></li>
+      <li><a href="index.html#science">The Science</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="https://buy.stripe.com/28E14mcEX7xl531gf2cfK01" class="btn btn-primary btn-sm">Order Now</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="product-hero">
+  <div class="section-inner">
+    <div class="hero-flex">
+
+      <div class="hero-visual">
+        <img src="readmathia-box.jpg" alt="ReadMathia box"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div style="display:none; width:100%; max-width:480px; height:480px; background:linear-gradient(135deg,#E8EEFF,#C7D4F5); border-radius:32px; align-items:center; justify-content:center; font-size:10rem; box-shadow:var(--shadow-lg); animation:pulse-scale 6s ease-in-out infinite;">🧠</div>
+      </div>
+
+      <div class="hero-text">
+        <span class="hero-eyebrow">Literacy &amp; Math · Reaction Game</span>
+        <h1>Read<span>Mathia</span></h1>
+        <p class="hero-tagline">A fast-paced reaction game where kids' brains and hands race to win! Read words, solve math, and build the tallest tower — three missions, two token levels, endless fun.</p>
+        <div class="hero-pills">
+          <span class="hero-pill">Ages 3–7+</span>
+          <span class="hero-pill">2–4 Players</span>
+          <span class="hero-pill">3 Missions</span>
+          <span class="hero-pill">Yellow &amp; Pink Tokens</span>
+          <span class="hero-pill">Screen-free</span>
+          <span class="hero-pill">Research-backed</span>
+        </div>
+        <div class="hero-btns">
+          <a href="#buy" class="btn btn-primary btn-lg">Order Now</a>
+          <a href="#how-it-works" class="btn btn-outline">How It Works</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS STRIP -->
+<div class="skills-strip">
+  <div class="section-inner">
+    <div class="skills-inner">
+      <div class="skill-chip"><span>👁️</span> Visual Matching</div>
+      <div class="skill-chip"><span>📖</span> Word Reading</div>
+      <div class="skill-chip"><span>➕</span> Addition &amp; Subtraction</div>
+      <div class="skill-chip"><span>⚖️</span> Logic &amp; Comparison</div>
+      <div class="skill-chip"><span>🧠</span> Mental Math</div>
+      <div class="skill-chip"><span>⚡</span> Reaction Speed</div>
+      <div class="skill-chip"><span>🏗️</span> Tower Building</div>
+      <div class="skill-chip"><span>🎯</span> Focus &amp; Attention</div>
+    </div>
+  </div>
+</div>
+
+<!-- PHOTO GALLERY -->
+<section class="gallery-section">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2>See It in Action</h2>
+      <p>Cards that make kids want to read, count, and play again.</p>
+    </div>
+    <div class="gallery-grid">
+
+      <div class="gallery-item featured">
+        <img src="readmathia-photo-1.jpg" alt="Kids playing ReadMathia"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="gallery-placeholder" style="display:none;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <span>Add main photo<br><small style="text-transform:none;letter-spacing:0;font-size:0.8rem;">readmathia-photo-1.jpg</small></span>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="readmathia-photo-2.jpg" alt="ReadMathia cards close-up"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="gallery-placeholder" style="display:none;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <span>readmathia-photo-2.jpg</span>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="readmathia-photo-3.jpg" alt="ReadMathia in classroom"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="gallery-placeholder" style="display:none;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <span>readmathia-photo-3.jpg</span>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="readmathia-photo-4.jpg" alt="ReadMathia word cards"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="gallery-placeholder" style="display:none;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <span>readmathia-photo-4.jpg</span>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="readmathia-photo-5.jpg" alt="ReadMathia number cards"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="gallery-placeholder" style="display:none;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <span>readmathia-photo-5.jpg</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TWO TOKEN TYPES -->
+<section class="levels-section">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2>Two Token Types, Three Missions</h2>
+      <p>Start with Yellow Tokens for younger kids, add Pink Tokens as they level up. Then choose your mission.</p>
+    </div>
+    <div class="levels-grid">
+
+      <div class="level-card">
+        <div class="level-badge l1">🟡 Yellow Tokens · Ages 3–5</div>
+        <h3>Short Words &amp; Simple Math</h3>
+        <p>Yellow tokens feature short 3–4 letter words and simple addition and subtraction with sums and differences up to 10. Perfect for early readers and young counters who are just building their first skills — visual, fast, and confidence-building.</p>
+        <div class="level-skills">
+          <span class="level-skill">3–4 letter words</span>
+          <span class="level-skill">Picture matching</span>
+          <span class="level-skill">Math up to 10</span>
+          <span class="level-skill">Ages 3–5</span>
+        </div>
+      </div>
+
+      <div class="level-card">
+        <div class="level-badge l2">🩷 Pink Tokens · Ages 6–7+</div>
+        <h3>Longer Words &amp; Advanced Math</h3>
+        <p>Pink tokens feature longer 5–7 letter words and more challenging addition and subtraction with sums and differences up to 20. Kids who have mastered the basics can mix Yellow and Pink tokens for an extra challenge.</p>
+        <div class="level-skills">
+          <span class="level-skill">5–7 letter words</span>
+          <span class="level-skill">Word reading</span>
+          <span class="level-skill">Math up to 20</span>
+          <span class="level-skill">Ages 6–7+</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- THREE MISSIONS -->
+    <div style="margin-top: 3rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
+
+      <div style="background: var(--white); border-radius: 20px; padding: 2rem; border: 2px solid rgba(54,104,196,0.2);">
+        <div style="font-size: 2rem; margin-bottom: 0.75rem;">📖</div>
+        <div style="font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: var(--r-blue); margin-bottom: 0.5rem;">Mission A</div>
+        <h3 style="font-family:'Nunito',sans-serif; font-size: 1.05rem; font-weight: 800; color: var(--navy); margin-bottom: 0.6rem;">The Reading Track</h3>
+        <p style="font-size: 0.9rem; color: var(--slate); line-height: 1.65;">Three levels: match pictures (under 4), read a word and find the picture (ages 4–5), or look at a picture and find the matching word (ages 6–7).</p>
+      </div>
+
+      <div style="background: var(--white); border-radius: 20px; padding: 2rem; border: 2px solid rgba(54,104,196,0.2);">
+        <div style="font-size: 2rem; margin-bottom: 0.75rem;">🔢</div>
+        <div style="font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: var(--r-blue); margin-bottom: 0.5rem;">Mission B</div>
+        <h3 style="font-family:'Nunito',sans-serif; font-size: 1.05rem; font-weight: 800; color: var(--navy); margin-bottom: 0.6rem;">The Math Track</h3>
+        <p style="font-size: 0.9rem; color: var(--slate); line-height: 1.65;">Solve the expression on your token (e.g. 1+5) and race to find the token on the table showing the answer (6). Yellow tokens go up to 10, Pink up to 20.</p>
+      </div>
+
+      <div style="background: var(--white); border-radius: 20px; padding: 2rem; border: 2px solid rgba(54,104,196,0.2);">
+        <div style="font-size: 2rem; margin-bottom: 0.75rem;">⚔️</div>
+        <div style="font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: var(--r-blue); margin-bottom: 0.5rem;">Mission C · Ages 5+</div>
+        <h3 style="font-family:'Nunito',sans-serif; font-size: 1.05rem; font-weight: 800; color: var(--navy); margin-bottom: 0.6rem;">The Battle Board</h3>
+        <p style="font-size: 0.9rem; color: var(--slate); line-height: 1.65;">A logic duel! Place tokens into two number sentences on the board, checking &lt;, &gt;, and = after every move. When both sentences are true, shout "READMATHIA!" to win.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section" id="how-it-works">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2>How It Works</h2>
+      <p>Fast, fun rounds that feel like a race — not a lesson.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-number">01</div>
+        <h3>Get Your Starter Token</h3>
+        <p>Each player gets one token placed in front of them — that's their starter. The rest of the tokens are spread out on the table, picture or text side up depending on the mission level. Everyone says "GO!" and flips their starter at the same time.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">02</div>
+        <h3>Race to Find the Match</h3>
+        <p>Read the word, solve the math, or look at the picture on your starter token. Then race to grab the token on the table that matches. Found it? Stack it on top of yours — you're building a tower! Your new top token is your next clue. Keep going.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">03</div>
+        <h3>Build the Tallest Tower</h3>
+        <p>Keep matching and stacking until all tokens are cleared from the table. Then players check each other's towers. Wrong matches cost you 2 tokens; "Keep Moving" tokens cost 1. The player with the tallest tower wins!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S IN THE BOX -->
+<section style="padding: 90px 0; background: var(--bg-light); border-top: 1px solid var(--border);">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2>What's in the Box</h2>
+      <p>Everything you need for reading and math practice that feels like play.</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 860px;">
+      <div style="border-radius: 24px; overflow: hidden; background: var(--bg-cream); border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; min-height: 300px;">
+        <img src="readmathia-box.jpg" alt="ReadMathia box contents"
+          style="width: 100%; height: 100%; object-fit: contain; display: block; padding: 1rem;"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div style="display:none; align-items:center; justify-content:center; font-size:6rem;">📦</div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; justify-content: center; gap: 0;">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 1.1rem 0; border-bottom: 1px solid var(--border);">
+          <span style="font-weight: 800; color: var(--navy);">🟡 Yellow Tokens</span>
+          <span style="color: var(--slate);">Ages 3–5 · words + math up to 10</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 1.1rem 0; border-bottom: 1px solid var(--border);">
+          <span style="font-weight: 800; color: var(--navy);">🩷 Pink Tokens</span>
+          <span style="color: var(--slate);">Ages 6–7+ · words + math up to 20</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 1.1rem 0; border-bottom: 1px solid var(--border);">
+          <span style="font-weight: 800; color: var(--navy);">Missions</span>
+          <span style="color: var(--slate);">3 (Reading, Math, Battle Board)</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 1.1rem 0; border-bottom: 1px solid var(--border);">
+          <span style="font-weight: 800; color: var(--navy);">Ages</span>
+          <span style="color: var(--slate);">3–7+</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 1.1rem 0; border-bottom: 1px solid var(--border);">
+          <span style="font-weight: 800; color: var(--navy);">Players</span>
+          <span style="color: var(--slate);">2–4 players</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 1.1rem 0; border-bottom: 1px solid var(--border);">
+          <span style="font-weight: 800; color: var(--navy);">Rule book</span>
+          <span style="color: var(--slate);">Included</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 1.1rem 0;">
+          <span style="font-weight: 800; color: var(--navy);">Screen-free</span>
+          <span style="color: var(--slate);">100% offline</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCIENCE -->
+<section class="science-section">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2>The Science Behind It</h2>
+      <p>ReadMathia is designed around how children actually learn to read and count.</p>
+    </div>
+    <div class="sci-cards">
+      <div class="sci-card">
+        <div class="sci-icon">📖</div>
+        <h3>Reading Through Repetition</h3>
+        <p>Children learn to read by seeing words repeatedly in meaningful contexts. Every card in ReadMathia pairs a word with a picture, reinforcing the connection between print and meaning in the same way early literacy research recommends — active, repeated exposure that feels like play.</p>
+      </div>
+      <div class="sci-card">
+        <div class="sci-icon">🔢</div>
+        <h3>Number Sense Develops Through Comparison</h3>
+        <p>Research on early math shows that comparing quantities — "more," "less," "equal" — is foundational to number sense and later arithmetic. ReadMathia makes comparison the core mechanic of every round, so kids build this critical skill through every card they play.</p>
+      </div>
+      <div class="sci-card">
+        <div class="sci-icon">⚡</div>
+        <h3>Speed Builds Fluency</h3>
+        <p>The race element isn't just fun — it's functional. Timed practice (even informal, game-based pacing) is one of the most reliable ways to build reading fluency and automatic number recall. Kids who can read and count quickly have more mental resources for comprehension and problem-solving.</p>
+      </div>
+      <div class="sci-card">
+        <div class="sci-icon">🎲</div>
+        <h3>Games Outperform Worksheets</h3>
+        <p>A University of Oregon meta-analysis of 18 studies found a 76% chance that number board games improve children's numeracy. Game-based practice produces stronger and longer-lasting skill gains than passive drill — because engagement is the engine of learning.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPECS -->
+<section class="specs-section">
+  <div class="section-inner">
+    <div class="specs-flex">
+      <div class="specs-image">
+        <img src="readmathia-photo-detail.jpg" alt="ReadMathia cards spread out"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div style="display:none; width:100%; height:380px; background:linear-gradient(135deg,#E8EEFF,#C7D4F5); border-radius:24px; align-items:center; justify-content:center; font-size:7rem; box-shadow:var(--shadow-lg); border:2px dashed #C7D4F5; flex-direction:column; gap:0.5rem;">
+          🃏<br><small style="font-family:'Nunito',sans-serif; font-size:0.78rem; color:#94A3B8; display:block;">readmathia-photo-detail.jpg</small>
+        </div>
+      </div>
+
+      <div class="specs-content">
+        <h2>Game at a Glance</h2>
+        <div class="spec-row"><span class="spec-label">Game type</span><span class="spec-value">Fast-paced reaction game</span></div>
+        <div class="spec-row"><span class="spec-label">Tokens</span><span class="spec-value">Yellow (ages 3–5) + Pink (ages 6–7+)</span></div>
+        <div class="spec-row"><span class="spec-label">Missions</span><span class="spec-value">3 (Reading, Math, Battle Board)</span></div>
+        <div class="spec-row"><span class="spec-label">Ages</span><span class="spec-value">3–7+</span></div>
+        <div class="spec-row"><span class="spec-label">Players</span><span class="spec-value">2–4 players</span></div>
+        <div class="spec-row"><span class="spec-label">Skills</span><span class="spec-value">Reading, mental math, logic, reaction speed</span></div>
+        <div class="spec-row"><span class="spec-label">Reading levels</span><span class="spec-value">Visual matching → Translator → Expert</span></div>
+        <div class="spec-row"><span class="spec-label">Math levels</span><span class="spec-value">Up to 10 (Yellow) · Up to 20 (Pink)</span></div>
+        <div class="spec-row"><span class="spec-label">Best for</span><span class="spec-value">Families &amp; classrooms</span></div>
+        <div class="spec-row"><span class="spec-label">Screen-free</span><span class="spec-value">100% offline</span></div>
+        <div class="spec-row"><span class="spec-label">Designed by</span><span class="spec-value">Stanford PhD scientist + mom</span></div>
+        <div class="spec-row"><span class="spec-label">Ships from</span><span class="spec-value">USA</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta" id="buy">
+  <div class="section-inner">
+    <h2>Ready to make reading and math fun?</h2>
+    <p>Order ReadMathia today and turn every card into a learning moment your child will actually ask to repeat.</p>
+    <div class="final-cta-btns">
+      <a href="https://buy.stripe.com/28E14mcEX7xl531gf2cfK01" class="btn btn-primary btn-lg">Order Now</a>
+      <a href="emotionarium.html" class="btn btn-outline btn-lg">Also see Emotionarium</a>
+    </div>
+  </div>
+</section>
+
+<div class="rainbow-bar"></div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="section-inner">
+    <div class="footer-flex">
+      <div class="footer-brand">
+        <img src="smartford-logo.png" alt="Smartford"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <h3 style="display:none; color:var(--navy); margin-bottom:1rem; font-size:1.6rem;">Smartford</h3>
+        <p>Science-backed educational games built in Seattle, WA.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="index.html#games">All Games</a></li>
+          <li><a href="emotionarium.html">Emotionarium</a></li>
+          <li><a href="readmathia.html">ReadMathia</a></li>
+          <li><a href="index.html#science">The Science</a></li>
+          <li><a href="index.html#about">Our Story</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="mailto:smartford.kids@gmail.com">hello@smartford.org</a></li>
+          <li><a href="https://www.instagram.com/smartford.kids/" target="_blank">Instagram</a></li>
+          <li><a href="https://www.facebook.com/profile.php?id=61583978760645" target="_blank">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Smartford LLC. All rights reserved.</span>
+      <span>Designed for curious minds.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
