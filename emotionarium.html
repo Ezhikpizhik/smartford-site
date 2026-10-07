@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Emotionarium, Smartford</title>
+  <title>Emotionarium — Smartford</title>
   <meta name="description" content="Emotionarium is a science-based card game with 80 cards that helps kids ages 3–10+ understand 40 emotions through role-play, storytelling, and fun activities. Created by a Stanford PhD scientist." />
   <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="canonical" href="https://www.smartford.org/emotionarium.html" />
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
   <style>
     :root {
@@ -28,7 +29,7 @@
     }
 
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: 108px; }
+    html { scroll-behavior: smooth; }
     body {
       font-family: 'Nunito', sans-serif;
       background: var(--bg-cream);
@@ -84,8 +85,6 @@
       width: 100%; max-width: 1160px; margin: 0 auto;
       display: flex; justify-content: space-between; align-items: center; padding: 0 6%;
     }
-    html { scroll-behavior: smooth; }
-    .nav-logo a { text-decoration: none; display: block; }
     .nav-logo img { height: 44px; width: auto; display: block; }
     .nav-links { display: flex; gap: 2.5rem; align-items: center; list-style: none; }
     .nav-links a { text-decoration: none; color: var(--navy); font-weight: 700; font-size: 0.95rem; transition: color 0.2s; }
@@ -123,10 +122,10 @@
     }
     .hero-text h1 {
       font-size: clamp(2.4rem, 4.5vw, 3.6rem);
-      font-weight: 900; color: var(--r-orange);
+      font-weight: 900; color: var(--navy);
       margin-bottom: 1rem;
     }
-    .hero-text h1 span { color: var(--navy); }
+    .hero-text h1 span { color: var(--r-teal); }
     .hero-tagline {
       font-size: 1.15rem; color: var(--slate);
       line-height: 1.75; margin-bottom: 1.5rem; max-width: 480px;
@@ -430,7 +429,7 @@
       <li><a href="index.html#science">The Science</a></li>
       <li><a href="index.html#about">About</a></li>
       <li><a href="blog.html">Blog</a></li>
-      <li><a href="https://buy.stripe.com/00wfZgawPg3ReDB1k8cfK00" class="btn btn-primary btn-sm">Shop</a></li>
+      <li><a href="https://buy.stripe.com/00wfZgawPg3ReDB1k8cfK00" class="btn btn-primary btn-sm">Pre-order Now</a></li>
     </ul>
   </div>
 </nav>
@@ -450,7 +449,7 @@
       <div class="hero-text">
         <span class="hero-eyebrow">Emotional Intelligence · Card Game</span>
         <h1>Emotion<span>arium</span></h1>
-        <p class="hero-tagline">Discover, name, and understand feelings, through play! A science-based card game that helps kids explore 40 everyday emotions and 40 social scenes through fun activities, role-play, and storytelling.</p>
+        <p class="hero-tagline">Discover, name, and understand feelings — through play! A science-based card game that helps kids explore 40 everyday emotions and 40 social scenes through fun activities, role-play, and storytelling.</p>
         <div class="hero-pills">
           <span class="hero-pill">Ages 3–10+</span>
           <span class="hero-pill">2+ Players</span>
@@ -461,8 +460,9 @@
           <span class="hero-pill" style="border-color: rgba(61,170,106,0.4); color: #3DAA6A;">🛡️ ASTM Certified</span>
           <span class="hero-pill" style="border-color: rgba(61,170,106,0.4); color: #3DAA6A;">✅ Lead &amp; Phthalates-Free</span>
         </div>
+        <p class="shipping-note">🚀 Shipping early May 2026</p>
         <div class="hero-btns">
-          <a href="https://buy.stripe.com/00wfZgawPg3ReDB1k8cfK00" class="btn btn-primary btn-lg">Order Now</a>
+          <a href="https://buy.stripe.com/00wfZgawPg3ReDB1k8cfK00" class="btn btn-primary btn-lg">Pre-order Now</a>
           <a href="#how-it-works" class="btn btn-outline">How It Works</a>
         </div>
       </div>
@@ -503,7 +503,7 @@
 
       <!-- Small photo 3 -->
       <div class="gallery-item">
-        <img src="emotionarium-photo-3.jpg" alt="What's in the Emotionarium box"
+        <img src="emotionarium-photo-3.jpg" alt="Kids playing Emotionarium"
           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="gallery-placeholder" style="display:none;">
           <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
@@ -571,78 +571,51 @@
         </div>
       </div>
 
+      <!-- Small photo 10 -->
+      <div class="gallery-item">
+        <img src="emotionarium-photo-10.jpg" alt="Emotionarium scene card"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="gallery-placeholder" style="display:none;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <span>emotionarium-photo-10.jpg</span>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
-
-<!-- WHAT'S IN THE BOX -->
-<section style="padding: 90px 0; background: var(--bg-light); border-top: 1px solid var(--border);">
+<!-- VIDEO SECTION -->
+<section class="video-section">
   <div class="section-inner">
     <div class="section-header">
-      <h2>What's in the Box</h2>
-      <p>Everything you need to start building emotional intelligence through play.</p>
+      <h2>Watch It Come to Life</h2>
+      <p>See how families play and the conversations that come out of a single round.</p>
     </div>
 
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 860px;">
+    <div class="video-wrap">
+      <!--
+        TO ADD YOUR VIDEO:
+        Option A — YouTube embed:
+          Remove the .video-placeholder div below and uncomment this:
+          <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe>
 
-      <!-- Box image / photo -->
-      <div style="border-radius: 24px; overflow: hidden; background: var(--bg-cream); border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; min-height: 320px;">
-        <img src="emotionarium-photo-3.jpg" alt="Back of the Emotionarium box"
-          style="width: 100%; height: 100%; object-fit: contain; display: block;"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div style="display: none; flex-direction: column; align-items: center; justify-content: center; gap: 0.75rem; padding: 2rem; color: #94A3B8; text-align: center;">
-          <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12"/></svg>
-          <span style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--navy); opacity: 0.5;">emotionarium-photo-10.jpg</span>
+        Option B — Vimeo embed:
+          <iframe src="https://player.vimeo.com/video/YOUR_VIDEO_ID" allowfullscreen></iframe>
+
+        Option C — self-hosted mp4:
+          <video controls poster="emotionarium-video-thumb.jpg" style="width:100%;display:block;">
+            <source src="emotionarium-video.mp4" type="video/mp4">
+          </video>
+      -->
+      <div class="video-placeholder">
+        <div class="play-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="#2ABAB4"><polygon points="5 3 19 12 5 21 5 3"/></svg>
         </div>
-      </div>
-
-      <!-- Contents list -->
-      <div style="display: flex; flex-direction: column; justify-content: center; gap: 0;">
-
-        <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 1.1rem 0; border-bottom: 1px solid var(--border);">
-          <span style="font-weight: 800; color: var(--navy); font-size: 1rem;">Contents</span>
-          <span style="color: var(--slate); font-size: 0.95rem;">80 cards + rule book</span>
-        </div>
-
-        <div style="padding: 1.1rem 0; border-bottom: 1px solid var(--border);">
-          <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.3rem;">
-            <span style="font-weight: 800; color: var(--navy); font-size: 1rem;">Emotion Cards</span>
-            <span style="color: var(--slate); font-size: 0.95rem;">40 cards</span>
-          </div>
-          <p style="font-size: 0.88rem; color: var(--slate); margin: 0; line-height: 1.5;">With definition, coping tips &amp; emotion family</p>
-        </div>
-
-        <div style="padding: 1.1rem 0; border-bottom: 1px solid var(--border);">
-          <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.3rem;">
-            <span style="font-weight: 800; color: var(--navy); font-size: 1rem;">Social Scene Cards</span>
-            <span style="color: var(--slate); font-size: 0.95rem;">40 cards</span>
-          </div>
-          <p style="font-size: 0.88rem; color: var(--slate); margin: 0; line-height: 1.5;">With scenario, feelings list &amp; 3 bonus scenes</p>
-        </div>
-
-        <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 1.1rem 0; border-bottom: 1px solid var(--border);">
-          <span style="font-weight: 800; color: var(--navy); font-size: 1rem;">Rule Book</span>
-          <span style="color: var(--slate); font-size: 0.95rem;">Included</span>
-        </div>
-
-        <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 1.1rem 0; border-bottom: 1px solid var(--border);">
-          <span style="font-weight: 800; color: var(--navy); font-size: 1rem;">Box</span>
-          <span style="color: var(--slate); font-size: 0.95rem;">Magnetic flap box</span>
-        </div>
-
-        <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 1.1rem 0; border-bottom: 1px solid var(--border);">
-          <span style="font-weight: 800; color: var(--navy); font-size: 1rem;">Ages</span>
-          <span style="color: var(--slate); font-size: 0.95rem;">3–10+</span>
-        </div>
-
-        <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 1.1rem 0;">
-          <span style="font-weight: 800; color: var(--navy); font-size: 1rem;">Players</span>
-          <span style="color: var(--slate); font-size: 0.95rem;">2+ players</span>
-        </div>
-
+        <p>Your video goes here</p>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -657,7 +630,7 @@
       <div class="step-card">
         <div class="step-number">01</div>
         <h3>Notice</h3>
-        <p>Draw an Emotion Card or Social Scene Card. Look at the illustration together and describe what you see, the face, the body, the situation. Each card is designed to spark immediate recognition.</p>
+        <p>Draw an Emotion Card or Social Scene Card. Look at the illustration together and describe what you see — the face, the body, the situation. Each card is designed to spark immediate recognition.</p>
       </div>
       <div class="step-card">
         <div class="step-number">02</div>
@@ -667,7 +640,7 @@
       <div class="step-card">
         <div class="step-number">03</div>
         <h3>Respond</h3>
-        <p>Talk about healthy ways to handle the feeling, coping strategies are printed right on the card. Repeated practice of this loop wires the brain to use these skills automatically in real life.</p>
+        <p>Talk about healthy ways to handle the feeling — coping strategies are printed right on the card. Repeated practice of this loop wires the brain to use these skills automatically in real life.</p>
       </div>
     </div>
   </div>
@@ -684,17 +657,17 @@
       <div class="sci-card">
         <div class="sci-icon">🧘</div>
         <h3>Feelings Don't Have to Feel Overwhelming</h3>
-        <p>When children can name what they feel, "I'm frustrated" instead of "I'm bad", it's easier for them to calm down and handle tough moments. Naming a feeling reduces its intensity in the brain.</p>
+        <p>When children can name what they feel — "I'm frustrated" instead of "I'm bad" — it's easier for them to calm down and handle tough moments. Naming a feeling reduces its intensity in the brain.</p>
       </div>
       <div class="sci-card">
         <div class="sci-icon">🤝</div>
         <h3>Better Friendships and Teamwork</h3>
-        <p>Understanding other people's feelings builds empathy, the ability to see the world from someone else's point of view. This leads to kinder play, stronger friendships, and fewer arguments.</p>
+        <p>Understanding other people's feelings builds empathy — the ability to see the world from someone else's point of view. This leads to kinder play, stronger friendships, and fewer arguments.</p>
       </div>
       <div class="sci-card">
         <div class="sci-icon">🧩</div>
         <h3>Problem-Solving Skills</h3>
-        <p>Kids who can read emotions solve social problems better, they know when to ask for help, how to take turns, and how to make things right. Early emotional training builds resilience.</p>
+        <p>Kids who can read emotions solve social problems better — they know when to ask for help, how to take turns, and how to make things right. Early emotional training builds resilience.</p>
       </div>
       <div class="sci-card">
         <div class="sci-icon">📚</div>
@@ -728,11 +701,11 @@
         </div>
         <div class="spec-row">
           <span class="spec-label">Emotion Cards</span>
-          <span class="spec-value">40, with definition, coping tips &amp; emotion family</span>
+          <span class="spec-value">40 — with definition, coping tips &amp; emotion family</span>
         </div>
         <div class="spec-row">
           <span class="spec-label">Social Scene Cards</span>
-          <span class="spec-value">40, with scenario, feelings list &amp; 3 bonus scenes</span>
+          <span class="spec-value">40 — with scenario, feelings list &amp; 3 bonus scenes</span>
         </div>
         <div class="spec-row">
           <span class="spec-label">Ages</span>
@@ -759,8 +732,8 @@
           <span class="spec-value">Stanford PhD scientist + mom</span>
         </div>
         <div class="spec-row">
-          <span class="spec-label">Ships from</span>
-          <span class="spec-value">USA</span>
+          <span class="spec-label">Ships</span>
+          <span class="spec-value">Early May 2026 · USA</span>
         </div>
         <div class="spec-row">
           <span class="spec-label">Safety Testing</span>
@@ -806,26 +779,26 @@
   <div class="section-inner">
     <div class="section-header">
       <h2>Play at Every Age</h2>
-      <p>Three levels of difficulty, always start at Level 1 and move up as your child gets comfortable.</p>
+      <p>Three levels of difficulty — always start at Level 1 and move up as your child gets comfortable.</p>
     </div>
     <div class="steps-grid" style="margin-top: 3rem;">
 
       <div class="step-card">
         <div style="display:inline-block; background: rgba(42,186,180,0.12); color: var(--r-teal); font-size:0.72rem; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; padding:0.3rem 0.9rem; border-radius:50px; margin-bottom:1rem;">Ages 3–5</div>
         <h3>"First Feelings"</h3>
-        <p>Simple recognition and description. Young children learn to see, describe, and name feelings through gentle one-on-one play. Variations include matching scenes to emotions, picking a card that shows how they felt today, and connecting feelings to real-life moments, even before they can read.</p>
+        <p>Simple recognition and description. Young children learn to see, describe, and name feelings through gentle one-on-one play. Variations include matching scenes to emotions, picking a card that shows how they felt today, and connecting feelings to real-life moments — even before they can read.</p>
       </div>
 
       <div class="step-card">
         <div style="display:inline-block; background: rgba(245,130,30,0.12); color: var(--r-orange); font-size:0.72rem; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; padding:0.3rem 0.9rem; border-radius:50px; margin-bottom:1rem;">Ages 6–8</div>
         <h3>"Feelings &amp; Fix-Its"</h3>
-        <p>Matching emotions with actions, building empathy. Children connect feelings to their causes and explore coping strategies. Play includes acting out social scenes, Dixit-style storytelling, and discussing why people interpret situations differently, in small groups or with the family.</p>
+        <p>Matching emotions with actions, building empathy. Children connect feelings to their causes and explore coping strategies. Play includes acting out social scenes, Dixit-style storytelling, and discussing why people interpret situations differently — in small groups or with the family.</p>
       </div>
 
       <div class="step-card">
         <div style="display:inline-block; background: rgba(123,82,168,0.12); color: var(--r-purple); font-size:0.72rem; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; padding:0.3rem 0.9rem; border-radius:50px; margin-bottom:1rem;">Ages 9+</div>
         <h3>"Feelings Challenge"</h3>
-        <p>Nuanced emotions, debate, and storytelling. Older players explore subtle differences between feelings, how emotions can change over time, and why the same scene might feel different to different people. One scene can trigger many emotions, and that's the whole point.</p>
+        <p>Nuanced emotions, debate, and storytelling. Older players explore subtle differences between feelings, how emotions can change over time, and why the same scene might feel different to different people. One scene can trigger many emotions — and that's the whole point.</p>
       </div>
 
     </div>
@@ -837,7 +810,7 @@
   <div class="section-inner">
     <div class="section-header">
       <h2>Zones of Regulation</h2>
-      <p>Every emotion in the game is color-coded using the Zones of Regulation framework, helping children quickly recognize and talk about how they feel.</p>
+      <p>Every emotion in the game is color-coded using the Zones of Regulation framework — helping children quickly recognize and talk about how they feel.</p>
     </div>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.2rem; margin-top: 3rem;">
 
@@ -884,10 +857,11 @@
 <section class="final-cta">
   <div class="section-inner">
     <h2>Ready to give your child the gift of emotional words?</h2>
-    <p>Order Emotionarium today and start building emotional intelligence through play.</p>
+    <p>Pre-order Emotionarium today and be among the first families to play when we ship in May.</p>
     <p style="font-size:1rem; font-style:italic; color:var(--slate); margin-top:-1rem; margin-bottom:2rem; opacity:0.8;">⚠️ Warning: Kids might get too good at telling you how they feel!</p>
     <div class="final-cta-btns">
-      <a href="https://buy.stripe.com/00wfZgawPg3ReDB1k8cfK00" class="btn btn-primary btn-lg">Order Now</a>
+      <a href="https://buy.stripe.com/00wfZgawPg3ReDB1k8cfK00" class="btn btn-primary btn-lg">Pre-order Now</a>
+      <a href="index.html#signup" class="btn btn-outline">Join the Waitlist</a>
     </div>
   </div>
 </section>
