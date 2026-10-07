@@ -166,7 +166,7 @@
     .section-header h2 { font-size: clamp(2rem, 3.5vw, 2.8rem); margin-bottom: 0.75rem; }
     .section-header p { color: var(--slate); max-width: 540px; font-size: 1.05rem; }
 
-    .games-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; }
+    .games-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.8rem; }
 
     .game-card {
       background: var(--white);
@@ -180,7 +180,7 @@
     .game-card:hover { transform: translateY(-10px); box-shadow: 0 28px 50px rgba(0,0,0,.1); }
 
     .card-img {
-      height: 300px;
+      height: 200px;
       background: var(--bg-light);
       display: flex; align-items: center; justify-content: center;
       overflow: hidden; position: relative;
@@ -199,17 +199,17 @@
     .badge-soon { background: #6B7FD4; color: var(--white); }
     .badge-preorder { background: var(--r-teal); color: var(--white); }
 
-    .card-body { padding: 2rem 2.2rem 2.4rem; flex-grow: 1; display: flex; flex-direction: column; }
+    .card-body { padding: 1.4rem 1.6rem 1.8rem; flex-grow: 1; display: flex; flex-direction: column; }
     .card-cat {
       font-family: 'Nunito', sans-serif;
       font-size: 0.7rem; font-weight: 800;
       text-transform: uppercase; letter-spacing: 2px;
       color: var(--green); margin-bottom: 0.4rem;
     }
-    .card-body h3 { font-size: 1.7rem; margin-bottom: 0.3rem; }
-    .card-subtitle { font-style: italic; color: var(--slate); font-size: 0.9rem; margin-bottom: 0.85rem; }
-    .card-body p { color: var(--slate); margin-bottom: 0.85rem; flex-grow: 1; font-size: 0.95rem; line-height: 1.65; }
-    .card-meta { font-size: 0.78rem; font-weight: 700; color: var(--slate); margin-bottom: 1.4rem; opacity: 0.8; }
+    .card-body h3 { font-size: 1.4rem; margin-bottom: 0.25rem; }
+    .card-subtitle { font-style: italic; color: var(--slate); font-size: 0.88rem; margin-bottom: 0.6rem; }
+    .card-body p { color: var(--slate); margin-bottom: 0.6rem; flex-grow: 1; font-size: 0.9rem; line-height: 1.6; }
+    .card-meta { font-size: 0.75rem; font-weight: 700; color: var(--slate); margin-bottom: 1rem; opacity: 0.8; }
 
     /* ── SCIENCE ── */
     #science { padding: 90px 0; background: var(--bg-light); }
@@ -405,6 +405,7 @@
     </div>
     <ul class="nav-links">
       <li><a href="#games">Games</a></li>
+      <li><a href="#books">Books</a></li>
       <li><a href="#science">The Science</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="blog.html">Blog</a></li>
@@ -571,6 +572,21 @@
   </div>
 </section>
 
+<!-- BOOKS -->
+<section id="books" style="padding: 90px 0; background: var(--bg-cream); border-top: 1px solid var(--border);">
+  <div class="section-inner">
+    <div style="display: flex; align-items: center; gap: 4rem; flex-wrap: wrap;">
+      <div style="flex: 1; min-width: 280px;">
+        <span style="font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--r-teal); display: block; margin-bottom: 0.75rem;">Coming Soon · Search &amp; Find Book</span>
+        <h2 style="font-size: clamp(2rem, 3.5vw, 2.8rem); margin-bottom: 1rem;">Geografium:<br>Spot the World</h2>
+        <p style="font-size: 1.05rem; color: var(--slate); line-height: 1.75; max-width: 480px; margin-bottom: 1.5rem;">A search-and-find adventure across 6 countries. Hunt for hidden surprises on every page — and help catch a sneaky smuggler. A wimmelbook for curious explorers ages 2–6.</p>
+        <a href="#signup" class="btn btn-outline">Get Early Access</a>
+      </div>
+      <div style="flex: 0 0 260px; height: 300px; background: linear-gradient(135deg, #EEF4FF, #C7D4F5); border-radius: 24px; display: flex; align-items: center; justify-content: center; font-size: 6rem; box-shadow: var(--shadow-lg);">🌍</div>
+    </div>
+  </div>
+</section>
+
 <!-- EMAIL SIGNUP -->
 <div class="cta-section" id="signup">
   <div class="section-inner">
@@ -601,6 +617,7 @@
         <h4>Explore</h4>
         <ul>
           <li><a href="#games">All Games</a></li>
+          <li><a href="#books">Books</a></li>
           <li><a href="#science">The Science</a></li>
           <li><a href="#about">Our Story</a></li>
         </ul>

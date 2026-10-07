@@ -455,8 +455,6 @@
           <span class="hero-pill">15–60 min</span>
           <span class="hero-pill">Research-backed</span>
           <span class="hero-pill">Classrooms &amp; Therapy</span>
-          <span class="hero-pill" style="border-color: rgba(61,170,106,0.4); color: #3DAA6A;">🛡️ ASTM Certified</span>
-          <span class="hero-pill" style="border-color: rgba(61,170,106,0.4); color: #3DAA6A;">✅ Lead &amp; Phthalates-Free</span>
         </div>
         <div class="hero-btns">
           <a href="https://buy.stripe.com/00wfZgawPg3ReDB1k8cfK00" class="btn btn-primary btn-lg">Order Now</a>
@@ -802,6 +800,60 @@
     </div>
   </div>
 </footer>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.92); z-index:9999; align-items:center; justify-content:center; flex-direction:column;">
+  <button onclick="closeLightbox()" style="position:absolute; top:1.2rem; right:1.5rem; background:none; border:none; color:#fff; font-size:2.2rem; cursor:pointer; line-height:1;">✕</button>
+  <button onclick="prevPhoto()" style="position:absolute; left:1.2rem; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0.15); border:none; color:#fff; font-size:2rem; cursor:pointer; border-radius:50%; width:52px; height:52px; display:flex; align-items:center; justify-content:center;">‹</button>
+  <img id="lightbox-img" src="" alt="" style="max-width:92vw; max-height:88vh; border-radius:12px; object-fit:contain; box-shadow:0 24px 64px rgba(0,0,0,.5);">
+  <button onclick="nextPhoto()" style="position:absolute; right:1.2rem; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0.15); border:none; color:#fff; font-size:2rem; cursor:pointer; border-radius:50%; width:52px; height:52px; display:flex; align-items:center; justify-content:center;">›</button>
+  <div id="lightbox-counter" style="color:rgba(255,255,255,0.5); font-size:0.85rem; margin-top:1rem; font-family:'Nunito',sans-serif; font-weight:700;"></div>
+</div>
+
+<script>
+  var _photos = [];
+  var _idx = 0;
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var imgs = document.querySelectorAll('.gallery-item img');
+    imgs.forEach(function(img, i) {
+      _photos.push(img.src);
+      img.parentElement.addEventListener('click', function() {
+        if (!img.complete || img.naturalWidth === 0) return;
+        openLightbox(i);
+      });
+      img.parentElement.style.cursor = 'zoom-in';
+    });
+  });
+
+  function openLightbox(i) {
+    _idx = i;
+    document.getElementById('lightbox').style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    showPhoto();
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').style.display = 'none';
+    document.body.style.overflow = '';
+  }
+  function showPhoto() {
+    document.getElementById('lightbox-img').src = _photos[_idx];
+    document.getElementById('lightbox-counter').textContent = (_idx + 1) + ' / ' + _photos.length;
+  }
+  function prevPhoto() { _idx = (_idx - 1 + _photos.length) % _photos.length; showPhoto(); }
+  function nextPhoto() { _idx = (_idx + 1) % _photos.length; showPhoto(); }
+
+  document.getElementById('lightbox').addEventListener('click', function(e) {
+    if (e.target === this) closeLightbox();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (document.getElementById('lightbox').style.display === 'flex') {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') prevPhoto();
+      if (e.key === 'ArrowRight') nextPhoto();
+    }
+  });
+</script>
 
 </body>
 </html>
