@@ -409,6 +409,16 @@
       .gallery-item.featured { grid-column: span 1; grid-row: span 1; }
       .gallery-item.featured .gallery-placeholder { height: 260px; }
     }
+  
+    .btn-purple {
+      background: #7B52A8;
+      color: #FFFFFF;
+      box-shadow: 0 8px 24px rgba(123,82,168,.25);
+    }
+    .btn-purple:hover {
+      transform: translateY(-3px);
+      filter: brightness(1.1);
+    }
   </style>
 </head>
 <body>
@@ -425,11 +435,12 @@
       </a>
     </div>
     <ul class="nav-links">
-      <li><a href="index.html#games">Games</a></li>
+      <li><a href="index.html#games" class="active">Games</a></li>
+      <li><a href="books.html">Books</a></li>
       <li><a href="index.html#science">The Science</a></li>
       <li><a href="index.html#about">About</a></li>
       <li><a href="blog.html">Blog</a></li>
-      <li><a href="https://buy.stripe.com/00wfZgawPg3ReDB1k8cfK00" class="btn btn-primary btn-sm">Shop Now</a></li>
+      <li><a href="index.html#emotionarium" class="btn btn-purple btn-sm">Shop Now</a></li>
     </ul>
   </div>
 </nav>
@@ -883,6 +894,7 @@
         <ul>
           <li><a href="index.html#games">All Games</a></li>
           <li><a href="emotionarium.html">Emotionarium</a></li>
+          <li><a href="index.html#books">Books</a></li>
           <li><a href="index.html#science">The Science</a></li>
           <li><a href="index.html#about">Our Story</a></li>
           <li><a href="blog.html">Blog</a></li>
