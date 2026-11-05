@@ -364,23 +364,46 @@
     .spec-label { font-weight: 800; color: var(--navy); }
     .spec-value { color: var(--slate); font-weight: 600; text-align: right; }
 
-    /* ── FINAL CTA ── */
-    .final-cta {
-      padding: 100px 0;
-      background: linear-gradient(135deg, #E0F9F8 0%, #EDE9FE 100%);
+    /* ── EMAIL SIGNUP ── */
+    .cta-section {
+      padding: 90px 0;
+      background: var(--bg-light);
       text-align: center;
-      border-top: 1px solid var(--border);
     }
-    .final-cta h2 {
-      font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem;
-      color: var(--navy);
+    .cta-section h2 {
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      margin-bottom: 1rem;
+      color: var(--r-teal);
     }
-    .final-cta p {
-      font-size: 1.1rem; color: var(--slate);
-      max-width: 500px; margin: 0 auto 2.5rem;
-      line-height: 1.75;
+    .cta-section p {
+      font-size: 1.1rem;
+      color: var(--slate);
+      max-width: 500px;
+      margin: 0 auto 2rem;
+      line-height: 1.7;
     }
-    .final-cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .cta-form { max-width: 500px; margin: 0 auto; }
+    .cta-input-wrap {
+      display: flex; align-items: center;
+      background: var(--white); border: 2px solid var(--border);
+      border-radius: 50px; padding: 0.4rem 0.4rem 0.4rem 1.6rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .cta-input-wrap:focus-within { border-color: var(--r-teal); box-shadow: 0 0 0 3px rgba(42,186,180,0.15); }
+    .cta-input-wrap input {
+      flex: 1; border: none; outline: none; background: transparent;
+      font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 600; color: var(--navy);
+    }
+    .cta-input-wrap input::placeholder { color: #94A3B8; }
+    .cta-input-wrap button {
+      width: 48px; height: 48px; border-radius: 50%; border: none;
+      background: var(--r-teal); color: var(--white);
+      font-size: 1.2rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .2s; flex-shrink: 0;
+    }
+    .cta-input-wrap button:hover { background: #1FA09A; transform: scale(1.05); }
+    .cta-note { font-size: 0.85rem !important; color: #94A3B8 !important; margin-top: 1rem !important; }
 
     /* ── FOOTER ── */
     footer {
@@ -631,17 +654,20 @@
   </div>
 </section>
 
-<!-- FINAL CTA -->
-<section class="final-cta">
+<!-- EMAIL SIGNUP -->
+<div class="cta-section" id="signup">
   <div class="section-inner">
-    <h2>Ready to give your child the gift of emotional words?</h2>
-    <p>Order Emotionarium today and start building emotional intelligence through play.</p>
-    <p style="font-size:1rem; font-style:italic; color:var(--slate); margin-top:-1rem; margin-bottom:2rem; opacity:0.8;">⚠️ Warning: Kids might get too good at telling you how they feel!</p>
-    <div class="final-cta-btns">
-      <a href="https://buy.stripe.com/00wfZgawPg3ReDB1k8cfK00" class="btn btn-primary btn-lg">Order Now</a>
-    </div>
+    <h2>Join the Smartford family!</h2>
+    <p>Early access, launch updates, and a little thank-you discount.</p>
+    <form class="cta-form" action="https://formspree.io/f/xwvwrrae" method="POST">
+      <div class="cta-input-wrap">
+        <input type="email" name="email" placeholder="Your email address" required />
+        <button type="submit">&#10095;</button>
+      </div>
+    </form>
+    <p class="cta-note">No spam. Unsubscribe anytime.</p>
   </div>
-</section>
+</div>
 
 <div class="rainbow-bar"></div>
 
