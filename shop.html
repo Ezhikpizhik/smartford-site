@@ -98,7 +98,7 @@
     .page-hero p { font-size: 1.05rem; color: var(--slate); max-width: 480px; margin: 0 auto; line-height: 1.7; }
 
     /* ── SHOP SECTIONS ── */
-    .shop-section { padding: 40px 0; }
+    .shop-section { padding: 60px 0 80px; }
     .shop-section + .shop-section {
       border-top: 1px solid var(--border);
     }
@@ -143,14 +143,15 @@
       object-fit: contain;
       filter: drop-shadow(0 8px 20px rgba(0,0,0,0.14));
       transition: transform 0.4s ease;
+      position: relative; z-index: 1;
     }
     .product-card:hover .product-thumb img { transform: scale(1.05); }
-
     .product-badge {
       position: absolute; top: 0.75rem; right: 0.75rem;
       padding: 0.2rem 0.75rem; border-radius: 50px;
       font-size: 0.65rem; font-weight: 800;
       text-transform: uppercase; letter-spacing: 1px;
+      z-index: 2;
     }
     .badge-teal    { background: var(--r-teal); color: #fff; }
     .badge-blue    { background: var(--blue); color: #fff; }
@@ -255,18 +256,9 @@
   </div>
 </nav>
 
-<!-- PAGE HERO -->
-<div class="page-hero">
-  <div class="section-inner">
-    <h1>Shop</h1>
-    <p>Science-backed games and books that make learning feel like play.</p>
-  </div>
-</div>
-
-<!-- GAMES -->
+<!-- ALL PRODUCTS -->
 <section class="shop-section">
   <div class="section-inner">
-    <div class="shop-label">Games</div>
     <div class="product-grid">
 
       <!-- EMOTIONARIUM -->
@@ -306,16 +298,6 @@
           </div>
         </div>
       </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- BOOKS -->
-<section class="shop-section">
-  <div class="section-inner">
-    <div class="shop-label">Books</div>
-    <div class="product-grid">
 
       <!-- GEOGRAFIUM -->
       <div class="product-card">
