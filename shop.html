@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shop — Smartford</title>
+  <meta name="description" content="Shop Smartford science-backed educational games and books for kids." />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --white:      #FFFFFF;
+      --bg-cream:   #FEFCF8;
+      --bg-light:   #F8FAFC;
+      --blue:       #3668C4;
+      --green:      #3DAA6A;
+      --navy:       #334155;
+      --slate:      #475569;
+      --border:     #E2E8F0;
+      --shadow-lg:  0 20px 40px rgba(15,23,42,.08);
+      --r-red:    #E83222;
+      --r-orange: #F5821E;
+      --r-yellow: #F9D422;
+      --r-green:  #3DAA6A;
+      --r-teal:   #2ABAB4;
+      --r-blue:   #3668C4;
+      --r-purple: #7B52A8;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--bg-cream);
+      color: var(--navy);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+    h1, h2, h3 { font-family: 'Playfair Display', serif; line-height: 1.2; }
+    .section-inner { max-width: 1160px; margin: 0 auto; padding: 0 6%; }
+
+    /* ── RAINBOW BAR ── */
+    .rainbow-bar {
+      height: 5px;
+      background: linear-gradient(90deg,
+        var(--r-red), var(--r-orange), var(--r-yellow),
+        var(--r-green), var(--r-teal), var(--r-blue), var(--r-purple));
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 0.7rem 1.6rem; border-radius: 50px;
+      font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.88rem;
+      text-decoration: none; transition: all 0.3s ease; border: none; cursor: pointer;
+      white-space: nowrap;
+    }
+    .btn-primary { background: var(--r-teal); color: #ffffff !important; box-shadow: 0 6px 18px rgba(42,186,180,.25); }
+    .btn-primary:hover { transform: translateY(-2px); filter: brightness(1.07); }
+    .btn-blue { background: var(--blue); color: #ffffff !important; box-shadow: 0 6px 18px rgba(54,104,196,.25); }
+    .btn-blue:hover { transform: translateY(-2px); filter: brightness(1.1); }
+    .btn-outline { border: 2px solid var(--blue); color: var(--blue); background: transparent; }
+    .btn-outline:hover { background: var(--blue); color: var(--white); transform: translateY(-2px); }
+    .btn-sm { padding: 0.6rem 1.4rem; font-size: 0.88rem; }
+    .btn-nav { padding: 0.6rem 1.4rem; font-size: 0.88rem; }
+
+    /* ── NAV ── */
+    nav {
+      background-color: rgba(235,248,247,0.97);
+      background-image:
+        radial-gradient(circle, rgba(42,186,180,0.13) 1.5px, transparent 1.5px),
+        radial-gradient(circle, rgba(123,82,168,0.07) 1px, transparent 1px);
+      background-size: 28px 28px, 14px 14px;
+      background-position: 0 0, 7px 7px;
+      backdrop-filter: blur(10px);
+      height: 96px; display: flex; align-items: center;
+      position: sticky; top: 0; z-index: 1000;
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 2px 15px rgba(0,0,0,0.04);
+    }
+    .nav-inner {
+      width: 100%; max-width: 1160px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center; padding: 0 6%;
+    }
+    .nav-logo img { height: 44px; width: auto; display: block; }
+    .nav-links { display: flex; gap: 2.5rem; align-items: center; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--navy); font-weight: 700; font-size: 0.95rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--blue); }
+    .nav-links a.active { color: var(--blue); }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      padding: 50px 0 30px;
+      background: var(--bg-cream);
+      text-align: center;
+    }
+    .page-hero h1 { font-size: clamp(2.2rem, 4vw, 3rem); color: var(--blue); font-weight: 900; margin-bottom: 0.6rem; }
+    .page-hero p { font-size: 1.05rem; color: var(--slate); max-width: 480px; margin: 0 auto; line-height: 1.7; }
+
+    /* ── SHOP SECTIONS ── */
+    .shop-section { padding: 40px 0; }
+    .shop-section + .shop-section {
+      border-top: 1px solid var(--border);
+    }
+
+    .shop-label {
+      font-size: 0.72rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 2.5px;
+      color: var(--green); margin-bottom: 1.4rem;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .shop-label::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+    }
+
+    /* ── PRODUCT GRID ── */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.4rem;
+    }
+
+    /* ── PRODUCT CARD ── */
+    .product-card {
+      background: var(--white);
+      border-radius: 20px;
+      border: 1.5px solid var(--border);
+      overflow: hidden;
+      display: flex; flex-direction: column;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .product-card:hover { transform: translateY(-5px); box-shadow: 0 16px 36px rgba(0,0,0,.09); }
+
+    .product-thumb {
+      background: var(--bg-light);
+      background-image: radial-gradient(circle, rgba(42,186,180,0.08) 1px, transparent 1px);
+      background-size: 16px 16px;
+      display: flex; align-items: center; justify-content: center;
+      padding: 1.4rem 1rem; height: 200px; position: relative; overflow: hidden;
+    }
+    .product-thumb img {
+      max-height: 160px; max-width: 85%;
+      object-fit: contain;
+      filter: drop-shadow(0 8px 20px rgba(0,0,0,0.14));
+      transition: transform 0.4s ease;
+    }
+    .product-card:hover .product-thumb img { transform: scale(1.05); }
+
+    .product-badge {
+      position: absolute; top: 0.75rem; right: 0.75rem;
+      padding: 0.2rem 0.75rem; border-radius: 50px;
+      font-size: 0.65rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 1px;
+    }
+    .badge-teal    { background: var(--r-teal); color: #fff; }
+    .badge-blue    { background: var(--blue); color: #fff; }
+    .badge-orange  { background: var(--r-orange); color: #fff; }
+    .badge-slate   { background: #94A3B8; color: #fff; }
+
+    .product-body {
+      padding: 1rem 1.2rem 1.3rem;
+      display: flex; flex-direction: column; flex: 1;
+    }
+    .product-cat {
+      font-size: 0.65rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 1.5px;
+      color: var(--green); margin-bottom: 0.25rem;
+    }
+    .product-body h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem; font-weight: 700;
+      color: var(--blue); margin-bottom: 0.3rem; line-height: 1.25;
+    }
+    .product-body p {
+      font-size: 0.82rem; color: var(--slate);
+      line-height: 1.55; flex: 1; margin-bottom: 0.9rem;
+    }
+    .product-meta {
+      font-size: 0.72rem; font-weight: 700; color: var(--slate);
+      opacity: 0.75; margin-bottom: 0.8rem;
+    }
+    .product-actions { display: flex; flex-direction: column; gap: 0.5rem; }
+    .product-actions .btn { width: 100%; justify-content: center; }
+
+    /* ── COMING SOON ── */
+    .coming-soon-text {
+      display: block; text-align: center;
+      font-weight: 700; color: var(--blue);
+      font-size: 0.88rem; padding: 0.6rem 0;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 70px 0 36px;
+      background-color: rgba(235,248,247,0.97);
+      background-image:
+        radial-gradient(circle, rgba(42,186,180,0.13) 1.5px, transparent 1.5px),
+        radial-gradient(circle, rgba(123,82,168,0.07) 1px, transparent 1px);
+      background-size: 28px 28px, 14px 14px;
+      background-position: 0 0, 7px 7px;
+      border-top: 1px solid var(--border);
+    }
+    .footer-flex { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 3rem; margin-bottom: 50px; }
+    .footer-brand { max-width: 300px; }
+    .footer-brand img { height: 38px; width: auto; margin-bottom: 1rem; display: block; }
+    .footer-brand p { color: var(--slate); font-size: 0.92rem; line-height: 1.65; }
+    .footer-col h4 {
+      margin-bottom: 1.2rem; color: var(--green);
+      text-transform: uppercase; letter-spacing: 1.5px; font-size: 0.8rem; font-weight: 800;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 0.7rem; }
+    .footer-col a { color: var(--slate); text-decoration: none; font-size: 0.92rem; font-weight: 600; transition: color .2s; }
+    .footer-col a:hover { color: var(--navy); }
+    .footer-bottom {
+      border-top: 1px solid var(--border); padding-top: 28px;
+      font-size: 0.83rem; color: var(--slate); opacity: 0.7;
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;
+    }
+
+    @media (max-width: 960px) {
+      .product-grid { grid-template-columns: repeat(2, 1fr); }
+      nav { height: auto; padding: 0.75rem 0; }
+      .nav-inner { flex-direction: column; gap: 0.75rem; }
+      .nav-links { flex-wrap: wrap; gap: 0.5rem 1.25rem; justify-content: center; }
+      .nav-links a { font-size: 0.9rem; }
+    }
+    @media (max-width: 560px) {
+      .product-grid { grid-template-columns: repeat(2, 1fr); }
+      .product-thumb { height: 160px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="rainbow-bar"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <a href="index.html">
+        <img src="smartford-logo.png" alt="Smartford"
+          onerror="this.outerHTML='<span style=\'font-family:Playfair Display,serif;font-weight:900;font-size:1.5rem;color:#0F172A\'>Smartford</span>';">
+      </a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="games.html">Games</a></li>
+      <li><a href="books.html">Books</a></li>
+      <li><a href="index.html#science">The Science</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="shop.html" class="btn btn-primary btn-nav active">Shop Now</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="section-inner">
+    <h1>Shop</h1>
+    <p>Science-backed games and books that make learning feel like play.</p>
+  </div>
+</div>
+
+<!-- GAMES -->
+<section class="shop-section">
+  <div class="section-inner">
+    <div class="shop-label">Games</div>
+    <div class="product-grid">
+
+      <!-- EMOTIONARIUM -->
+      <div class="product-card">
+        <div class="product-thumb">
+          <span class="product-badge badge-teal">Order Now</span>
+          <img src="emotionarium-box.jpg" alt="Emotionarium"
+            onerror="this.outerHTML='<span style=\'font-size:5rem;\'>🌈</span>';">
+        </div>
+        <div class="product-body">
+          <div class="product-cat">Emotional Intelligence</div>
+          <h3>Emotionarium</h3>
+          <p>80 cards. 40 emotions, 40 social scenes. Build emotional vocabulary through play.</p>
+          <div class="product-meta">Ages 3–10+ &nbsp;·&nbsp; 2+ Players</div>
+          <div class="product-actions">
+            <a href="https://buy.stripe.com/00wfZgawPg3ReDB1k8cfK00" class="btn btn-primary">Order Now</a>
+            <a href="emotionarium.html" class="btn btn-outline">Learn More</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- READMATHIA -->
+      <div class="product-card">
+        <div class="product-thumb">
+          <span class="product-badge badge-teal">Order Now</span>
+          <img src="readmathia-box.jpg" alt="ReadMathia"
+            onerror="this.outerHTML='<span style=\'font-size:5rem;\'>🧠</span>';">
+        </div>
+        <div class="product-body">
+          <div class="product-cat">Literacy &amp; Math</div>
+          <h3>ReadMathia</h3>
+          <p>Race to read, count &amp; compare. 3 missions, 2 levels — fast-paced card fun.</p>
+          <div class="product-meta">Ages 3–7+ &nbsp;·&nbsp; 2–4 Players</div>
+          <div class="product-actions">
+            <a href="https://buy.stripe.com/28E14mcEX7xl531gf2cfK01" class="btn btn-primary">Order Now</a>
+            <a href="readmathia.html" class="btn btn-outline">Learn More</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- BOOKS -->
+<section class="shop-section">
+  <div class="section-inner">
+    <div class="shop-label">Books</div>
+    <div class="product-grid">
+
+      <!-- GEOGRAFIUM -->
+      <div class="product-card">
+        <div class="product-thumb">
+          <span class="product-badge badge-orange">New</span>
+          <img src="geografium-cover.png" alt="Geografium"
+            onerror="this.outerHTML='<span style=\'font-size:5rem;\'>🌍</span>';">
+        </div>
+        <div class="product-body">
+          <div class="product-cat">Search &amp; Find · Wimmelbook</div>
+          <h3>Geografium</h3>
+          <p>Spot the World — a search-and-find adventure across 6 countries. Ages 2–5.</p>
+          <div class="product-meta">Ages 2–5 &nbsp;·&nbsp; Board Book</div>
+          <div class="product-actions">
+            <span class="coming-soon-text">Coming soon</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- NEVER BORING MATH -->
+      <div class="product-card">
+        <div class="product-thumb">
+          <span class="product-badge badge-blue">On Amazon</span>
+          <img src="neverboring-cover.png" alt="Never Boring Math"
+            onerror="this.outerHTML='<span style=\'font-size:5rem;\'>🔎</span>';">
+        </div>
+        <div class="product-body">
+          <div class="product-cat">Math · Activity Workbook</div>
+          <h3>Never Boring Math</h3>
+          <p>Think like a detective, solve like an engineer. Codes, mazes, and puzzles.</p>
+          <div class="product-meta">Ages 4–7 &nbsp;·&nbsp; Workbook</div>
+          <div class="product-actions">
+            <a href="https://a.co/d/05zxL1km" target="_blank" rel="noopener" class="btn btn-blue">🛒 &nbsp;Get on Amazon</a>
+            <a href="books.html" class="btn btn-outline">Learn More</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="rainbow-bar"></div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="section-inner">
+    <div class="footer-flex">
+      <div class="footer-brand">
+        <img src="smartford-logo.png" alt="Smartford"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <h3 style="display:none; color:var(--navy); margin-bottom:1rem; font-size:1.6rem;">Smartford</h3>
+        <p>Science-backed educational games and books built in Seattle, WA.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="games.html">Games</a></li>
+          <li><a href="books.html">Books</a></li>
+          <li><a href="index.html#science">The Science</a></li>
+          <li><a href="index.html#about">Our Story</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="mailto:smartford.kids@gmail.com">hello@smartford.org</a></li>
+          <li><a href="https://www.instagram.com/smartford.kids/" target="_blank">Instagram</a></li>
+          <li><a href="https://www.facebook.com/profile.php?id=61583978760645" target="_blank">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Smartford LLC. All rights reserved.</span>
+      <span>Designed for curious minds.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
