@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Smartford &mdash; Science-Backed Learning</title>
+  <title>Smartford , Science-Backed Learning</title>
   <meta name="description" content="Smartford creates science-backed educational games for kids. Explore Emotionarium, a card game that helps children ages 3–10+ understand emotions and build social-emotional skills." />
   <link rel="icon" type="image/png" href="favicon.png" />
   <link rel="canonical" href="https://www.smartford.org/" />
@@ -78,7 +78,6 @@
       color: #ffffff !important;
       box-shadow: 0 8px 24px rgba(42,186,180,.25);
     }
-    .nav-links .btn-primary:hover { background: var(--blue) !important; box-shadow: 0 8px 24px rgba(54,104,196,.35) !important; }
     .btn-primary:hover {
       transform: translateY(-3px);
       box-shadow: 0 12px 32px rgba(42,186,180,.35);
@@ -401,18 +400,16 @@
 <nav>
   <div class="nav-inner">
     <div class="nav-logo">
-      <a href="index.html">
-        <img src="smartford-logo.png" alt="Smartford"
-          onerror="this.outerHTML='<span style=\'font-family:Playfair Display,serif;font-weight:900;font-size:1.5rem;color:#0F172A\'>Smartford</span>';">
-      </a>
+      <img src="smartford-logo.png" alt="Smartford"
+        onerror="this.outerHTML='<span style=\'font-family:Playfair Display,serif;font-weight:900;font-size:1.5rem;color:#0F172A\'>Smartford</span>';">
     </div>
     <ul class="nav-links">
-      <li><a href="games.html">Games</a></li>
-      <li><a href="books.html">Books</a></li>
+      <li><a href="#games">Games</a></li>
+      <li><a href="#books">Books</a></li>
       <li><a href="#science">The Science</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="blog.html">Blog</a></li>
-      <li><a href="shop.html" class="btn btn-primary btn-sm">Shop Now</a></li>
+      <li><a href="#games" class="btn btn-primary btn-sm">Shop Now</a></li>
     </ul>
   </div>
 </nav>
@@ -430,7 +427,7 @@
           <span class="hero-pill">Ages 3–10</span>
         </div>
         <div class="hero-btns">
-          <a href="games.html" class="btn btn-primary">Explore Games</a>
+          <a href="#games" class="btn btn-primary">Explore Games</a>
           <a href="#science" class="btn btn-outline">The Science</a>
         </div>
       </div>
@@ -485,6 +482,51 @@
   </div>
 </div>
 
+<!-- GAMES -->
+<section id="games">
+  <div class="section-inner">
+    <div class="section-header">
+      <h2>Our Games</h2>
+    </div>
+    <div class="games-grid">
+
+      <div class="game-card" id="emotionarium">
+        <div class="card-img">
+
+          <img src="emotionarium-box.jpg" alt="Emotionarium"
+            onerror="this.outerHTML='<span style=\'font-size:8rem;\'>🌈</span>';">
+        </div>
+        <div class="card-body">
+          <div class="card-cat">Emotional Intelligence</div>
+          <h3>Emotionarium</h3>
+          <p>80 cards. 40 emotions. 40 social scenes. Role-play, storytelling, and real conversations , through play.</p>
+          <div class="card-meta">Ages 3–10+ &nbsp;·&nbsp; 2+ Players &nbsp;·&nbsp; 80 Cards</div>
+          <a href="https://buy.stripe.com/00wfZgawPg3ReDB1k8cfK00" class="btn btn-primary" style="width:100%; margin-bottom:0.75rem;">Order Now</a>
+          <a href="emotionarium.html" class="btn btn-outline" style="width:100%;">Learn More</a>
+        </div>
+      </div>
+
+      <div class="game-card">
+        <div class="card-img">
+          <img src="readmathia-box.jpg" alt="ReadMathia"
+            onerror="this.outerHTML='<span style=\'font-size:8rem;\'>🧠</span>';">
+        </div>
+        <div class="card-body">
+          <div class="card-cat">Literacy &amp; Math</div>
+          <h3>ReadMathia</h3>
+          <p class="card-subtitle">Race to Read, Count &amp; Compare</p>
+          <p>Brains and hands race to win. From first letters to mental math , three missions, two levels, endless play.</p>
+          <div class="card-meta">Ages 3–7+ &nbsp;·&nbsp; 2–4 Players &nbsp;·&nbsp; 3 Missions</div>
+          <a href="https://buy.stripe.com/28E14mcEX7xl531gf2cfK01" class="btn btn-primary" style="width:100%; margin-bottom:0.75rem;">Order Now</a>
+          <a href="readmathia.html" class="btn btn-outline" style="width:100%;">Learn More</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
 <!-- SCIENCE -->
 <section id="science">
   <div class="section-inner">
@@ -522,8 +564,25 @@
       </div>
       <div class="about-content">
         <h2 style="color: var(--blue);">Meet our Creator</h2>
-        <p>Hi, I'm Lara! As a <strong style="color: var(--blue); font-weight: 800;">Stanford-trained PhD scientist</strong> and a mom of two, I realized the biggest gap in the toy aisle wasn't fun&mdash;it was evidence. I created Smartford to turn learning science into screen-free games that kids genuinely love&mdash;and that parents can feel good about.</p>
-        <p>Each Smartford game is designed around active discovery: the kind of learning that happens when kids are curious, experimenting, and so engaged they forget they're "being taught." I focus on making every activity hands-on and purposeful&mdash;building real skills like problem-solving, emotional awareness, communication, and flexible thinking through play.</p>
+        <p>Hi, I'm Lara! As a <strong style="color: var(--blue); font-weight: 800;">Stanford-trained PhD scientist</strong> and a mom of two, I realized the biggest gap in the toy aisle wasn't fun,it was evidence. I created Smartford to turn learning science into screen-free games that kids genuinely love,and that parents can feel good about.</p>
+        <p>Each Smartford game is designed around active discovery: the kind of learning that happens when kids are curious, experimenting, and so engaged they forget they're "being taught." I focus on making every activity hands-on and purposeful,building real skills like problem-solving, emotional awareness, communication, and flexible thinking through play.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKS -->
+<section id="books" style="padding: 90px 0; background: var(--bg-cream); border-top: 1px solid var(--border);">
+  <div class="section-inner">
+    <div style="display: flex; align-items: center; gap: 4rem; flex-wrap: wrap;">
+      <div style="flex: 1; min-width: 280px;">
+        <span style="font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--r-teal); display: block; margin-bottom: 0.75rem;">Coming Soon · Search &amp; Find Book</span>
+        <h2 style="font-size: clamp(2rem, 3.5vw, 2.8rem); margin-bottom: 1rem; color: var(--blue);">Geografium:<br>Spot the World</h2>
+        <p style="font-size: 1.05rem; color: var(--slate); line-height: 1.75; max-width: 480px; margin-bottom: 1.5rem;">A search-and-find adventure across 6 countries. Hunt for hidden surprises on every page , and help catch a sneaky smuggler. A wimmelbook for curious explorers ages 2–6.</p>
+        <a href="#signup" class="btn btn-outline">Get Early Access</a>
+      </div>
+      <div style="flex: 0 0 340px; border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-lg);">
+        <img src="Japan.jpg" alt="Geografium: Spot the World , Japan spread" style="width: 100%; height: auto; display: block;">
       </div>
     </div>
   </div>
@@ -558,8 +617,8 @@
       <div class="footer-col">
         <h4>Explore</h4>
         <ul>
-          <li><a href="games.html">All Games</a></li>
-          <li><a href="books.html">Books</a></li>
+          <li><a href="#games">All Games</a></li>
+          <li><a href="#books">Books</a></li>
           <li><a href="#science">The Science</a></li>
           <li><a href="#about">Our Story</a></li>
         </ul>
