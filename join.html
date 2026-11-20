@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Join the Smartford Family</title>
+  <meta name="description" content="Sign up for early access, launch updates, and a thank-you discount from Smartford." />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --white:      #FFFFFF;
+      --bg-cream:   #FEFCF8;
+      --blue:       #3668C4;
+      --navy:       #334155;
+      --slate:      #475569;
+      --r-red:    #E83222;
+      --r-orange: #F5821E;
+      --r-yellow: #F9D422;
+      --r-green:  #3DAA6A;
+      --r-teal:   #2ABAB4;
+      --r-blue:   #3668C4;
+      --r-purple: #7B52A8;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--bg-cream);
+      color: var(--navy);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h1, h2, h3 { font-family: 'Playfair Display', serif; line-height: 1.2; }
+
+    /* ── RAINBOW BAR ── */
+    .rainbow-bar {
+      height: 5px;
+      background: linear-gradient(90deg,
+        var(--r-red), var(--r-orange), var(--r-yellow),
+        var(--r-green), var(--r-teal), var(--r-blue), var(--r-purple));
+    }
+
+    /* ── LOGO HEADER ── */
+    .page-header {
+      padding: 2rem 1.5rem 1rem;
+      text-align: center;
+    }
+    .page-header a { display: inline-block; }
+    .page-header img { height: 48px; width: auto; }
+
+    /* ── MAIN CONTENT ── */
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    /* ── SIGNUP CARD ── */
+    .signup-card {
+      background: var(--white);
+      border-radius: 24px;
+      box-shadow: 0 20px 50px rgba(15,23,42,.09);
+      padding: 3rem 2.5rem;
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .signup-card h1 {
+      font-size: clamp(1.8rem, 5vw, 2.4rem);
+      color: var(--blue);
+      margin-bottom: 0.75rem;
+    }
+
+    .signup-card .subtitle {
+      color: var(--slate);
+      font-size: 1.05rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    /* ── EMAIL FORM ── */
+    .email-form { width: 100%; }
+
+    .input-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .email-form input[type="email"] {
+      width: 100%;
+      padding: 1rem 1.25rem;
+      border: 2px solid #E2E8F0;
+      border-radius: 50px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 1rem;
+      color: var(--navy);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .email-form input[type="email"]:focus {
+      border-color: var(--r-teal);
+    }
+    .email-form input[type="email"]::placeholder { color: #94A3B8; }
+
+    .btn-signup {
+      width: 100%;
+      padding: 1rem 1.5rem;
+      background: var(--r-teal);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 1.05rem;
+      cursor: pointer;
+      transition: all 0.25s;
+      box-shadow: 0 8px 24px rgba(42,186,180,.3);
+    }
+    .btn-signup:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.05);
+    }
+
+    .form-note {
+      margin-top: 0.75rem;
+      color: #94A3B8;
+      font-size: 0.85rem;
+    }
+
+    /* ── GEOGRAFIUM CARD ── */
+    .geo-card {
+      background: var(--white);
+      border-radius: 24px;
+      box-shadow: 0 20px 50px rgba(15,23,42,.09);
+      padding: 2.5rem 2.5rem;
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .geo-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--r-orange), var(--r-red));
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.35rem 1rem;
+      border-radius: 50px;
+      margin-bottom: 1.25rem;
+    }
+
+    .geo-card img {
+      width: 140px;
+      height: auto;
+      border-radius: 12px;
+      margin-bottom: 1.25rem;
+      box-shadow: 0 8px 24px rgba(15,23,42,.12);
+    }
+
+    .geo-card h2 {
+      font-size: 1.6rem;
+      color: var(--navy);
+      margin-bottom: 0.6rem;
+    }
+
+    .geo-card p {
+      color: var(--slate);
+      font-size: 0.98rem;
+      line-height: 1.65;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn-preorder {
+      display: inline-block;
+      padding: 0.9rem 2.2rem;
+      background: linear-gradient(135deg, var(--r-orange), var(--r-red));
+      color: #fff;
+      border-radius: 50px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      text-decoration: none;
+      box-shadow: 0 8px 24px rgba(245,130,30,.3);
+      transition: all 0.25s;
+    }
+    .btn-preorder:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.05);
+    }
+
+    /* ── FOOTER ── */
+    .page-footer {
+      text-align: center;
+      padding: 1.5rem;
+      color: #94A3B8;
+      font-size: 0.85rem;
+    }
+    .page-footer a { color: var(--r-teal); text-decoration: none; }
+    .page-footer a:hover { text-decoration: underline; }
+
+    /* ── SUCCESS STATE ── */
+    .success-msg {
+      display: none;
+      background: #ECFDF5;
+      border: 2px solid #6EE7B7;
+      border-radius: 16px;
+      padding: 1.25rem;
+      color: #065F46;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-top: 1rem;
+    }
+
+    @media (max-width: 540px) {
+      .signup-card, .geo-card { padding: 2rem 1.5rem; border-radius: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="rainbow-bar"></div>
+
+<header class="page-header">
+  <a href="index.html">
+    <img src="smartford-logo.png" alt="Smartford" onerror="this.outerHTML='<span style=\'font-family:Playfair Display,serif;font-weight:900;font-size:1.6rem;color:#0F172A\'>Smartford</span>';" />
+  </a>
+</header>
+
+<main>
+
+  <!-- EMAIL SIGNUP -->
+  <div class="signup-card">
+    <h1>Join the Smartford family!</h1>
+    <p class="subtitle">Product updates and discounts, no spam!</p>
+
+    <form class="email-form" action="https://formspree.io/f/xwvwrrae" method="POST" id="signupForm">
+      <div class="input-row">
+        <input type="email" name="email" placeholder="Your email address" required />
+        <button type="submit" class="btn-signup">Sign Me Up →</button>
+      </div>
+    </form>
+
+    <div class="success-msg" id="successMsg">
+      🎉 You're in! Watch your inbox for updates.
+    </div>
+  </div>
+
+
+</main>
+
+<div class="rainbow-bar"></div>
+
+<footer class="page-footer">
+  <p><a href="index.html">← Back to Smartford.org</a></p>
+</footer>
+
+<script>
+  // Show success message on form submit (Formspree redirects by default,
+  // but this handles the rare case of AJAX-style submission)
+  const form = document.getElementById('signupForm');
+  const successMsg = document.getElementById('successMsg');
+  form.addEventListener('submit', function() {
+    setTimeout(function() {
+      successMsg.style.display = 'block';
+    }, 500);
+  });
+</script>
+
+</body>
+</html>
