@@ -211,6 +211,24 @@
     .page-footer a { color: var(--r-teal); text-decoration: none; }
     .page-footer a:hover { text-decoration: underline; }
 
+    /* ── WEBSITE LINK BUTTON ── */
+    .btn-outline-link {
+      display: inline-block;
+      padding: 0.85rem 2rem;
+      border: 2.5px solid var(--r-teal);
+      border-radius: 50px;
+      color: var(--r-teal);
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: all 0.25s;
+    }
+    .btn-outline-link:hover {
+      background: var(--r-teal);
+      color: #fff;
+    }
+
     /* ── SUCCESS STATE ── */
     .success-msg {
       display: none;
@@ -234,9 +252,12 @@
 <div class="rainbow-bar"></div>
 
 <header class="page-header">
-  <a href="index.html">
+  <a href="https://www.smartford.org">
     <img src="smartford-logo.png" alt="Smartford" onerror="this.outerHTML='<span style=\'font-family:Playfair Display,serif;font-weight:900;font-size:1.6rem;color:#0F172A\'>Smartford</span>';" />
   </a>
+  <div style="margin-top:0.75rem;">
+    <a href="https://www.smartford.org" class="btn-outline-link">Back to Smartford.org →</a>
+  </div>
 </header>
 
 <main>
@@ -256,6 +277,7 @@
     <div class="success-msg" id="successMsg">
       🎉 You're in! Watch your inbox for updates.
     </div>
+
   </div>
 
 
