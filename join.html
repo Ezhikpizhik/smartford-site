@@ -44,13 +44,58 @@
         var(--r-green), var(--r-teal), var(--r-blue), var(--r-purple));
     }
 
-    /* ── LOGO HEADER ── */
-    .page-header {
-      padding: 2rem 1.5rem 1rem;
-      text-align: center;
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 2.2rem;
+      border-radius: 50px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
     }
-    .page-header a { display: inline-block; }
-    .page-header img { height: 48px; width: auto; }
+    .btn-primary {
+      background: #2ABAB4;
+      color: #ffffff !important;
+      box-shadow: 0 8px 24px rgba(42,186,180,.25);
+    }
+    .btn-primary:hover { transform: translateY(-3px); }
+
+    /* ── NAV ── */
+    nav {
+      background-color: rgba(235,248,247,0.97);
+      background-image:
+        radial-gradient(circle, rgba(42,186,180,0.13) 1.5px, transparent 1.5px),
+        radial-gradient(circle, rgba(123,82,168,0.07) 1px, transparent 1px);
+      background-size: 28px 28px, 14px 14px;
+      background-position: 0 0, 7px 7px;
+      backdrop-filter: blur(10px);
+      height: 96px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid rgba(42,186,180,0.15);
+    }
+    .nav-inner {
+      width: 100%; max-width: 1160px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center; padding: 0 6%;
+    }
+    .nav-logo img { height: 44px; width: auto; display: block; }
+    .nav-links { display: flex; gap: 2.5rem; align-items: center; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--navy); font-weight: 700; font-size: 0.95rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--blue); }
+    .nav-links .btn-primary:hover { background: var(--blue) !important; box-shadow: 0 8px 24px rgba(54,104,196,.35) !important; }
+    .btn-sm { padding: 0.6rem 1.4rem; font-size: 0.88rem; }
+    @media (max-width: 600px) {
+      nav { height: auto; padding: 0.75rem 0; }
+      .nav-inner { flex-direction: column; gap: 0.75rem; }
+      .nav-links { flex-wrap: wrap; gap: 0.5rem 1.25rem; justify-content: center; }
+    }
 
     /* ── MAIN CONTENT ── */
     main {
@@ -211,25 +256,7 @@
     .page-footer a { color: var(--r-teal); text-decoration: none; }
     .page-footer a:hover { text-decoration: underline; }
 
-    /* ── WEBSITE LINK BUTTON ── */
-    .btn-outline-link {
-      display: inline-block;
-      padding: 0.85rem 2rem;
-      border: 2.5px solid var(--r-teal);
-      border-radius: 50px;
-      color: var(--r-teal);
-      font-family: 'Nunito', sans-serif;
-      font-weight: 800;
-      font-size: 0.95rem;
-      text-decoration: none;
-      transition: all 0.25s;
-    }
-    .btn-outline-link:hover {
-      background: var(--r-teal);
-      color: #fff;
-    }
-
-    /* ── SUCCESS STATE ── */
+/* ── SUCCESS STATE ── */
     .success-msg {
       display: none;
       background: #ECFDF5;
@@ -251,14 +278,20 @@
 
 <div class="rainbow-bar"></div>
 
-<header class="page-header">
-  <a href="https://www.smartford.org">
-    <img src="smartford-logo.png" alt="Smartford" onerror="this.outerHTML='<span style=\'font-family:Playfair Display,serif;font-weight:900;font-size:1.6rem;color:#0F172A\'>Smartford</span>';" />
-  </a>
-  <div style="margin-top:0.75rem;">
-    <a href="https://www.smartford.org" class="btn-outline-link">Back to Smartford.org →</a>
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <a href="https://www.smartford.org">
+        <img src="smartford-logo.png" alt="Smartford" onerror="this.outerHTML='<span style=\'font-family:Playfair Display,serif;font-weight:900;font-size:1.5rem;color:#0F172A\'>Smartford</span>';" />
+      </a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="https://www.smartford.org/games.html">Games</a></li>
+      <li><a href="https://www.smartford.org/books.html">Books</a></li>
+      <li><a href="https://www.smartford.org/shop.html" class="btn btn-primary btn-sm" style="white-space:nowrap;">Shop Now</a></li>
+    </ul>
   </div>
-</header>
+</nav>
 
 <main>
 
